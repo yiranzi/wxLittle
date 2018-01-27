@@ -1,5 +1,32 @@
 <!--index.wxml-->
+
+
 <view class="container">
+<view style="width: 100%;">
+<progress style="width: 100%;" percent="20" show-info />
+</view>
+<progress percent="20" show-info />
+  <view>
+    <image style="width: 200px; height: 200px;" src="{{logoImg}}" ></image>
+    <text class="user-motto">{{username}}</text>
+  </view>
+  <view>
+    <icon type="warn" size="30"/>
+    im icon
+  </view>
+ 
+  <view>
+    <block wx:for="{{iconSize}}">
+      <icon type="success" size="{{item}}"/>
+    </block>
+  </view>
+  <view>123</view>
+  <view class='title'>
+    <view class='tab-item'>1</view>
+    <view class='tab-item'>2</view>
+    <view class='tab-item'>3</view>
+    <view class='tab-item'>4</view>
+  </view>  
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -10,4 +37,5 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+  
 </view>

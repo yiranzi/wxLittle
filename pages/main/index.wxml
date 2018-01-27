@@ -1,0 +1,21 @@
+<!--pages/main/index.wxml-->
+<view class='g-container'>
+  <view class='g-page'>
+    <view class="g-h1 page-title">
+      今天是第3天
+    </view>
+    <view class='main-body'>
+      <view class='part-div'>
+        <view class='title g-h2'>新建任务</view>
+        <view>
+         <input placeholder='新建你的里程碑' auto-focus/>
+         <button>提交</button>
+        </view>      
+      </view>  
+      <view class='part-div'>
+        <view class="title g-h2">这是所有的里程碑</view>
+       </view>
+    </view>
+    
+  </view>
+</view>

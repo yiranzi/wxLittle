@@ -1,0 +1,22 @@
+/* pages/main/index.wxss */
+
+.page-title {
+  text-align: center;
+}
+
+.part-div {
+  margin: 10px;
+  border: 1px solid black;
+}
+.main-body {
+  margin: 5px;
+  border: 1px solid black;
+}
+
+.page {
+  text-align: left;
+}
+
+.title {
+  
+}

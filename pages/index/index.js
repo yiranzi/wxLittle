@@ -4,7 +4,10 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    logoImg: '../../src/img/icon.png',
+    username: '小灶',
+    iconSize: [20, 30, 40, 50, 60, 70],
+    motto: 'Hello World123456',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')

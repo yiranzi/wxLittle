@@ -19,3 +19,14 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.title {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  border-bottom: 1px solid black;
+}
+
+.tab-item {
+  /* margin: 0 30px; */
+}

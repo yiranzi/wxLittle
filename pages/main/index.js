@@ -5,9 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    newMtName: '',
+    day: 1,
+    mileToneNameArr: [
+      {
+        index: 0,
+        title: '好好写代码1'
+      },
+      {
+        index: 1,
+        title: 'hello world!'
+      }
+    ]
   },
-
+  newMtClick: function (event) {
+    let arr = []
+    let obj = {}
+    obj.title = this.data.newMtName
+    obj.index = this.data.mileToneNameArr.length
+    arr = this.data.mileToneNameArr
+    arr.push(obj)
+    this.setData({
+      mileToneNameArr: arr,
+      newMtName: ''
+    })
+  },k
+  inputCbf: function (event) {
+    this.setData({
+      newMtName: event.detail.value
+    })
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */

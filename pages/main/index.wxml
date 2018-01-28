@@ -2,18 +2,21 @@
 <view class='g-container'>
   <view class='g-page'>
     <view class="g-h1 page-title">
-      今天是第3天
+      今天是第{{day}}天
     </view>
     <view class='main-body'>
       <view class='part-div'>
         <view class='title g-h2'>新建任务</view>
         <view>
-         <input placeholder='新建你的里程碑' auto-focus/>
-         <button>提交</button>
+         <input placeholder='新建你的里程碑' bindinput="inputCbf" auto-focus>{{newMtName}}</input>
+         <button bindtap="newMtClick">提交</button>
         </view>      
       </view>  
       <view class='part-div'>
         <view class="title g-h2">这是所有的里程碑</view>
+        <view wx:for="{{mileToneNameArr}}">
+            里程碑 {{index}}: {{item.title}}
+        </view>
        </view>
     </view>
     

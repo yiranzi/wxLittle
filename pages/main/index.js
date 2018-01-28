@@ -29,7 +29,7 @@ Page({
       mileToneNameArr: arr,
       newMtName: ''
     })
-  },k
+  },
   inputCbf: function (event) {
     this.setData({
       newMtName: event.detail.value

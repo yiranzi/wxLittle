@@ -8,17 +8,29 @@
       <view class='part-div'>
         <view class='title g-h2'>新建任务</view>
         <view>
-         <input placeholder='新建你的里程碑' bindinput="inputCbf" auto-focus>{{newMtName}}</input>
-         <button bindtap="newMtClick">提交</button>
-        </view>      
-      </view>  
+          <input placeholder='新建你的里程碑' bindinput="inputCbf" auto-focus>{{newMtName}}</input>
+        </view>
+        <button bindtap="newMtClick">提交</button>
+      </view>
       <view class='part-div'>
         <view class="title g-h2">这是所有的里程碑</view>
-        <view wx:for="{{mileToneNameArr}}">
-            里程碑 {{index}}: {{item.title}}
+        <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone">
+          <view class='info-part'>
+            <view> 里程碑 {{index}}: {{miletone.title}}</view>
+            <view wx:for="{{dataFinishArray}}"  wx:if="{{item.id === miletone.index}}">
+              
+                总数{{item.totalCount}}。完成{{item.finishCount}}。未完成{{item.unFinishCount}}
+              
+            </view>
+          </view>
+          <view id="{{index}}" bindtap="clickButton" style="background-color: {{item.color}}" class='click-part' wx:for="{{dataFinishArray}}"  wx:if="{{item.id === miletone.index}}">
+            <view>今日打卡</view>
+            <view>{{item.status}}</view>
+          </view>
         </view>
-       </view>
+
+        <view>{{calc}}</view>
+      </view>
     </view>
-    
   </view>
 </view>

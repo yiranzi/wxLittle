@@ -20,3 +20,21 @@
 .title {
   
 }
+
+.miletone-info {
+    display: flex;
+    margin: 10px;
+}
+
+.info-part {
+    flex: 1;
+    background-color: red;
+}
+
+.info-part view {
+    width: 100%;
+}
+
+.click-part {
+
+}

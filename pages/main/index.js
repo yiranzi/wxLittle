@@ -16,8 +16,65 @@ Page({
         index: 1,
         title: 'hello world!'
       }
-    ]
+    ],
+    dataFinishArray: [], // 表示进度信息
   },
+
+  staticProcessData: [
+    {
+      id: 0,
+      info: [
+        {
+          date: 0,
+          finish: true
+        },
+        {
+          date: 1,
+          finish: false
+        },
+        {
+          date: 2,
+          finish: null
+        }
+      ]
+    },
+    {
+      id: 1,
+      info: [
+        {
+          date: 0,
+          finish: true
+        },
+        {
+          date: 1,
+          finish: true
+        },
+        {
+          date: 2,
+          finish: null
+        }
+      ]
+    },
+    {
+      id: 2,
+      info: [
+        {
+          date: 0,
+          finish: true
+        },
+        {
+          date: 1,
+          finish: false
+        },
+        {
+          date: 2,
+          finish: null
+        }
+      ]
+    }
+  ],
+
+
   newMtClick: function (event) {
     let arr = []
     let obj = {}
@@ -36,11 +93,65 @@ Page({
     })
     
   },
+
+  getDataFromServer: function () {
+    // 1 设置processdata
+    this.setData({
+      dataFinishArray: this.staticProcessData
+    })
+    this.calcProcess()
+  },
+
+  clickButton: function (e) {
+    let result = this.data.dataFinishArray.find((ele, index) => {
+      return ele.id === parseInt(e.currentTarget.id)
+    })
+    result.info[result.info.length - 1].finish = true
+    console.log(result)
+  },
+
+  // 更新进度数据
+  calcProcess: function () {
+    let dataFinishArray = this.data.dataFinishArray
+    let arr = dataFinishArray.map((infos, index) => {
+      let totalCount = totalCount = infos.info.length
+      let finishCount = 0
+      let unFinishCount = 0
+      infos.info.forEach((info, index) => {
+        if(info.finish) {
+          finishCount++
+        } else {
+          unFinishCount++
+        }
+      })
+      infos.finishCount = finishCount
+      infos.unFinishCount = unFinishCount
+      infos.totalCount = totalCount
+      console.log(infos.info[totalCount - 1].finish)
+      // 设置当日的结果
+      if(infos.info[totalCount - 1].finish) {
+        infos.color = 'green'
+        infos.status = '已完成'
+      } else if (infos.info[totalCount - 1].finish === false) {
+        infos.color = 'red'
+        infos.status = '未完成'
+      } else {
+        infos.color = 'grey'
+        infos.status = '未打卡'
+      }
+      return infos
+    })
+    this.setData({
+      dataFinishArray: arr
+    })
+    console.log(arr)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getDataFromServer()
   },
 
   /**

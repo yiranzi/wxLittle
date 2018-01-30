@@ -12,6 +12,29 @@
   left: 0;
 }
 .inner-div {
-  background-color: white;
-  text-align: center;
+    position: relative;
+    background-color: white;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    min-height: 300px;
+    padding: 25px;
+    border-radius: 10px;
+}
+.botton-div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.botton {
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.sure {
+
 }

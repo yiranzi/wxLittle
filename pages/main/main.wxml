@@ -25,8 +25,8 @@
             <view>{{item.status}}</view>
           </view>
         </view>
-        <view bindtap="goRouter">{{'123'}}</view>
       </view>
+      <view class="new-mt-button" bindtap="goRouter">{{'增加里程碑'}}</view>
     </view>
   </view>
 </view>

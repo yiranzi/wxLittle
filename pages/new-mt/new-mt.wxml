@@ -10,9 +10,8 @@
         bind:sureEvent="getPopClick" />
         <view class='title g-h2'>新建任务</view>
         <view>
-          <input value="{{newMtName}}" placeholder='新建你的里程碑' bindinput="inputCbf" auto-focus />
+          <input value="{{newMtName}}" placeholder='新建你的里程碑' bindinput="inputCbf" focus />
         </view>
         <button bindtap="newMtClick">提交</button>
     </view>
 </view>
-

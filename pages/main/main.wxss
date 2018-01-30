@@ -4,12 +4,13 @@
   text-align: center;
 }
 
-.part-div {
-  margin: 10px;
-  border: 1px solid black;
-}
 .main-body {
   margin: 5px;
+  border: 1px solid black;
+}
+
+.part-div {
+  margin: 10px;
   border: 1px solid black;
 }
 
@@ -36,5 +37,5 @@
 }
 
 .click-part {
-
+    border-left: 1px solid black;
 }

@@ -1,0 +1,8 @@
+<!--pages/cpmponent/index.wxml-->
+<view class="out-div" wx:if="{{isShow}}">
+  <view class='inner-div'>
+    <view class="content">{{content}}</view>
+    <view class='sure' bindtap="sureClick" id="{{1}}" >{{sureContent}}</view>
+    <view class='cancel' bindtap="cancelClick" id="{{2}}" >{{cancelContent}}</view>
+  </view>
+</view>

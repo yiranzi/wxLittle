@@ -1,11 +1,12 @@
 {
-  "pages":[
-    "pages/main/index"
+  "pages": [
+    "pages/main/main",
+    "pages/new-mt/new-mt"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "red",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }

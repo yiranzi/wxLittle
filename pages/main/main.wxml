@@ -1,17 +1,14 @@
 <!--pages/main/index.wxml-->
 <view class='g-container'>
   <view class='g-page'>
+    <view>
+    <!-- 弹框组件 -->
+    <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
+    </view>
     <view class="g-h1 page-title">
       今天是第{{day}}天
     </view>
     <view class='main-body'>
-      <view class='part-div'>
-        <view class='title g-h2'>新建任务</view>
-        <view>
-          <input placeholder='新建你的里程碑' bindinput="inputCbf" auto-focus>{{newMtName}}</input>
-        </view>
-        <button bindtap="newMtClick">提交</button>
-      </view>
       <view class='part-div'>
         <view class="title g-h2">这是所有的里程碑</view>
         <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone">
@@ -28,8 +25,7 @@
             <view>{{item.status}}</view>
           </view>
         </view>
-
-        <view>{{calc}}</view>
+        <view bindtap="goRouter">{{'123'}}</view>
       </view>
     </view>
   </view>

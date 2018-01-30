@@ -1,0 +1,18 @@
+<!--pages/newMileTone/new.wxml-->
+<view class='main-body'>
+    <view class='part-div'>
+        <modal-box
+        id='modalBox'
+        content="hello"
+        sureContent="ok"
+        cancelContent="no"
+        bind:cancelEvent="getPopClick"
+        bind:sureEvent="getPopClick" />
+        <view class='title g-h2'>新建任务</view>
+        <view>
+          <input value="{{newMtName}}" placeholder='新建你的里程碑' bindinput="inputCbf" auto-focus />
+        </view>
+        <button bindtap="newMtClick">提交</button>
+    </view>
+</view>
+

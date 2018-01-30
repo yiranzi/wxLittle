@@ -1,0 +1,18 @@
+/* pages/newMileTone/new.wxss */
+.main-body {
+  margin: 5px;
+  border: 1px solid black;
+}
+
+.part-div {
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.page {
+  text-align: left;
+}
+
+.title {
+
+}

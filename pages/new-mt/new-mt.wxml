@@ -3,11 +3,11 @@
     <view class='part-div'>
         <modal-box
         id='modalBox'
-        content="hello"
-        sureContent="ok"
-        cancelContent="no"
-        bind:cancelEvent="getPopClick"
-        bind:sureEvent="getPopClick" />
+        defaultContent="你确定要建立里程碑！！！{{newMtName}}"
+        sureContent="就它了"
+        cancelContent="再等等"
+        bind:cancelEvent="cancelEvent"
+        bind:sureEvent="sureEvent" />
         <view class='title g-h2'>新建任务</view>
         <view>
           <input value="{{newMtName}}" placeholder='新建你的里程碑' bindinput="inputCbf" focus />

@@ -36,6 +36,12 @@ App({
   globalData: {
     userInfo: null
   },
+  globalComponent: {
+    alert: {}
+  },
+  globalInfo: {
+    alertInfo: ''
+  },
   userData: {
     mileToneNameArr: [
       {

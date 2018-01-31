@@ -162,22 +162,33 @@ Page({
     })
   },
 
+  // 设置全局组件
+  setGlobalComponent: function () {
+    var globalComponent = getApp().globalComponent
+    globalComponent.alert = this.selectComponent("#alert");
+  },
+
+  // alert组件
+  alertClickButton: function () {
+    console.log('close')
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('onLoad index')
     this.getDataFromServer()
     this.getFromUserData()
-    console.log('onLoad index')
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.dialog = this.selectComponent("#modalBox");
-    console.log(this.dialog)
     console.log('onReady index')
+    this.dialog = this.selectComponent("#modalBox");
+    this.setGlobalComponent()
   },
 
   /**
@@ -191,6 +202,14 @@ Page({
       this.setData({
         isHide: false
       })
+    }
+    var global = getApp()
+    var globalInfo = global.globalInfo
+    if (globalInfo.alertInfo !== '') {
+      setTimeout(() => {
+        getApp().globalComponent.alert.showDialog(globalInfo.alertInfo)
+        global.globalInfo = ''
+      },100)
     }
   },
 

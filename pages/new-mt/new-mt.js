@@ -23,8 +23,14 @@ Page({
   },
 
   // 输入完成后确认
-  newMtClick: function (event) {
+  newMtClick: function () {
     console.log('click')
+    this.dialog.showDialog()
+  },
+
+  // 录入数据
+  saveMileTone () {
+    // 保存
     let arr = []
     let obj = {}
     obj.title = this.data.newMtName
@@ -35,10 +41,25 @@ Page({
     this.setData({
       newMtName: ''
     })
-    this.dialog.showDialog()
+
+    // 返回
+    wx.navigateBack({
+      delta: 1
+    })
+    // 获取
+    var globalInfo = getApp().globalInfo
+    // 清空
+    globalInfo.alertInfo = ''
+    // 添加
+    globalInfo.alertInfo = '添加成功！'
   },
 
-  getPopClick: function () {
+  sureEvent: function () {
+    this.saveMileTone()
+    this.dialog.hideDialog()
+  },
+
+  cancelEvent: function () {
     this.dialog.hideDialog()
   },
 

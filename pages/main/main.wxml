@@ -4,6 +4,7 @@
     <view>
     <!-- 弹框组件 -->
     <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
+    <alert id='alert' bind:alertClickButton="alertClickButton"></alert>
     </view>
     <view class="g-h1 page-title">
       今天是第{{day}}天

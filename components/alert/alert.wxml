@@ -3,8 +3,7 @@
   <view class='inner-div'>
     <view class="content">{{showContent}}</view>
     <view class="botton-div">
-        <view class='sure botton' bindtap="sureClick" id="{{1}}" >{{sureContent}}</view>
-        <view class='cancel botton' bindtap="cancelClick" id="{{2}}" >{{cancelContent}}</view>
+        <view class='sure botton' bindtap="alertClickButton">{{sureContent}}</view>
     </view>
   </view>
 </view>

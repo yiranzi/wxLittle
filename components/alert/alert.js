@@ -10,7 +10,7 @@ Component({
     },
     defaultContent: {
       type: String,
-      value: '今天任务是否完成了？',
+      value: 'alert!',
     },
   },
   data: {
@@ -20,13 +20,9 @@ Component({
   },
   methods: {
     // 这里是一个自定义方法
-    sureClick: function () { 
-      console.log('sure')
-      this.triggerEvent('sureEvent', {})
-    },
-    cancelClick: function () {
-      console.log('cancel')
-      this.triggerEvent('cancelEvent', {})
+    alertClickButton: function () {
+      this.hideDialog()
+      this.triggerEvent('alertClickButton', {})
     },
     /*
      * 公有方法

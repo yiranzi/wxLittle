@@ -208,7 +208,7 @@ Page({
     if (globalInfo.alertInfo !== '') {
       setTimeout(() => {
         getApp().globalComponent.alert.showDialog(globalInfo.alertInfo)
-        global.globalInfo = ''
+        globalInfo.alertInfo = ''
       },100)
     }
   },

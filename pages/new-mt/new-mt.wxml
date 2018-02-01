@@ -1,16 +1,21 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
+    <alert id='alert'></alert>
+    <modal-box
+            id='modalBox'
+            defaultContent="你确定要建立里程碑！！！标题是：{{newMtName}}！！内容是：{{newMtDesc}}！！确定吗？？"
+            sureContent="就它了"
+            cancelContent="再等等"
+            bind:cancelEvent="cancelEvent"
+            bind:sureEvent="sureEvent" />
     <view class='part-div'>
-        <modal-box
-        id='modalBox'
-        defaultContent="你确定要建立里程碑！！！{{newMtName}}"
-        sureContent="就它了"
-        cancelContent="再等等"
-        bind:cancelEvent="cancelEvent"
-        bind:sureEvent="sureEvent" />
         <view class='title g-h2'>新建任务</view>
         <view>
-          <input value="{{newMtName}}" placeholder='新建你的里程碑' bindinput="inputCbf" focus />
+          <input data-type-name='name' value="{{newMtName}}" placeholder='新建你的里程碑' bindinput="inputCbf" focus />
+        </view>
+        <view class='title g-h2'>任务描述</view>
+        <view>
+          <input data-type-name='desc' value="{{newMtDesc}}" placeholder='填写你的里程碑描述' bindinput="inputCbf" focus />
         </view>
         <button bindtap="newMtClick">提交</button>
     </view>

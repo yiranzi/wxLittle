@@ -189,6 +189,7 @@ Page({
     console.log('onReady index')
     this.dialog = this.selectComponent("#modalBox");
     this.setGlobalComponent()
+
   },
 
   /**

@@ -45,12 +45,12 @@ App({
   userData: {
     mileToneNameArr: [
       {
-        index: 0,
+        index: 8,
         title: '完成小程序的后端构建',
         desc: '公元111年，亚里士多德发明了后端，开启了新世界的大门，你作为前端冒险者，要去调查下后端的历程，学到这门精妙的收益。'
       },
       {
-        index: 1,
+        index: 9,
         title: 'hello world!',
         desc: '惊人的大冒险开始了'
       }

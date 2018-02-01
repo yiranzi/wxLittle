@@ -14,7 +14,7 @@ Page({
 
   staticProcessData: [
     {
-      id: 0,
+      id: 8,
       info: [
         {
           date: 0,
@@ -31,7 +31,7 @@ Page({
       ]
     },
     {
-      id: 1,
+      id: 9,
       info: [
         {
           date: 0,
@@ -48,7 +48,7 @@ Page({
       ]
     },
     {
-      id: 2,
+      id: 10,
       info: [
         {
           date: 0,
@@ -146,10 +146,10 @@ Page({
     console.log(arr)
   },
 
-  goRouter: function () {
-    console.log('goRouter')
+  goRouter: function (e) {
+    let url = e.currentTarget.dataset.url
     wx.navigateTo({
-      url: '/pages/new-mt/new-mt'
+      url: url
     })
   },
 

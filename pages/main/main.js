@@ -75,6 +75,23 @@ Page({
     this.calcProcess()
   },
 
+  // 新建任务
+  clickNewJob: function (e) {
+    console.log(e.currentTarget.id)
+    let url = `/pages/new-job/new-job?mtId=${e.currentTarget.id}`
+    wx.navigateTo({
+      url: url
+    })
+  },
+
+  // 查看任务
+  viewJob: function (e) {
+    console.log(e.currentTarget.id)
+    let url = `/pages/view-today-job/view-today-job?jobId=${e.currentTarget.id}`
+    wx.navigateTo({
+      url: url
+    })
+  },
   // 点击签到按钮
   clickButton: function (e) {
     // 设置当前

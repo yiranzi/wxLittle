@@ -19,6 +19,13 @@
                 总数{{item.totalCount}}。完成{{item.finishCount}}。未完成{{item.unFinishCount}}
             </view>
           </view>
+          <view wx:if="{{false}}" bindtap="clickNewJob" id="{{miletone.id}}">
+            新建任务
+          </view>
+          <view wx:else>
+            <view bindtap="clickNewJob" id="{{miletone.id}}">新建任务</view>
+            <view bindtap="viewJob" id="{{miletone.todayJob}}">查看任务</view>
+          </view>
           <view id="{{miletone.id}}" bindtap="clickButton" style="background-color: {{item.color}}" class='click-part' wx:for="{{dataFinishArray}}"  wx:if="{{item.id === miletone.id}}">
             <view>今日打卡</view>
             <view>{{item.status}}</view>

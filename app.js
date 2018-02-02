@@ -43,12 +43,54 @@ App({
     alertInfo: ""
   },
   userData: {
-    mileToneNameArr: [
+    uesrInfo: [
       {
-        id: 8,
-        title: '小程序开发——打卡之神',
-        desc: '小程序是我的创业项目。是我技术能力的推动器。我要好好坚持下去。'
+        name: 'miao',
+        gold: 1000,
+        exp: 100,
+        userId: '18410109'
+      },
+      {
+        name: 'baobao',
+        gold: 2000,
+        exp: 300,
+        userId: '18410108'
       }
     ],
+    mileToneNameArr: [
+      {
+        userId: '18410109',
+        id: 8,
+        title: '小程序开发——打卡之神',
+        desc: '小程序是我的创业项目。是我技术能力的推动器。我要好好坚持下去。',
+        todayJob: 101
+      }
+    ],
+    jobHistory: [
+      {
+        mtId: 8,
+        jobId: 101,
+        title: 'haha',
+        desc: 'desc',
+        goal: 'heihei',
+        level: '2',
+      }
+    ],
+    randomMission: [
+      {
+        level: '0.5',
+        missionList: [
+          {
+            title: '消灭邪恶的守夜人',
+            desc: '他们亵渎了国王的荣耀',
+            goal: '',
+          },
+        ]
+      }
+    ]
   }
 })
+// 用户信息表
+// mt表
+
+// job表。完成的和未完成的。不同的里程碑的，都进去。

@@ -1,0 +1,9 @@
+<!--pages/cpmponent/index.wxml-->
+<view class="out-div">
+  <view wx:if="{{hideStatus !== 'left' && hideStatus !== 'both'}}" class='button left' catchtap="clickButton" data-pos="left">
+    <image mode="aspectFit" src="/src/img/arrow_left.png"/>
+  </view>
+  <view wx:if="{{hideStatus !== 'right' && hideStatus !== 'both'}}" class='button right' catchtap="clickButton" data-pos="right">
+    <image mode="aspectFit" src="/src/img/arrow_right.png"/>
+  </view>
+</view>

@@ -6,6 +6,71 @@ Page({
    */
   data: {
     id: '',
+    mileToneNameArr: [],
+    currentSelect: -1,
+    hideStatus: ''
+  },
+
+  /**
+   * 自定义方法
+   */
+  getFromUserData: function (idParam) {
+    // 获取全局数据
+    var userData = getApp().userData
+
+    // 获取对应的未知。
+    let currentSelect = userData.mileToneNameArr.findIndex((ele, index) => {
+      return (ele.id === idParam)
+    })
+
+    // 设置
+    this.setData({
+      mileToneNameArr: userData.mileToneNameArr,
+      currentSelect: currentSelect
+    }, () => { this.checkPos() })
+  },
+
+  leftClick: function () {
+    this.setData({
+      currentSelect: this.data.currentSelect - 1
+    })
+    this.checkPos()
+  },
+
+  rightClick: function () {
+    this.setData({
+      currentSelect: this.data.currentSelect + 1
+    })
+    this.checkPos()
+  },
+
+  checkPos () {
+    console.log('check')
+    // 如果l为0
+    if (this.data.currentSelect === 0) {
+      // 如果r为0
+      if (this.data.currentSelect === this.data.mileToneNameArr.length - 1) {
+        this.setData({
+          hideStatus: 'both'
+        })
+      } else {
+        this.setData({
+          hideStatus: 'left'
+        })
+      }
+
+    } else {
+      // 如果r为0
+      if (this.data.currentSelect === this.data.mileToneNameArr.length - 1) {
+        this.setData({
+          hideStatus: 'right'
+        })
+      } else {
+        this.setData({
+          hideStatus: 'none'
+        })
+      }
+    }
   },
 
   /**
@@ -18,6 +83,8 @@ Page({
         id: options.id
       })
     }
+    // 拉取数据
+    this.getFromUserData(parseInt(options.id))
   },
 
   /**

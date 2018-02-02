@@ -1,0 +1,29 @@
+.out-div {
+
+}
+
+.button {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    top: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+image {
+    width: 40%;
+}
+
+.out-div .left {
+    left: 0;
+    justify-content: flex-start;
+}
+
+.out-div .right {
+ right: 0;
+ justify-content: flex-end;
+
+}

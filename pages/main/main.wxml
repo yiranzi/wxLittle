@@ -13,21 +13,24 @@
       <view class='part-div'>
         <view class="title g-h2">这是所有的里程碑</view>
         <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone">
-          <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?id={{miletone.index}}" class='info-part' bindtap="goRouter">
+          <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?id={{miletone.id}}" class='info-part' bindtap="goRouter">
             <view> 里程碑 {{index}}: {{miletone.title}}</view>
-            <view wx:for="{{dataFinishArray}}"  wx:if="{{item.id === miletone.index}}">
-              
+            <view wx:for="{{dataFinishArray}}"  wx:if="{{item.id === miletone.id}}">
                 总数{{item.totalCount}}。完成{{item.finishCount}}。未完成{{item.unFinishCount}}
-              
             </view>
           </view>
-          <view id="{{index}}" bindtap="clickButton" style="background-color: {{item.color}}" class='click-part' wx:for="{{dataFinishArray}}"  wx:if="{{item.id === miletone.index}}">
+          <view id="{{miletone.id}}" bindtap="clickButton" style="background-color: {{item.color}}" class='click-part' wx:for="{{dataFinishArray}}"  wx:if="{{item.id === miletone.id}}">
             <view>今日打卡</view>
             <view>{{item.status}}</view>
           </view>
         </view>
       </view>
-      <view class="new-mt-button" bindtap="goRouter" data-url="/pages/new-mt/new-mt">{{'增加里程碑'}}</view>
+      <view class="bottom">
+        <view class="new-mt-button" bindtap="goRouter" data-url="/pages/new-mt/new-mt">
+            {{'增加里程碑'}}
+        </view>
+      </view>
     </view>
+    <view class="introduce-tips" bindtap="introduceTips" data-url="/pages/new-mt/new-mt">{{'2.1更新公告'}}</view>
   </view>
 </view>

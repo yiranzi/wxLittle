@@ -53,7 +53,7 @@ Page({
     obj.desc = this.data.newMtDesc
     // 获取全局数据
     var userData = getApp().userData
-    obj.index = userData.mileToneNameArr[userData.mileToneNameArr.length - 1].index + 1
+    obj.id = userData.mileToneNameArr[userData.mileToneNameArr.length - 1].id + 1
     userData.mileToneNameArr.push(obj)
     this.setData({
       newMtName: '',

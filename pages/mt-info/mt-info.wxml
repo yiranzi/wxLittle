@@ -1,2 +1,15 @@
-<!--pages/mt-info/mt-info.wxml-->
-<text>pages/mt-info/mt-info.wxml</text>
+<!--pages/newMileTone/new.wxml-->
+<view class='main-body'>
+    <arrow-selector
+        hideStatus="{{hideStatus}}"
+        bind:leftClick="leftClick"
+        bind:rightClick="rightClick" />
+    <view class='part-div'>
+        <view class='title g-h2'>里程碑编号</view>
+        <view class='content'>{{currentSelect}}</view>
+        <view class='title g-h2'>里程碑名称</view>
+        <view class='content'>{{mileToneNameArr[currentSelect].title}}</view>
+        <view class='title g-h2'>里程碑描述</view>
+        <view class='content'>{{mileToneNameArr[currentSelect].desc}}</view>
+    </view>
+</view>

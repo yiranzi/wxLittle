@@ -40,19 +40,14 @@ App({
     alert: {}
   },
   globalInfo: {
-    alertInfo: ''
+    alertInfo: ""
   },
   userData: {
     mileToneNameArr: [
       {
-        index: 8,
-        title: '完成小程序的后端构建',
-        desc: '公元111年，亚里士多德发明了后端，开启了新世界的大门，你作为前端冒险者，要去调查下后端的历程，学到这门精妙的收益。'
-      },
-      {
-        index: 9,
-        title: 'hello world!',
-        desc: '惊人的大冒险开始了'
+        id: 8,
+        title: '小程序开发——打卡之神',
+        desc: '小程序是我的创业项目。是我技术能力的推动器。我要好好坚持下去。'
       }
     ],
   }

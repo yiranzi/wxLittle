@@ -79,6 +79,7 @@ Page({
   clickButton: function (e) {
     // 设置当前
     let resultIndex = this.data.dataFinishArray.findIndex((ele, index) => {
+      console.log(ele.id)
       return ele.id === parseInt(e.currentTarget.id)
     })
     this.setData({
@@ -90,11 +91,15 @@ Page({
 
   //set
   setResult: function (bool) {
+    console.log(this.data.currentSelect)
     let result = this.data.dataFinishArray[this.data.currentSelect]
     result.info[result.info.length - 1].finish = bool
     this.calcProcess()
   },
 
+  introduceTips () {
+    getApp().globalComponent.alert.showDialog('依然的大冒险 更新公告：0.优化新建里程碑体验。1.增加里程碑描述。2.增加-查看里程碑-点击红色区域可以进入。')
+  },
 
   // 引用组件事件上报
   cancelEvent: function () {

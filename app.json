@@ -1,8 +1,10 @@
 {
   "pages": [
+
     "pages/main/main",
-    "pages/new-mt/new-mt",
-    "pages/mt-info/mt-info"
+    "pages/mt-info/mt-info",
+    "pages/new-mt/new-mt"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

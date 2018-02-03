@@ -41,8 +41,9 @@ Page({
       desc: desc,
     }
     // 发送请求。生成修改数据
-    let res = ajax.postNewJob(obj)
-    console.log(res)
+    ajax.postNewJob(obj).then((res) => {
+      console.log(res)
+    })
   },
 
   /**

@@ -45,7 +45,6 @@ Page({
   },
 
   checkPos () {
-    console.log('check')
     // 如果l为0
     if (this.data.currentSelect === 0) {
       // 如果r为0

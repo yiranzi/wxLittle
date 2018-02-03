@@ -21,11 +21,9 @@ Component({
   methods: {
     // 这里是一个自定义方法
     sureClick: function () { 
-      console.log('sure')
       this.triggerEvent('sureEvent', {})
     },
     cancelClick: function () {
-      console.log('cancel')
       this.triggerEvent('cancelEvent', {})
     },
     /*

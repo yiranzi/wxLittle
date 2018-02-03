@@ -17,14 +17,11 @@ Page({
 
   // 输入框组件回调
   inputCbf: function (event) {
-    console.log(event.currentTarget.dataset)
     if (event.currentTarget.dataset.typeName === 'name') {
-      console.log('set name')
       this.setData({
         newMtName: event.detail.value
       })
     } else if (event.currentTarget.dataset.typeName === 'desc') {
-      console.log('set desc')
       this.setData({
         newMtDesc: event.detail.value
       })
@@ -33,7 +30,6 @@ Page({
 
   // 输入完成后确认
   newMtClick: function () {
-    console.log('click')
     // 判断是否有内容
     if (this.data.newMtName && this.data.newMtDesc) {
       this.dialog.showDialog()
@@ -86,7 +82,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad new')
   },
 
   /**
@@ -95,28 +90,24 @@ Page({
   onReady: function () {
     this.dialog = this.selectComponent("#modalBox");
     this.alert = this.selectComponent("#alert");
-    console.log('onReady new')
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('onShow new')
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    console.log('onHide new')
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log('onUnload new')
   },
 
   /**

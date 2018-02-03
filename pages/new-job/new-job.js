@@ -1,5 +1,6 @@
 // pages/new-job/new-job.js
 var ajax = require('../../ajax/ajax');
+var util = require('../../util/util');
 
 Page({
 
@@ -15,14 +16,11 @@ Page({
   },
 
   inputCbf: function (e) {
-    console.log(e)
     if(e.currentTarget.dataset.type === 'level') {
-      console.log(e.detail.value)
       this.setData({
         level: e.detail.value
       })
     } else {
-      console.log(e.detail.value)
       this.setData({
         goal: e.detail.value
       })
@@ -30,7 +28,6 @@ Page({
   },
 
   newJobButton: function () {
-    console.log(this.data)
     let {level, goal, mtId} = this.data
     let {title, desc} = this.data.currentMission
     let obj = {
@@ -42,7 +39,7 @@ Page({
     }
     // 发送请求。生成修改数据
     ajax.postNewJob(obj).then((res) => {
-      console.log(res)
+      util.showSuccess('完成了')
     })
   },
 
@@ -50,7 +47,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.mtId)
     // 获取链接
     if (options) {
       this.setData({
@@ -73,7 +69,6 @@ Page({
       randomMissionArr: data.missionList,
       currentMission: data.missionList[0]
     })
-    console.log(data)
   },
 
   /**

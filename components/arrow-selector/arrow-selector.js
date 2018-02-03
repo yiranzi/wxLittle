@@ -23,7 +23,6 @@ Component({
   methods: {
     // 这里是一个自定义方法
     clickButton: function (event) {
-      console.log(this.properties.hideStatus)
       if (event.currentTarget.dataset.pos === 'left') {
         this.triggerEvent('leftClick', {})
       } else {

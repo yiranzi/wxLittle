@@ -12,7 +12,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.jobId)
     // 获取链接
     if (options) {
       this.setData({
@@ -21,13 +20,11 @@ Page({
     }
     // 拉取数据
     let jobHistory = this.getFromJobHistory(parseInt(options.jobId))
-    console.log(jobHistory)
   },
 
   getFromJobHistory: function (jobId) {
     let data = getApp().userData.jobHistory
     let res = data.find((job, index) => {
-      console.log(job)
       return (job.jobId === jobId)
     })
     return res

@@ -77,7 +77,6 @@ Page({
 
   // 新建任务
   clickNewJob: function (e) {
-    console.log(e.currentTarget.id)
     let url = `/pages/new-job/new-job?mtId=${e.currentTarget.id}`
     wx.navigateTo({
       url: url
@@ -86,7 +85,6 @@ Page({
 
   // 查看任务
   viewJob: function (e) {
-    console.log(e.currentTarget.id)
     let url = `/pages/view-today-job/view-today-job?jobId=${e.currentTarget.id}`
     wx.navigateTo({
       url: url
@@ -96,7 +94,6 @@ Page({
   clickButton: function (e) {
     // 设置当前
     let resultIndex = this.data.dataFinishArray.findIndex((ele, index) => {
-      console.log(ele.id)
       return ele.id === parseInt(e.currentTarget.id)
     })
     this.setData({
@@ -108,7 +105,6 @@ Page({
 
   //set
   setResult: function (bool) {
-    console.log(this.data.currentSelect)
     let result = this.data.dataFinishArray[this.data.currentSelect]
     result.info[result.info.length - 1].finish = bool
     this.calcProcess()
@@ -120,13 +116,11 @@ Page({
 
   // 引用组件事件上报
   cancelEvent: function () {
-    console.log('page get cancelEvent')
     this.setResult(false)
     this.dialog.hideDialog()
   },
 
   sureEvent: function () {
-    console.log('page get sureEvent')
     this.setResult(true)
     this.dialog.hideDialog()
   },
@@ -148,7 +142,6 @@ Page({
       infos.finishCount = finishCount
       infos.unFinishCount = unFinishCount
       infos.totalCount = totalCount
-      console.log(infos.info[totalCount - 1].finish)
       // 设置当日的结果
       if(infos.info[totalCount - 1].finish) {
         infos.color = 'green'
@@ -165,7 +158,6 @@ Page({
     this.setData({
       dataFinishArray: arr
     })
-    console.log(arr)
   },
 
   goRouter: function (e) {
@@ -202,14 +194,12 @@ Page({
 
   // alert组件
   alertClickButton: function () {
-    console.log('close')
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad index')
     this.getDataFromServer()
     this.getFromUserData()
   },
@@ -218,7 +208,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log('onReady index')
     this.dialog = this.selectComponent("#modalBox");
     this.setGlobalComponent()
 
@@ -228,7 +217,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('onShow index')
     if (this.data.isHide) {
       // 如果隐藏 重新刷新数据
       this.getFromUserData()
@@ -252,7 +240,6 @@ Page({
   onHide: function () {
     // 这个钩子在主页跳转back的时候会调用。
     // tabbar切换的时候也会调用
-    console.log('onHide index')
     this.setData({
       isHide: true
     })
@@ -262,7 +249,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log('onUnload index')
   },
 
   /**

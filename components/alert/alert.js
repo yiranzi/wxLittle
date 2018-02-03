@@ -36,7 +36,6 @@ Component({
     },
     //展示弹框
     showDialog(content) {
-      console.log(content)
       let showContent = content ? content : this.properties.defaultContent
       this.setData({
         isShow: true,

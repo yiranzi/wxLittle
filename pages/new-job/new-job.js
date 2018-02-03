@@ -1,4 +1,6 @@
 // pages/new-job/new-job.js
+var ajax = require('../../ajax/ajax');
+
 Page({
 
   /**
@@ -7,8 +9,40 @@ Page({
   data: {
     mtId: 0,
     randomMissionArr: [],
-    level: '0.5',
-    currentMission: {}
+    level: 0.5,
+    currentMission: {},
+    goal: '',
+  },
+
+  inputCbf: function (e) {
+    console.log(e)
+    if(e.currentTarget.dataset.type === 'level') {
+      console.log(e.detail.value)
+      this.setData({
+        level: e.detail.value
+      })
+    } else {
+      console.log(e.detail.value)
+      this.setData({
+        goal: e.detail.value
+      })
+    }
+  },
+
+  newJobButton: function () {
+    console.log(this.data)
+    let {level, goal, mtId} = this.data
+    let {title, desc} = this.data.currentMission
+    let obj = {
+      level: level,
+      goal: goal,
+      mtId: mtId,
+      title: title,
+      desc: desc,
+    }
+    // 发送请求。生成修改数据
+    let res = ajax.postNewJob(obj)
+    console.log(res)
   },
 
   /**
@@ -19,7 +53,7 @@ Page({
     // 获取链接
     if (options) {
       this.setData({
-        mtId: options.mtId
+        mtId: parseInt(options.mtId)
       })
     }
     // 设置level

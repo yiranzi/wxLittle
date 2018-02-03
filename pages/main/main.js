@@ -9,7 +9,7 @@ Page({
     mileToneNameArr: [],
     dataFinishArray: [], // 表示进度信息
     currentSelect: -1,
-    isLeave: false
+    isLeave: false,
   },
 
   staticProcessData: [
@@ -177,10 +177,20 @@ Page({
 
   getFromUserData: function () {
     // 获取全局数据
-    var userData = getApp().userData
+    var mileToneNameArr = getApp().userData.mileToneNameArr
+    mileToneNameArr.map((mt, index) => {
+      let totalLevel = 0
+      if (mt.todayJob.length > 0) {
+        mt.todayJob.forEach((job, index) => {
+          totalLevel += job.level
+        })
+      }
+      mt.totalLevel = totalLevel
+      return mt
+    })
     // 设置
     this.setData({
-      mileToneNameArr: userData.mileToneNameArr
+      mileToneNameArr: mileToneNameArr
     })
   },
 

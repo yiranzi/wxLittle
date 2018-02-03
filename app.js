@@ -33,6 +33,8 @@ App({
       }
     })
   },
+
+
   globalData: {
     userInfo: null
   },
@@ -63,7 +65,16 @@ App({
         id: 8,
         title: '小程序开发——打卡之神',
         desc: '小程序是我的创业项目。是我技术能力的推动器。我要好好坚持下去。',
-        todayJob: 101
+        todayJob: [
+          {
+            mtId: 8,
+            jobId: 101,
+            title: 'haha',
+            desc: 'desc',
+            goal: 'heihei',
+            level: 2,
+          }
+        ]
       }
     ],
     jobHistory: [
@@ -73,12 +84,12 @@ App({
         title: 'haha',
         desc: 'desc',
         goal: 'heihei',
-        level: '2',
+        level: 2, // level 就是时间
       }
     ],
     randomMission: [
       {
-        level: '0.5',
+        level: 0.5,
         missionList: [
           {
             title: '消灭邪恶的守夜人',

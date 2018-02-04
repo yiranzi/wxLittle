@@ -13,6 +13,12 @@
   
 }
 
+.g-main-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .g-h1 {
   font-size: 20px;
   font-weight: bold;

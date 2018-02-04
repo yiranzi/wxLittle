@@ -5,7 +5,7 @@
         dataArr="{{jobArray}}"
         bind:selectChange="selectChange" />
     <view class='part-div'>
-        <input data-type='level' value="{{level}}" placeholder='{{level}}' bindinput="inputCbf" focus />
+        <view class='g-main-title'>今日任务一览</view>
         <view class='title g-h2'>title</view>
         <view class='content'>{{jobArray[currentSelect].title}}</view>
         <view class='title g-h2'>desc</view>

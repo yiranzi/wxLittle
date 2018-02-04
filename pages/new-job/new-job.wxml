@@ -5,6 +5,9 @@
         dataArr="{{mileToneNameArr}}"
         bind:selectChange="selectChange" />
     <view class='part-div'>
+
+        <view class='g-main-title'>新建任务</view>
+        <view class='title g-h2'>任务耗时</view>
         <input data-type='level' value="{{level}}" placeholder='{{level}}' bindinput="inputCbf" focus />
         <view class='title g-h2'>title</view>
         <view class='content'>{{currentMission.title}}</view>

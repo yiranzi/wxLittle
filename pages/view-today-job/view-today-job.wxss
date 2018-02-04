@@ -1,1 +1,18 @@
-/* pages/view-today-job/view-today-job.wxss */
+/* pages/mt-info/mt-info.wxss */
+.main-body {
+    padding: 20px;
+}
+
+.title {
+    font-size: 20px;
+    margin: 15px auto;
+}
+
+.content {
+    margin: auto 30px;
+}
+
+
+.title-content {
+    margin-left: 40px;
+}

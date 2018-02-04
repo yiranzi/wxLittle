@@ -28,12 +28,32 @@
 
 .miletone-info {
     display: flex;
-    margin: 10px;
+     margin: 10px; 
+    justify-content: space-between;
+}
+
+.miletone-info .button-div {
+    min-width: 200px;
+    display: flex;
+}
+
+.new-job {
+    background-color: green;
+     flex: 1;
+    /* margin: auto; */
+    text-align: center;
+}
+
+.view-job {
+    background-color: yellowgreen;
+    border: 4px solid orange;
+    /* margin: auto; */
+    flex: 100;
 }
 
 .info-part {
     flex: 1;
-    background-color: red;
+    background-color: orangered;
 }
 
 .info-part view {

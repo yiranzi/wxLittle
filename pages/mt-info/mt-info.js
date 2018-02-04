@@ -27,49 +27,13 @@ Page({
     this.setData({
       mileToneNameArr: userData.mileToneNameArr,
       currentSelect: currentSelect
-    }, () => { this.checkPos() })
+    }, () => {console.log('finish set')})
   },
 
-  leftClick: function () {
+  selectChange: function (e) {
     this.setData({
-      currentSelect: this.data.currentSelect - 1
+      currentSelect: e.detail.currentSelect
     })
-    this.checkPos()
-  },
-
-  rightClick: function () {
-    this.setData({
-      currentSelect: this.data.currentSelect + 1
-    })
-    this.checkPos()
-  },
-
-  checkPos () {
-    // 如果l为0
-    if (this.data.currentSelect === 0) {
-      // 如果r为0
-      if (this.data.currentSelect === this.data.mileToneNameArr.length - 1) {
-        this.setData({
-          hideStatus: 'both'
-        })
-      } else {
-        this.setData({
-          hideStatus: 'left'
-        })
-      }
-
-    } else {
-      // 如果r为0
-      if (this.data.currentSelect === this.data.mileToneNameArr.length - 1) {
-        this.setData({
-          hideStatus: 'right'
-        })
-      } else {
-        this.setData({
-          hideStatus: 'none'
-        })
-      }
-    }
   },
 
   /**

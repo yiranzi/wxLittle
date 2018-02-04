@@ -48,6 +48,8 @@ const postNewJob = obj => {
           // util.showModel('登录失败', error)
           // console.log('登录失败', error)
           let {mtId, level, goal, title, desc} = obj
+          console.log(level)
+          console.log(mtId)
           let res
           let jobHistory = getApp().userData.jobHistory
           // 0 构造新的数据

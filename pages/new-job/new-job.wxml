@@ -1,9 +1,9 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
     <arrow-selector
-        hideStatus="{{hideStatus}}"
-        bind:leftClick="leftClick"
-        bind:rightClick="rightClick" />
+        defaultSelect="{{currentSelect}}"
+        dataArr="{{mileToneNameArr}}"
+        bind:selectChange="selectChange" />
     <view class='part-div'>
         <input data-type='level' value="{{level}}" placeholder='{{level}}' bindinput="inputCbf" focus />
         <view class='title g-h2'>title</view>

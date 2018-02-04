@@ -23,5 +23,11 @@
   font-weight: bold;
 }
 
+.g-strong {
+    font-weight: bold;
+    font-size: 30px;
+    display: inline
+}
+
 
 

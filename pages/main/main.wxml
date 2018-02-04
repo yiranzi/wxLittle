@@ -15,20 +15,13 @@
         <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone" wx:key="{{miletone.id}}" >
           <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?id={{miletone.id}}" class='info-part' bindtap="goRouter">
             <view> 里程碑 {{index}}: {{miletone.title}}</view>
-            <view wx:key="{{item.id}}" wx:for="{{dataFinishArray}}"  wx:if="{{item.id === miletone.id}}">
-                总数{{item.totalCount}}。完成{{item.finishCount}}。未完成{{item.unFinishCount}}
-            </view>
           </view>
-          <view wx:if="{{miletone.todayJob.length > 0}}">
-            <view bindtap="clickNewJob" id="{{miletone.id}}">新建任务</view>
-            <view bindtap="viewJob" id="{{miletone.todayJob}}">查看任务{{miletone.totalLevel}}</view>
+          <view class="button-div" wx:if="{{miletone.todayJob.length > 0}}">
+            <view class="new-job" bindtap="clickNewJob" id="{{miletone.id}}">新建</view>
+            <view class="view-job" bindtap="viewJob" id="{{miletone.todayJob[0].jobId}}">耗时：<view class="g-strong">{{miletone.totalLevel}} </view></view>
           </view>
-          <view wx:else bindtap="clickNewJob" id="{{miletone.id}}">
-            新建任务
-          </view>
-          <view id="{{miletone.id}}" bindtap="clickButton" style="background-color: {{item.color}}" class='click-part' wx:for="{{dataFinishArray}}" wx:key="{{item.id}}" wx:if="{{item.id === miletone.id}}">
-            <view>今日打卡</view>
-            <view>{{item.status}}</view>
+          <view class="button-div" wx:else bindtap="clickNewJob" id="{{miletone.id}}">
+            <view class="new-job">新建任务</view>
           </view>
         </view>
       </view>

@@ -1,12 +1,12 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
     <arrow-selector
-        hideStatus="{{hideStatus}}"
-        bind:leftClick="leftClick"
-        bind:rightClick="rightClick" />
+        defaultSelect="{{currentSelect}}"
+        dataArr="{{mileToneNameArr}}"
+        bind:selectChange="selectChange"/>
     <view class='part-div'>
         <view class='title g-h2'>里程碑编号</view>
-        <view class='content'>{{currentSelect}}</view>
+        <view class='content'>{{mileToneNameArr[currentSelect].id}}</view>
         <view class='title g-h2'>里程碑名称</view>
         <view class='content'>{{mileToneNameArr[currentSelect].title}}</view>
         <view class='title g-h2'>里程碑描述</view>

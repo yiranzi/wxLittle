@@ -4,9 +4,13 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    hideStatus: {
-      type: String,
-      value: 'both',
+    defaultSelect: {
+      type: Number,
+      value: 0,
+    },
+    dataArr: {
+      type: Array,
+      value: [],
     }
   },
 
@@ -14,7 +18,16 @@ Component({
    * 组件的初始数据
    */
   data: {
+    hideStatus: 'both',
+    currentSelect: 0,
+  },
 
+  ready: function () {
+    console.log('ready')
+    this.setData({
+      currentSelect: this.properties.defaultSelect
+    }, () => { this.checkPos() })
+    console.log(this.properties)
   },
 
   /**
@@ -23,12 +36,46 @@ Component({
   methods: {
     // 这里是一个自定义方法
     clickButton: function (event) {
+      let value = 0
       if (event.currentTarget.dataset.pos === 'left') {
-        this.triggerEvent('leftClick', {})
+        this.setData({
+          currentSelect: this.data.currentSelect - 1
+        }, () => {this.checkPos()})
       } else {
-        this.triggerEvent('rightClick', {})
+        this.setData({
+          currentSelect: this.data.currentSelect + 1
+        }, () => {this.checkPos()})
       }
+    },
+    // 设置位置
+    checkPos () {
+      console.log('haha')
+      // 如果l为0
+      if (this.properties.currentSelect === 0) {
+        // 如果r为0
+        if (this.properties.currentSelect === this.properties.dataArr.length - 1) {
+          this.setData({
+            hideStatus: 'both'
+          })
+        } else {
+          this.setData({
+            hideStatus: 'left'
+          })
+        }
 
+      } else {
+        // 如果r为0
+        if (this.properties.currentSelect === this.properties.dataArr.length - 1) {
+          this.setData({
+            hideStatus: 'right'
+          })
+        } else {
+          this.setData({
+            hideStatus: 'none'
+          })
+        }
+      }
+      this.triggerEvent('selectChange',{currentSelect: this.data.currentSelect})
     },
   }
 })

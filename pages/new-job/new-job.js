@@ -11,6 +11,8 @@ Page({
     mtId: 0,
     randomMissionArr: [],
     level: 0.5,
+    currentSelect: 0,
+    mileToneNameArr: [],
     currentMission: {},
     goal: '',
   },
@@ -18,7 +20,7 @@ Page({
   inputCbf: function (e) {
     if(e.currentTarget.dataset.type === 'level') {
       this.setData({
-        level: e.detail.value
+        level: Number(e.detail.value)
       })
     } else {
       this.setData({
@@ -31,7 +33,7 @@ Page({
     let {level, goal, mtId} = this.data
     let {title, desc} = this.data.currentMission
     let obj = {
-      level: level,
+      level: level.toFixed(1),
       goal: goal,
       mtId: mtId,
       title: title,
@@ -39,24 +41,50 @@ Page({
     }
     // 发送请求。生成修改数据
     ajax.postNewJob(obj).then((res) => {
-      util.showSuccess('完成了')
+      util.showSuccess('新增当日任务完成！')
     })
+  },
+
+
+  selectChange: function (e) {
+    this.setData({
+      currentSelect: e.detail.currentSelect
+    }, () => {this.getFromUserData(parseInt(this.data.mileToneNameArr[this.data.currentSelect].id))})
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 获取链接
-    if (options) {
-      this.setData({
-        mtId: parseInt(options.mtId)
-      })
-    }
+
     // 设置level
 
-    // 拉取数据
+    // 拉取随机数据
     let jobHistory = this.getFromRandomMission(this.data.level)
+
+    // 拉取全部里程碑
+    this.getFromUserData(parseInt(options.mtId))
+  },
+
+  /**
+   * 自定义方法
+   */
+  getFromUserData: function (idParam) {
+    console.log(idParam)
+    // 获取全局数据
+    var userData = getApp().userData
+
+    // 获取对应的未知。
+    let currentSelect = userData.mileToneNameArr.findIndex((ele, index) => {
+      return (ele.id === idParam)
+    })
+
+    // 设置
+    this.setData({
+      mtId: idParam,
+      mileToneNameArr: userData.mileToneNameArr,
+      currentSelect: currentSelect
+    }, () => {console.log('finish set')})
   },
 
   getFromRandomMission: function (level) {

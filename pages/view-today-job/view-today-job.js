@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    currentSelect: 0,
+    jobArray: [],
   },
 
   /**
@@ -18,16 +19,26 @@ Page({
         jobId: options.jobId
       })
     }
-    // 拉取数据
-    let jobHistory = this.getFromJobHistory(parseInt(options.jobId))
+    // 拉取数据 并设置
+    this.getFromJobHistory(parseInt(options.jobId))
   },
 
   getFromJobHistory: function (jobId) {
+    console.log('test' + jobId)
     let data = getApp().userData.jobHistory
-    let res = data.find((job, index) => {
+    let findIndex = data.findIndex((job, index) => {
       return (job.jobId === jobId)
     })
-    return res
+    this.setData({
+      currentSelect: findIndex,
+      jobArray: data,
+    })
+  },
+
+  selectChange: function (e) {
+    this.setData({
+      currentSelect: e.detail.currentSelect
+    })
   },
 
   /**

@@ -1,2 +1,16 @@
-<!--pages/view-today-job/view-today-job.wxml-->
-<text>pages/view-today-job/view-today-job.wxml</text>
+<!--pages/newMileTone/new.wxml-->
+<view class='main-body'>
+    <arrow-selector
+        defaultSelect="{{currentSelect}}"
+        dataArr="{{jobArray}}"
+        bind:selectChange="selectChange" />
+    <view class='part-div'>
+        <input data-type='level' value="{{level}}" placeholder='{{level}}' bindinput="inputCbf" focus />
+        <view class='title g-h2'>title</view>
+        <view class='content'>{{jobArray[currentSelect].title}}</view>
+        <view class='title g-h2'>desc</view>
+        <view class='content'>{{jobArray[currentSelect].desc}}</view>
+        <view class='title g-h2'>goal</view>
+        <view class='content'>{{jobArray[currentSelect].goal}}</view>
+    </view>
+</view>

@@ -38,6 +38,6 @@
         </view>
       </view>
     </view>
-    <view class="introduce-tips" bindtap="introduceTips" data-url="/pages/new-mt/new-mt">{{'2.1更新公告'}}</view>
+    <view class="introduce-tips" bindtap="introduceTips" data-url="/pages/new-mt/new-mt">{{codeIndex}}更新公告</view>
   </view>
 </view>

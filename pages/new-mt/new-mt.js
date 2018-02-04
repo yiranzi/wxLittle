@@ -50,6 +50,9 @@ Page({
     // 获取全局数据
     var userData = getApp().userData
     obj.id = userData.mileToneNameArr[userData.mileToneNameArr.length - 1].id + 1
+    obj.todayJob = []
+    // 暂时直接录入数据。
+    obj.userId = '18410109  '
     userData.mileToneNameArr.push(obj)
     this.setData({
       newMtName: '',

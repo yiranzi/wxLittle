@@ -1,4 +1,6 @@
 // pages/main/index.js
+var version = require('../../version/version');
+
 Page({
   /**
    * 页面的初始数据
@@ -10,6 +12,7 @@ Page({
     dataFinishArray: [], // 表示进度信息
     currentSelect: -1,
     isLeave: false,
+    codeIndex: ''
   },
 
   staticProcessData: [
@@ -111,7 +114,8 @@ Page({
   },
 
   introduceTips () {
-    getApp().globalComponent.alert.showDialog('依然的大冒险 更新公告：0.优化新建里程碑体验。1.增加里程碑描述。2.增加-查看里程碑-点击红色区域可以进入。')
+    let {codeIndex} = this.data
+    getApp().globalComponent.alert.showDialog(`依然的大冒险 更新公告${codeIndex}号：  ${version.versionInfo[codeIndex]}`)
   },
 
   // 引用组件事件上报
@@ -202,6 +206,10 @@ Page({
   onLoad: function (options) {
     this.getDataFromServer()
     this.getFromUserData()
+    // 设置版本号
+    this.setData({
+      codeIndex: version.dayCode
+    })
   },
 
   /**
@@ -210,7 +218,6 @@ Page({
   onReady: function () {
     this.dialog = this.selectComponent("#modalBox");
     this.setGlobalComponent()
-
   },
 
   /**

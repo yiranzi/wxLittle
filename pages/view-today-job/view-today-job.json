@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "modal-box": "/components/modal-box/modal-box",
     "arrow-selector": "/components/arrow-selector/arrow-selector"
   }
 }

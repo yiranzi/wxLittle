@@ -210,7 +210,22 @@ Page({
     // 设置版本号
     this.setData({
       codeIndex: version.dayCode
-    })
+    }, this.redict)
+  },
+
+  redict() {
+    console.log('redict')
+    let a = 'view-today-job'
+    switch (a) {
+      case 'view-today-job':
+        let url = `/pages/view-today-job/view-today-job?jobId=${101}`
+        wx.navigateTo({
+          url: url
+        })
+        break
+      default:
+
+    }
   },
 
   /**

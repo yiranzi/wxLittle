@@ -30,7 +30,7 @@
       </view>
       <view class="bottom">
         <view class="new-mt-button" bindtap="goRouter" data-url="/pages/new-mt/new-mt">
-            {{'增加里程碑'}}
+            {{'开启新世界的大门'}}
         </view>
       </view>
     </view>

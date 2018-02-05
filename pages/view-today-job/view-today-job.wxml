@@ -1,5 +1,6 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
+    <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
     <arrow-selector
         defaultSelect="{{currentSelect}}"
         dataArr="{{jobArray}}"
@@ -12,5 +13,10 @@
         <view class='content'>{{jobArray[currentSelect].desc}}</view>
         <view class='title g-h2'>goal</view>
         <view class='content'>{{jobArray[currentSelect].goal}}</view>
+        <view class='button-div'>
+          <button bindtap="finishClick">完成</button>
+          <button bindtap="problemClick">御敌</button>
+        </view>
+        
     </view>
 </view>

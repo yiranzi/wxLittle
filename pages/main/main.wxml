@@ -13,7 +13,7 @@
       <view class='part-div'>
         <view class="title g-h2">这是所有的里程碑</view>
         <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone" wx:key="{{miletone.mtId}}" >
-          <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?id={{miletone.mtId}}" class='info-part' bindtap="goRouter">
+          <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?mtId={{miletone.mtId}}" class='info-part' bindtap="goRouter">
             <view> 里程碑 {{index}}: {{miletone.title}}</view>
           </view>
           <view class="button-div" wx:if="{{miletone.todayJob.length > 0}}">

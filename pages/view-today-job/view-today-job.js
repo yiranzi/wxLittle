@@ -47,6 +47,9 @@ Page({
         }
       }
     })
+    this.setData({
+      jobArray: newData,
+    })
     if (jobId) {
       let findIndex = newData.findIndex((job, index) => {
         return (job.jobId === jobId)
@@ -54,16 +57,22 @@ Page({
       this.setData({
         currentSelect: findIndex,
       })
+    } else {
+      if (this.data.currentSelect > newData.length - 1 && this.data.currentSelect!== 0) {
+        this.setData({
+          currentSelect: newData.length - 1,
+        }, () => {this.selectComponent('#arrowSelector').checkPos()})
+      } else {
+        this.selectComponent('#arrowSelector').checkPos()
+      }
     }
-    this.setData({
-      jobArray: newData,
-    })
   },
 
   selectChange: function (e) {
+    console.log(e)
     this.setData({
-      currentSelect: e.detail.currentSelect
-    })
+      currentSelect: this.data.currentSelect + e.detail.currentSelect
+    }, () => {e.detail.callBack()})
   },
 
   finishClick: function () {

@@ -5,7 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    id: '',
     mileToneNameArr: [],
     currentSelect: -1,
     hideStatus: ''
@@ -20,7 +19,7 @@ Page({
 
     // 获取对应的未知。
     let currentSelect = userData.mileToneNameArr.findIndex((ele, index) => {
-      return (ele.id === idParam)
+      return (ele.mtId === idParam)
     })
 
     // 设置
@@ -40,14 +39,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 获取链接
-    if (options) {
-      this.setData({
-        id: options.id
-      })
-    }
+    console.log(options)
     // 拉取数据
-    this.getFromUserData(parseInt(options.id))
+    this.getFromUserData(parseInt(options.mtId))
   },
 
   /**

@@ -11,6 +11,10 @@ Component({
     dataArr: {
       type: Array,
       value: [],
+    },
+    byFather: {
+      type: Boolean,
+      value: false,
     }
   },
 
@@ -36,46 +40,71 @@ Component({
   methods: {
     // 这里是一个自定义方法
     clickButton: function (event) {
-      let value = 0
-      if (event.currentTarget.dataset.pos === 'left') {
-        this.setData({
-          currentSelect: this.data.currentSelect - 1
-        }, () => {this.checkPos()})
+      console.log('get')
+      if (this.properties.byFather) {
+        if (event.currentTarget.dataset.pos === 'left') {
+          console.log('L')
+          this.triggerEvent('selectChange',{currentSelect: -1, callBack:this.checkPos.bind(this)})
+        } else {
+          console.log('R')
+          this.triggerEvent('selectChange',{currentSelect: 1, callBack:this.checkPos.bind(this)})
+        }
       } else {
-        this.setData({
-          currentSelect: this.data.currentSelect + 1
-        }, () => {this.checkPos()})
+        if (event.currentTarget.dataset.pos === 'left') {
+          this.setData({
+            currentSelect: this.data.currentSelect - 1
+          }, () => {this.checkPos()})
+        } else {
+          this.setData({
+            currentSelect: this.data.currentSelect + 1
+          }, () => {this.checkPos()})
+        }
       }
     },
     // 设置位置
     checkPos () {
-      console.log('haha')
-      // 如果l为0
-      if (this.properties.currentSelect === 0) {
-        // 如果r为0
-        if (this.properties.currentSelect === this.properties.dataArr.length - 1) {
-          this.setData({
-            hideStatus: 'both'
-          })
-        } else {
-          this.setData({
-            hideStatus: 'left'
-          })
-        }
-
+      console.log('checkPos')
+      let current
+      if (this.properties.byFather) {
+        current = this.properties.defaultSelect
       } else {
-        // 如果r为0
-        if (this.properties.currentSelect === this.properties.dataArr.length - 1) {
-          this.setData({
-            hideStatus: 'right'
-          })
+        current = this.data.currentSelect
+      }
+      // 如果l为0
+      if (this.properties.dataArr.length <= 0) {
+        this.setData({
+          hideStatus: 'both'
+        })
+      } else {
+        if (current === 0) {
+          // 如果r为0
+          if (current === this.properties.dataArr.length - 1) {
+            this.setData({
+              hideStatus: 'both'
+            })
+          } else {
+            this.setData({
+              hideStatus: 'left'
+            })
+          }
+
         } else {
-          this.setData({
-            hideStatus: 'none'
-          })
+          // 如果r为0
+          if (current === this.properties.dataArr.length - 1) {
+            this.setData({
+              hideStatus: 'right'
+            })
+          } else {
+            this.setData({
+              hideStatus: 'none'
+            })
+          }
         }
       }
-      this.triggerEvent('selectChange',{currentSelect: this.data.currentSelect})
+
+      if (!this.properties.byFather) {
+        this.triggerEvent('selectChange',{currentSelect: this.data.currentSelect})
+      }
     },
   }
 })

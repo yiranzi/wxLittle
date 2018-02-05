@@ -49,7 +49,7 @@ Page({
   selectChange: function (e) {
     this.setData({
       currentSelect: e.detail.currentSelect
-    }, () => {this.getFromUserData(parseInt(this.data.mileToneNameArr[this.data.currentSelect].id))})
+    }, () => {this.getFromUserData(parseInt(this.data.mileToneNameArr[this.data.currentSelect].mtId))})
   },
 
   /**
@@ -76,7 +76,7 @@ Page({
 
     // 获取对应的未知。
     let currentSelect = userData.mileToneNameArr.findIndex((ele, index) => {
-      return (ele.id === idParam)
+      return (ele.mtId === idParam)
     })
 
     // 设置

@@ -44,9 +44,41 @@ App({
   globalInfo: {
     alertInfo: ""
   },
-  dialogData: [
-    '可真是艰险的历程，你确定完成了'
-  ],
+  dialogData: {
+    'job': '可真是艰险的冒险，让我看看你的成果'
+  },
+
+  originData: {
+    mt : {
+      userId: '',
+      mtId: 0,
+      title: '',
+      desc: '',
+      todayJob: [
+
+      ],
+      startTime: 0,
+      equip: [
+
+      ],
+      item: [
+
+      ],
+    },
+    job : {
+      mtId: 0,
+      jobId: 0,
+      title: '',
+      desc: '',
+      goal: '',
+      level: 0,
+      startTime: '',
+      endTime: '',
+      grade: '',
+      problem: '',
+      evaluate: '',
+    }
+  },
   userData: {
     uesrInfo: [
       {
@@ -65,7 +97,7 @@ App({
     mileToneNameArr: [
       {
         userId: '18410109',
-        id: 8,
+        mtId: 8,
         title: '你好冒险者，我为了遇见你而存在',
         desc: '我是kara，我在这里等你很久了，我是你的伙伴。你现在所处的世界属于《打卡之神》，是掌管众多异世界入口的大神。在这些异世界里面，藏着你关于未来的众多梦想，而我将和你一起去开启，坚持，实现他们，准备好了吗？回到《打卡之神》次元，查看我们今天的任务吧！',
         todayJob: [
@@ -80,9 +112,10 @@ App({
             endTime: '',
             grade: '',
             problem: '',
-            ending: '',
+            evaluate: '',
           }
         ],
+        startTime: 0,
         equip: [
 
         ],
@@ -92,7 +125,7 @@ App({
       },
       {
         userId: '18410109',
-        id: 9,
+        mtId: 9,
         title: 'react积累：学习循环构建',
         desc: '为了让学习从开始学，到思考，输出，实践有一个完整的流程，也为了实现我在流程上和在学习新事物上的特殊能力，以react的深入学习，输出为始终，进行尝试',
         todayJob: [
@@ -112,7 +145,7 @@ App({
         endTime: '',
         grade: '',
         problem: '',
-        ending: '',
+        evaluate: '',
       }
     ],
     randomMission: [

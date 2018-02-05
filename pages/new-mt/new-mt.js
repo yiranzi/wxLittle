@@ -44,20 +44,22 @@ Page({
   saveMileTone () {
     // 保存
     let arr = []
-    let obj = {}
+    let obj = Object.assign({}, getApp().originData.mt);
     obj.title = this.data.newMtName
     obj.desc = this.data.newMtDesc
     // 获取全局数据
     var userData = getApp().userData
-    obj.id = userData.mileToneNameArr[userData.mileToneNameArr.length - 1].id + 1
+    obj.mtId = userData.mileToneNameArr[userData.mileToneNameArr.length - 1].mtId + 1
     obj.todayJob = []
+    obj.startTime = Date.now()
     // 暂时直接录入数据。
-    obj.userId = '18410109  '
+    obj.userId = '18410109'
     userData.mileToneNameArr.push(obj)
     this.setData({
       newMtName: '',
       newMtDesc: ''
     })
+    console.log(obj)
 
     // 返回
     wx.navigateBack({

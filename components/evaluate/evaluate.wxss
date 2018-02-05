@@ -1,1 +1,48 @@
-/* components/evaluate/evaluate.wxss */
+/* pages/cpmponent/index.wxss */
+.out-div {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+.inner-div {
+    position: relative;
+    background-color: white;
+    text-align: left;
+    width: 80%;
+    margin: auto;
+    min-height: 300px;
+    padding: 25px;
+    border-radius: 10px;
+}
+.botton-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.botton {
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.title {
+    font-size: 20px;
+    margin: 15px auto;
+}
+
+.sure {
+
+}
+
+.g-main-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}

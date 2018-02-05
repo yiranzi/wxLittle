@@ -17,56 +17,29 @@ const postNewJob = obj => {
     return new Promise((reslove, reject) => {
       qcloud.login({
         success(result) {
-          if (result) {
-            util.showSuccess('登录成功')
-            that.setData({
-              userInfo: result,
-              logged: true
-            })
-          } else {
-            // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-            qcloud.request({
-              url: config.service.requestUrl,
-              login: true,
-              success(result) {
-                util.showSuccess('登录成功')
-                that.setData({
-                  userInfo: result.data.data,
-                  logged: true
-                })
-              },
 
-              fail(error) {
-                util.showModel('请求失败', error)
-                console.log('request fail', error)
-              }
-            })
-          }
         },
-
         fail(error) {
-          // util.showModel('登录失败', error)
-          // console.log('登录失败', error)
           let {mtId, level, goal, title, desc} = obj
-          console.log(level)
-          console.log(mtId)
           let res
           let jobHistory = getApp().userData.jobHistory
           // 0 构造新的数据
           let jobId = jobHistory[jobHistory.length - 1].jobId + 1
-          let job = {
+          let job1 = Object.assign({}, getApp().originData.job);
+          let job = Object.assign(job1, {
             mtId: mtId,
             jobId: jobId,
             title: title,
             desc: desc,
             goal: goal,
             level: level,
-          }
+            startTime: Date.now()
+          });
           // 1 往hisotry添加数据
           jobHistory.push(job)
           // 2 更新mileToneNameArr.推入新的
           let mt = getApp().userData.mileToneNameArr.find((mt ,index) => {
-            return (mt.id === mtId)
+            return (mt.mtId === mtId)
           })
           if (mt) {
             res = {
@@ -86,29 +59,46 @@ const postNewJob = obj => {
     })
 }
 
+const finishTodayJob = obj => {
+  // 调用登录接口
+  return new Promise((reslove, reject) => {
+    qcloud.login({
+      success(result) {
 
-// 显示繁忙提示
-var showBusy = text => wx.showToast({
-  title: text,
-  icon: 'loading',
-  duration: 10000
-})
+      },
+      fail(error) {
+        console.log('start')
+        let {mtId, jobId, myEvaluate, score} = obj
+        let res
+        let mileToneNameArr = getApp().userData.mileToneNameArr
+        // 删除掉没有的
+        mileToneNameArr.forEach((mt, index) => {
+          if (mt.mtId === mtId) {
+            if (mt.todayJob.length > 0) {
+              mt.todayJob = mt.todayJob.filter((job, index) => {
+                return (job.jobId !== jobId)
+              })
+            }
+          }
+        })
+        let jobHistory = getApp().userData.jobHistory
 
-// 显示成功提示
-var showSuccess = text => wx.showToast({
-  title: text,
-  icon: 'success'
-})
-
-// 显示失败提示
-var showModel = (title, content) => {
-  wx.hideToast();
-
-  wx.showModal({
-    title,
-    content: JSON.stringify(content),
-    showCancel: false
+        let job = jobHistory.find((job, index) => {
+          return (job.jobId === jobId)
+        })
+        // 0 构造新的数据
+        job.evaluate = myEvaluate
+        job.grade = score
+        job.endTime = Date.now()
+        res = {
+          status: 200,
+          result: true,
+        }
+        reslove(res)
+      }
+    })
   })
 }
 
-module.exports = { postNewJob }
+
+module.exports = { postNewJob, finishTodayJob }

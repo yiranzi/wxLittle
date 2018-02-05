@@ -215,7 +215,8 @@ Page({
 
   redict() {
     console.log('redict')
-    let a = 'view-today-job'
+    // let a = 'view-today-job'
+    let a = ''
     switch (a) {
       case 'view-today-job':
         let url = `/pages/view-today-job/view-today-job?jobId=${101}`

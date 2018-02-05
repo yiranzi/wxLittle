@@ -1,12 +1,13 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
+    <evaluate id='evaluate' bind:finishEvaluate="finishEvaluate" contentA="{{jobArray[currentSelect].goal}}"></evaluate>
     <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
+    <view class='g-main-title'>今日任务一览</view>
     <arrow-selector
         defaultSelect="{{currentSelect}}"
         dataArr="{{jobArray}}"
         bind:selectChange="selectChange" />
-    <view class='part-div'>
-        <view class='g-main-title'>今日任务一览</view>
+    <view wx:if="{{jobArray.length > 0}}" class='part-div'>
         <view class='title g-h2'>title</view>
         <view class='content'>{{jobArray[currentSelect].title}}</view>
         <view class='title g-h2'>desc</view>
@@ -18,5 +19,8 @@
           <button bindtap="problemClick">御敌</button>
         </view>
         
+    </view>
+    <view wx:else class='part-div'>
+        <view class='g-main-title'>全部完成了！再去领取更多任务吧！</view>
     </view>
 </view>

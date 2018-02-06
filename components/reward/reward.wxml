@@ -1,0 +1,18 @@
+<!--pages/cpmponent/index.wxml-->
+<view class="out-div" wx:if="{{isShow}}">
+  <view class='inner-div'>
+    <view class="g-main-title">你的任务奖励</view>
+    <view class="title">金币：{{reward.gold}}</view>
+    <view class="title">经验：{{reward.exp}}</view>
+    <view wx:if="{{reward.equip.name}}" style="color: purple" class="title">上古遗物：</view>
+    <view wx:if="{{reward.equip.name}}" class="equip">
+        <view class="equip_top">
+            <image class="equip_icon"src="{{reward.equip.icon}}" />
+            <view class="equip_title">{{reward.equip.name}}</view>
+        </view>
+        <view>描述：{{reward.equip.desc}}</view>
+        <view>功能：{{reward.equip.power}}</view>
+    </view>
+    <button class="botton" catchtap="clickButton">好的</button>
+  </view>
+</view>

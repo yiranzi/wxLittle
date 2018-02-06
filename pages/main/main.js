@@ -219,6 +219,13 @@ Page({
     this.setData({
       codeIndex: version.dayCode
     }, this.redict)
+    console.log(getApp().randomData.equip[0])
+    let obj = {
+      gold: 100,
+      exp: 1000,
+      equip: getApp().randomData.equip[0]
+    }
+    // this.selectComponent('#reward').show(obj)
   },
 
   redict() {
@@ -232,7 +239,6 @@ Page({
         })
         break
       default:
-
     }
   },
 
@@ -250,6 +256,7 @@ Page({
     if (this.data.isHide) {
       // 如果隐藏 重新刷新数据
       this.getMileToneInfo()
+      this.getUserInfo()
       this.setData({
         isHide: false
       })

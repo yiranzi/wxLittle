@@ -1,0 +1,77 @@
+/* pages/cpmponent/index.wxss */
+.out-div {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+.inner-div {
+    position: relative;
+    background-color: white;
+    text-align: left;
+    width: 80%;
+    margin: auto;
+    min-height: 300px;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+
+.g-main-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.content {
+    font-size: 14px;
+}
+
+.title {
+    font-size: 20px;
+    margin: 15px auto;
+}
+
+.equip-title {
+    font-size: 20px;
+    margin: 15px auto;
+    color: purple;
+}
+
+.botton {
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.equip {
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.equip_top {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.equip_title {
+    font-size: 20px;
+    text-align: center;
+}
+
+.equip_icon {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin-right: 10px;
+}

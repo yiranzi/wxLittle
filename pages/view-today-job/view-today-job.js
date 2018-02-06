@@ -80,6 +80,10 @@ Page({
 
   },
 
+  clickButton: function () {
+    util.showSuccess('完成任务')
+  },
+
   finishEvaluate: function (e) {
     console.log('finish')
     let obj = this.data.jobArray[this.data.currentSelect]
@@ -91,8 +95,9 @@ Page({
     }
     console.log(newObj)
     ajax.finishTodayJob(newObj).then((res) => {
-      util.showSuccess('完成任务')
       this.getFromJobHistory()
+      // 刷新数据 // 弹出领取奖励的弹框
+      this.selectComponent('#reward').show(res)
     })
     // 上报。分数。上报我的自我评价
   },

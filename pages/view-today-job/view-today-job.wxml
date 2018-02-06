@@ -1,5 +1,6 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
+    <reward id='reward' bind:clickButton="clickButton"></reward>
     <evaluate id='evaluate' bind:finishEvaluate="finishEvaluate" contentA="{{jobArray[currentSelect].goal}}"></evaluate>
     <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
     <view class='g-main-title'>今日任务一览</view>

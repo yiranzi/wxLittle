@@ -1,2 +1,9 @@
-<!--components/sign/sign.wxml-->
-<text>components/sign/sign.wxml</text>
+<!--pages/cpmponent/index.wxml-->
+<view class="out-div" wx:if="{{isShow}}">
+  <view class='inner-div'>
+    <view class="g-main-title">欢迎来到打卡之神</view>
+    <view class="content">{{showContent}}</view>
+    <input value="{{myInput}}" placeholder='你叫什么名' bindinput="inputCbf" focus />
+    <button catchtap="finishEvaluate">就是他了</button>
+  </view>
+</view>

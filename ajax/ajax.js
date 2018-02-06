@@ -95,19 +95,27 @@ const finishTodayJob = obj => {
         job.endTime = Date.now()
 
         // 1 计算奖励值。
+        console.log('calc')
         let coastTime = job.endTime- job.startTime
-        let kValue = (job.grade + 1) * job.level * (job.level / (coastTime/1000/60/60))
+        // 简化模型
+        // let kValue = (job.grade + 1) * job.level * (job.level / (coastTime/1000/60/60))
+        let kValue = (job.grade + 1) * job.level * (job.level / 1)
         let reward = Object.assign({}, getApp().originData.reward)
-        reward.gold = kValue * reward.gold
-        reward.exp = kValue * reward.exp
+        reward.gold = Math.round(kValue * reward.gold)
+        reward.exp = Math.round(kValue * reward.exp)
         let allEquipArr = getApp().randomData.equip.slice()
         let random = util.getRandomInt(0, allEquipArr.length)
         reward.equip = allEquipArr[random]
+        // 2 增加到角色身上
+        let userInfo = getApp().userData.userInfo[0]
+        userInfo.gold += reward.gold
+        userInfo.exp += reward.exp
         res = {
           status: 200,
           result: reward,
         }
-        reslove(res)
+
+        reslove(reward)
       }
     })
   })

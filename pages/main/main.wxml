@@ -2,7 +2,8 @@
 <view class='g-container'>
   <view class='g-page'>
     <view>
-    <!-- 弹框组件 -->
+    <reward id='reward' bind:clickButton="clickButton"></reward>
+
     <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
     <alert id='alert' bind:alertClickButton="alertClickButton"></alert>
     </view>

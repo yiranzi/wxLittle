@@ -93,22 +93,18 @@ App({
   randomData: {
     equip: [
       {
-        name: '冒险者的之帽1',
-        desc: '看起来像路飞的那顶草帽',
-        power: '非常帅',
-        icon: './src/img/icon.png'
+        id: 0,
+        name: '分院帽',
+        desc: '一个年岁很高，话更多的帽子，哦，他是活的！',
+        power: '开启《探险历史》功能',
+        icon: '../../src/img/icon_1.png'
       },
       {
-        name: '冒险者的之帽2',
+        id: 1,
+        name: '草帽',
         desc: '看起来像路飞的那顶草帽',
-        power: '非常帅',
-        icon: './src/img/icon_1.png'
-      },
-      {
-        name: '冒险者的之帽3',
-        desc: '看起来像路飞的那顶草帽',
-        power: '非常帅',
-        icon: './src/img/icon_2.png'
+        power: '让你能够开启更多地《异世界之门》',
+        icon: '../../src/img/icon_1.png'
       }
     ]
   },

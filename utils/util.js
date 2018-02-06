@@ -9,6 +9,12 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+const getRandomInt =(min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -39,4 +45,4 @@ var showModel = (title, content) => {
   })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+module.exports = { formatTime, showBusy, showSuccess, showModel, getRandomInt }

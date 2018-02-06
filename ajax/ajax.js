@@ -1,5 +1,5 @@
 var qcloud = require('./wafer2-client-sdk/index');
-var util = require('../util/util');
+var util = require('../utils/util');
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -68,7 +68,7 @@ const finishTodayJob = obj => {
       },
       fail(error) {
         console.log('start')
-        let {mtId, jobId, myEvaluate, score} = obj
+        let {mtId, jobId, myEvaluate, grade} = obj
         let res
         let mileToneNameArr = getApp().userData.mileToneNameArr
         // 删除掉没有的
@@ -88,11 +88,22 @@ const finishTodayJob = obj => {
         })
         // 0 构造新的数据
         job.evaluate = myEvaluate
-        job.grade = score
+        job.grade = grade
         job.endTime = Date.now()
+
+        // 1 计算奖励值。
+        let coastTime = job.endTime- job.startTime
+        let kValue = (job.grade + 1) * job.level * (job.level / (coastTime/1000/60/60))
+        let reward = Object.assign({}, getApp().originData.reward)
+        reward.gold = kValue * reward.gold
+        reward.exp = kValue * reward.exp
+        let allEquipArr = getApp().randomData.equip.slice()
+        let random = util.getRandomInt(0, allEquipArr.length)
+        reward.equip = allEquipArr[random]
+        console.log(reward)
         res = {
           status: 200,
-          result: true,
+          result: reward,
         }
         reslove(res)
       }

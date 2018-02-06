@@ -29,8 +29,6 @@ Page({
   // 更新数据
   getFromJobHistory: function (jobId) {
     let data = getApp().userData.jobHistory
-    console.log('getFromJobHistory')
-    console.log(data)
     let newData = data.filter((job, index) => {
       return (job.evaluate === '')
     })
@@ -69,7 +67,6 @@ Page({
   },
 
   selectChange: function (e) {
-    console.log(e)
     this.setData({
       currentSelect: this.data.currentSelect + e.detail.currentSelect
     }, () => {e.detail.callBack()})
@@ -84,13 +81,15 @@ Page({
   },
 
   finishEvaluate: function (e) {
+    console.log('finish')
     let obj = this.data.jobArray[this.data.currentSelect]
     let newObj = {
       jobId: Number(obj.jobId),
       mtId: Number(obj.mtId),
       evaluate: e.detail.myEvaluate,
-      grade: e.detail.score
+      grade: Number(e.detail.score)
     }
+    console.log(newObj)
     ajax.finishTodayJob(newObj).then(() => {
       util.showSuccess('完成任务')
       this.getFromJobHistory()

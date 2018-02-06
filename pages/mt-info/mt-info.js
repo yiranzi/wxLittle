@@ -26,7 +26,7 @@ Page({
     this.setData({
       mileToneNameArr: userData.mileToneNameArr,
       currentSelect: currentSelect
-    }, () => {console.log('finish set')})
+    })
   },
 
   selectChange: function (e) {
@@ -39,7 +39,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     // 拉取数据
     this.getFromUserData(parseInt(options.mtId))
   },

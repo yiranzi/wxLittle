@@ -70,7 +70,6 @@ Page({
    * 自定义方法
    */
   getFromUserData: function (idParam) {
-    console.log(idParam)
     // 获取全局数据
     var userData = getApp().userData
 
@@ -84,7 +83,7 @@ Page({
       mtId: idParam,
       mileToneNameArr: userData.mileToneNameArr,
       currentSelect: currentSelect
-    }, () => {console.log('finish set')})
+    })
   },
 
   getFromRandomMission: function (level) {

@@ -65,19 +65,52 @@ App({
 
       ],
     },
-    job : {
+    job: {
       mtId: 0,
       jobId: 0,
       title: '',
       desc: '',
       goal: '',
       level: 0,
-      startTime: '',
-      endTime: '',
-      grade: '',
+      startTime: 0,
+      endTime: 0,
+      grade: 0,
       problem: '',
       evaluate: '',
+    },
+    reward: {
+      exp: 1000,
+      gold: 100,
+      equip: [],
+    },
+    equip: {
+      name: '',
+      desc: '',
+      power: '',
+      icon: '',
     }
+  },
+  randomData: {
+    equip: [
+      {
+        name: '冒险者的之帽1',
+        desc: '看起来像路飞的那顶草帽',
+        power: '非常帅',
+        icon: './src/img/icon.png'
+      },
+      {
+        name: '冒险者的之帽2',
+        desc: '看起来像路飞的那顶草帽',
+        power: '非常帅',
+        icon: './src/img/icon_1.png'
+      },
+      {
+        name: '冒险者的之帽3',
+        desc: '看起来像路飞的那顶草帽',
+        power: '非常帅',
+        icon: './src/img/icon_2.png'
+      }
+    ]
   },
   userData: {
     uesrInfo: [
@@ -108,14 +141,14 @@ App({
             desc: '这里是众多异世界的入口，他的作用就是让你建立，查看，前往各个异世界。点击《开启新世界的大门》，就能够让你和新的异世界产生异次元连接。你在里面可以历练，完成任务，并获得成长。当你完成1万小时的历险后，你就可以挑战那个世界的远古大神，成为异世界新的主宰了！',
             goal: '开启新的，属于你自己的，异次元大门',
             level: 1,
-            startTime: '',
-            endTime: '',
-            grade: '',
+            startTime: 1517881674933,
+            endTime: 0,
+            grade: 0,
             problem: '',
             evaluate: '',
           }
         ],
-        startTime: 0,
+        startTime: 1517881674933,
         equip: [
 
         ],
@@ -132,9 +165,9 @@ App({
         desc: '这里是众多异世界的入口，他的作用就是让你建立，查看，前往各个异世界。点击《开启新世界的大门》，就能够让你和新的异世界产生异次元连接。你在里面可以历练，完成任务，并获得成长。当你完成1万小时的历险后，你就可以挑战那个世界的远古大神，成为异世界新的主宰了！',
         goal: '开启新的，属于你自己的，异次元大门',
         level: 1,
-        startTime: '',
-        endTime: '',
-        grade: '',
+        startTime: 1517881674933,
+        endTime: 0,
+        grade: 0,
         problem: '',
         evaluate: '',
       }

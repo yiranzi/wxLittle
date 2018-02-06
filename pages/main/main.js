@@ -176,7 +176,6 @@ Page({
     var mileToneNameArr = getApp().userData.mileToneNameArr
     mileToneNameArr.map((mt, index) => {
       let totalLevel = 0
-      console.log('calc')
       if (mt.todayJob.length > 0) {
         mt.todayJob.forEach((job, index) => {
           totalLevel += Number(job.level)
@@ -214,7 +213,6 @@ Page({
   },
 
   redict() {
-    console.log('redict')
     // let a = 'view-today-job'
     let a = ''
     switch (a) {

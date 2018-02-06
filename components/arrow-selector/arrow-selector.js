@@ -27,11 +27,9 @@ Component({
   },
 
   ready: function () {
-    console.log('ready')
     this.setData({
       currentSelect: this.properties.defaultSelect
     }, () => { this.checkPos() })
-    console.log(this.properties)
   },
 
   /**
@@ -40,13 +38,10 @@ Component({
   methods: {
     // 这里是一个自定义方法
     clickButton: function (event) {
-      console.log('get')
       if (this.properties.byFather) {
         if (event.currentTarget.dataset.pos === 'left') {
-          console.log('L')
           this.triggerEvent('selectChange',{currentSelect: -1, callBack:this.checkPos.bind(this)})
         } else {
-          console.log('R')
           this.triggerEvent('selectChange',{currentSelect: 1, callBack:this.checkPos.bind(this)})
         }
       } else {
@@ -63,7 +58,6 @@ Component({
     },
     // 设置位置
     checkPos () {
-      console.log('checkPos')
       let current
       if (this.properties.byFather) {
         current = this.properties.defaultSelect

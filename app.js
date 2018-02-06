@@ -173,7 +173,7 @@ App({
         level: 0.5,
         missionList: [
           {
-            title: '消灭邪恶的守夜人',
+            title: '',
             desc: '他们亵渎了国王的荣耀',
             goal: '',
           },

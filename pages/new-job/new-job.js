@@ -15,23 +15,39 @@ Page({
     mileToneNameArr: [],
     currentMission: {},
     goal: '',
+    title: '',
+    desc: '',
+
   },
 
   inputCbf: function (e) {
-    if(e.currentTarget.dataset.type === 'level') {
-      this.setData({
-        level: Number(e.detail.value)
-      })
-    } else {
-      this.setData({
-        goal: e.detail.value
-      })
+    switch (e.currentTarget.dataset.type) {
+      case 'level':
+        this.setData({
+          level: Number(e.detail.value)
+        })
+        break;
+      case 'title':
+        this.setData({
+          title: e.detail.value
+        })
+        break;
+      case 'goal':
+        this.setData({
+          goal: e.detail.value
+        })
+        break;
+      case 'desc':
+        this.setData({
+          desc: e.detail.value
+        })
+        break;
     }
   },
 
   newJobButton: function () {
-    let {level, goal, mtId} = this.data
-    let {title, desc} = this.data.currentMission
+    let {level, goal, mtId, title, desc} = this.data
+    // let {desc} = this.data.currentMission
     let obj = {
       level: level.toFixed(1),
       goal: goal,
@@ -60,7 +76,7 @@ Page({
     // 设置level
 
     // 拉取随机数据
-    let jobHistory = this.getFromRandomMission(this.data.level)
+    // let jobHistory = this.getFromRandomMission(this.data.level)
 
     // 拉取全部里程碑
     this.getFromUserData(parseInt(options.mtId))

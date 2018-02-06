@@ -1,17 +1,6 @@
 var qcloud = require('./wafer2-client-sdk/index');
 var util = require('../utils/util');
 
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
-
 const postNewJob = obj => {
     // 调用登录接口
     return new Promise((reslove, reject) => {
@@ -59,6 +48,21 @@ const postNewJob = obj => {
     })
 }
 
+const getUserInfo = (userId) => {
+  return new Promise((reslove, reject) => {
+    let userList = getApp().userData.userInfo
+    if (userList.length > 0) {
+      reslove (userList[0])
+    } else {
+      reject (false)
+    }
+    // let myUser = userList.find((user, index) => {
+    //   return user.userId === userId
+    // })
+    // reslove(myUser)
+  })
+}
+
 const finishTodayJob = obj => {
   // 调用登录接口
   return new Promise((reslove, reject) => {
@@ -67,7 +71,6 @@ const finishTodayJob = obj => {
 
       },
       fail(error) {
-        console.log('start')
         let {mtId, jobId, myEvaluate, grade} = obj
         let res
         let mileToneNameArr = getApp().userData.mileToneNameArr
@@ -100,7 +103,6 @@ const finishTodayJob = obj => {
         let allEquipArr = getApp().randomData.equip.slice()
         let random = util.getRandomInt(0, allEquipArr.length)
         reward.equip = allEquipArr[random]
-        console.log(reward)
         res = {
           status: 200,
           result: reward,
@@ -112,4 +114,4 @@ const finishTodayJob = obj => {
 }
 
 
-module.exports = { postNewJob, finishTodayJob }
+module.exports = { postNewJob, finishTodayJob, getUserInfo }

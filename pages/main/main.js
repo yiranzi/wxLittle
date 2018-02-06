@@ -1,5 +1,6 @@
 // pages/main/index.js
 var version = require('../../version/version');
+var ajax = require('../../ajax/ajax');
 
 Page({
   /**
@@ -12,7 +13,8 @@ Page({
     dataFinishArray: [], // 表示进度信息
     currentSelect: -1,
     isLeave: false,
-    codeIndex: ''
+    codeIndex: '',
+    userInfo: ''
   },
 
   staticProcessData: [
@@ -171,7 +173,7 @@ Page({
     })
   },
 
-  getFromUserData: function () {
+  getMileToneInfo: function () {
     // 获取全局数据
     var mileToneNameArr = getApp().userData.mileToneNameArr
     mileToneNameArr.map((mt, index) => {
@@ -190,22 +192,29 @@ Page({
     })
   },
 
-  // 设置全局组件
-  setGlobalComponent: function () {
-    var globalComponent = getApp().globalComponent
-    globalComponent.alert = this.selectComponent("#alert");
-  },
-
   // alert组件
   alertClickButton: function () {
+  },
+
+  getUserInfo: function () {
+    // let userId = '18410109'
+    ajax.getUserInfo().then((res) => {
+      if (res) {
+        this.setData({
+          userInfo: res
+        })
+      } else {
+        console.log('new one come')
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getDataFromServer()
-    this.getFromUserData()
+    this.getUserInfo()
+    this.getMileToneInfo()
     // 设置版本号
     this.setData({
       codeIndex: version.dayCode
@@ -232,7 +241,6 @@ Page({
    */
   onReady: function () {
     this.dialog = this.selectComponent("#modalBox");
-    this.setGlobalComponent()
   },
 
   /**
@@ -241,7 +249,7 @@ Page({
   onShow: function () {
     if (this.data.isHide) {
       // 如果隐藏 重新刷新数据
-      this.getFromUserData()
+      this.getMileToneInfo()
       this.setData({
         isHide: false
       })

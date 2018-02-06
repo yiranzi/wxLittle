@@ -7,11 +7,16 @@
     <alert id='alert' bind:alertClickButton="alertClickButton"></alert>
     </view>
     <view class="g-h1 page-title">
-      今天是第{{day}}天
+    《打卡之神》异世界——第{{day}}天
     </view>
     <view class='main-body'>
+        <view class='part-div'>
+            <view class="title g-h2">名：{{userInfo.name}}</view>
+            <view class="title g-h2">经验值：{{userInfo.exp}}</view>
+            <view class="title g-h2">金币：{{userInfo.gold}}</view>
+        </view>
       <view class='part-div'>
-        <view class="title g-h2">这是所有的里程碑</view>
+
         <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone" wx:key="{{miletone.mtId}}" >
           <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?mtId={{miletone.mtId}}" class='info-part' bindtap="goRouter">
             <view> 里程碑 {{index}}: {{miletone.title}}</view>

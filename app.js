@@ -113,7 +113,7 @@ App({
     ]
   },
   userData: {
-    uesrInfo: [
+    userInfo: [
       {
         name: 'miao',
         gold: 1000,

@@ -90,7 +90,7 @@ Page({
       grade: Number(e.detail.score)
     }
     console.log(newObj)
-    ajax.finishTodayJob(newObj).then(() => {
+    ajax.finishTodayJob(newObj).then((res) => {
       util.showSuccess('完成任务')
       this.getFromJobHistory()
     })

@@ -19,7 +19,6 @@
             <view class='content'>{{jobArray[currentSelect].goal}}</view>
             <view class='button-div'>
               <button bindtap="finishClick">完成</button>
-              <button bindtap="problemClick">御敌</button>
             </view>
         </view>
         <view wx:else>

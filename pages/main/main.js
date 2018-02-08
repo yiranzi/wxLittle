@@ -117,7 +117,7 @@ Page({
 
   introduceTips () {
     let {codeIndex} = this.data
-    getApp().globalComponent.alert.showDialog(`依然的大冒险 更新公告${codeIndex}号：  ${version.versionInfo[codeIndex]}`)
+    this.alert.showDialog(`依然的大冒险 更新公告${codeIndex}号：  ${version.versionInfo[codeIndex]}`)
   },
 
   // 引用组件事件上报
@@ -220,11 +220,11 @@ Page({
       codeIndex: version.dayCode
     }, this.redict)
     console.log(getApp().randomData.equip[0])
-    let obj = {
-      gold: 100,
-      exp: 1000,
-      equip: getApp().randomData.equip[0]
-    }
+    // let obj = {
+    //   gold: 100,
+    //   exp: 1000,
+    //   equip: getApp().randomData.equip[0]
+    // }
     // this.selectComponent('#reward').show(obj)
   },
 
@@ -247,6 +247,7 @@ Page({
    */
   onReady: function () {
     this.dialog = this.selectComponent("#modalBox");
+    this.alert = this.selectComponent("#alert");
   },
 
   /**
@@ -265,7 +266,7 @@ Page({
     var globalInfo = global.globalInfo
     if (globalInfo.alertInfo !== '') {
       setTimeout(() => {
-        getApp().globalComponent.alert.showDialog(globalInfo.alertInfo)
+        this.alert.showDialog(globalInfo.alertInfo)
         globalInfo.alertInfo = ''
       },100)
     }
@@ -306,6 +307,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

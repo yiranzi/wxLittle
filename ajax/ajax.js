@@ -110,6 +110,13 @@ const finishTodayJob = obj => {
         let userInfo = getApp().userData.userInfo[0]
         userInfo.gold += reward.gold
         userInfo.exp += reward.exp
+        // 增加里程碑收获
+        mileToneNameArr.forEach((mt, index) => {
+          if (mt.mtId === mtId) {
+            mt.exp += reward.exp
+            mt.equip.push(allEquipArr[random])
+          }
+        })
         res = {
           status: 200,
           result: reward,

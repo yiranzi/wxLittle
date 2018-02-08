@@ -12,4 +12,19 @@
         <view class='title g-h2'>里程碑描述</view>
         <view class='content'>{{mileToneNameArr[currentSelect].desc}}</view>
     </view>
+    <view class='part-div'>
+        <view class='title g-h2'>角色信息</view>
+        <view class='title g-h2'>Exp:{{mileToneNameArr[currentSelect].exp}}</view>
+        <view wx:if="{{mileToneNameArr[currentSelect].equip.length > 0}}" class="equip">
+            <view class='title g-h2'>装备:</view>
+            <view wx:for="{{mileToneNameArr[currentSelect].equip}}">
+                <view class="equip_top">
+                    <image class="equip_icon"src="{{item.icon}}" />
+                    <view class="equip_title">{{item.name}}</view>
+                </view>
+                <view>描述：{{item.desc}}</view>
+                <view>功能：{{item.power}}</view>
+            </view>
+        </view>
+    </view>
 </view>

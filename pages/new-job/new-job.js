@@ -46,7 +46,12 @@ Page({
   },
 
   newJobButton: function () {
+    // 判断是否有内容
     let {level, goal, mtId, title, desc} = this.data
+    if (!title) {
+      util.showModel('名称为空','名称必须填写哦')
+      return
+    }
     // let {desc} = this.data.currentMission
     let obj = {
       level: level.toFixed(1),

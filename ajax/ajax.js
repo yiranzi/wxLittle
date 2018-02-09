@@ -1,5 +1,48 @@
 var qcloud = require('./wafer2-client-sdk/index');
 var util = require('../utils/util');
+var config = require('../config')
+
+const testCgi = () => {
+  util.showBusy('请求中...')
+  return new Promise((reslove, reject) => {
+    // 拉取数据
+    var that = this
+    qcloud.request({
+      url: `${config.service.host}/weapp/demo`,
+      login: false,
+      success (result) {
+        util.showSuccess('请求成功完成')
+        reslove(result)
+      },
+      fail (error) {
+        util.showModel('请求失败', error);
+        console.log('request fail', error);
+        reject (false)
+      }
+    })
+  })
+}
+
+const getUserInfo = () => {
+  util.showBusy('请求中...')
+  return new Promise((reslove, reject) => {
+    // 拉取数据
+    var that = this
+    qcloud.request({
+      url: `${config.service.host}/weapp/userinfo`,
+      login: false,
+      success (result) {
+        util.showSuccess('请求成功完成')
+        reslove(result)
+      },
+      fail (error) {
+        util.showModel('请求失败', error);
+        console.log('request fail', error);
+        reject (false)
+      }
+    })
+  })
+}
 
 const postNewJob = obj => {
     // 调用登录接口
@@ -46,21 +89,6 @@ const postNewJob = obj => {
         }
       })
     })
-}
-
-const getUserInfo = (userId) => {
-  return new Promise((reslove, reject) => {
-    let userList = getApp().userData.userInfo
-    if (userList.length > 0) {
-      reslove (userList[0])
-    } else {
-      reject (false)
-    }
-    // let myUser = userList.find((user, index) => {
-    //   return user.userId === userId
-    // })
-    // reslove(myUser)
-  })
 }
 
 const finishTodayJob = obj => {
@@ -129,4 +157,4 @@ const finishTodayJob = obj => {
 }
 
 
-module.exports = { postNewJob, finishTodayJob, getUserInfo }
+module.exports = { testCgi, postNewJob, finishTodayJob, getUserInfo }

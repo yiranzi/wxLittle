@@ -116,6 +116,7 @@ Page({
   },
 
   introduceTips () {
+    ajax.testCgi()
     let {codeIndex} = this.data
     this.alert.showDialog(`依然的大冒险 更新公告${codeIndex}号：  ${version.versionInfo[codeIndex]}`)
   },
@@ -199,9 +200,10 @@ Page({
   getUserInfo: function () {
     // let userId = '18410109'
     ajax.getUserInfo().then((res) => {
-      if (res) {
+      let data = res.data.data
+      if (data) {
         this.setData({
-          userInfo: res
+          userInfo: data
         })
       } else {
         console.log('new one come')

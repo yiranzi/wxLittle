@@ -35,7 +35,7 @@ const CONF = {
         // DEVTEST
         // db: 'cAuth',
         // pass: 'Java17131',
-        db: 'test',
+        db: 'cAuth',
         pass: '',
         char: 'utf8mb4'
     },

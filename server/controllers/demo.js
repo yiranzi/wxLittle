@@ -4,10 +4,11 @@ const { mysql } = require('../qcloud')
 module.exports = async ctx => {
   // var id = uuid.v1()
   // 增
+  console.log('123123')
   var userinfo = {
-    name: 'baby',
-    gold: 1000,
-    exp: 100
+    name: 'king',
+    gold: 1000, 
+    exp: 100,
   }
   let res = await mysql("userinfo").insert(userinfo)
   // 增

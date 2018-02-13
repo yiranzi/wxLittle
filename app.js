@@ -96,6 +96,8 @@ App({
       desc: '',
       power: '',
       icon: '',
+      id: 0,
+      belong: 0,
     }
   },
   randomData: {

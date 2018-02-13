@@ -36,5 +36,8 @@ router.post('/message', controllers.message.post)
 // get
 router.get('/demo', controllers.demo)
 router.get('/userinfo', controllers.userinfo)
+router.get('/getMileToneList', controllers.getMileToneList)
+router.get('/postNewMileTone', controllers.postNewMileTone)
+
 
 module.exports = router

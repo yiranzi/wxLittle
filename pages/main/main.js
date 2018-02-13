@@ -6,79 +6,79 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    newMtName: '',
-    day: 1,
-    mileToneNameArr: [],
-    dataFinishArray: [], // 表示进度信息
-    currentSelect: -1,
-    isLeave: false,
-    codeIndex: '',
-    userInfo: ''
-  },
+  // data: {
+  //   newMtName: '',
+  //   day: 1,
+  //   mileToneNameArr: [],
+  //   dataFinishArray: [], // 表示进度信息
+  //   currentSelect: -1,
+  //   isLeave: false,
+  //   codeIndex: '',
+  //   userInfo: ''
+  // },
 
-  staticProcessData: [
-    {
-      id: 8,
-      info: [
-        {
-          date: 0,
-          finish: true
-        },
-        {
-          date: 1,
-          finish: false
-        },
-        {
-          date: 2,
-          finish: null
-        }
-      ]
-    },
-    {
-      id: 9,
-      info: [
-        {
-          date: 0,
-          finish: true
-        },
-        {
-          date: 1,
-          finish: true
-        },
-        {
-          date: 2,
-          finish: null
-        }
-      ]
-    },
-    {
-      id: 10,
-      info: [
-        {
-          date: 0,
-          finish: true
-        },
-        {
-          date: 1,
-          finish: false
-        },
-        {
-          date: 2,
-          finish: null
-        }
-      ]
-    }
-  ],
+  // staticProcessData: [
+  //   {
+  //     id: 8,
+  //     info: [
+  //       {
+  //         date: 0,
+  //         finish: true
+  //       },
+  //       {
+  //         date: 1,
+  //         finish: false
+  //       },
+  //       {
+  //         date: 2,
+  //         finish: null
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     id: 9,
+  //     info: [
+  //       {
+  //         date: 0,
+  //         finish: true
+  //       },
+  //       {
+  //         date: 1,
+  //         finish: true
+  //       },
+  //       {
+  //         date: 2,
+  //         finish: null
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     id: 10,
+  //     info: [
+  //       {
+  //         date: 0,
+  //         finish: true
+  //       },
+  //       {
+  //         date: 1,
+  //         finish: false
+  //       },
+  //       {
+  //         date: 2,
+  //         finish: null
+  //       }
+  //     ]
+  //   }
+  // ],
 
   // 加载的时候 设置数据
-  getDataFromServer: function () {
-    // 1 设置processdata
-    this.setData({
-      dataFinishArray: this.staticProcessData
-    })
-    this.calcProcess()
-  },
+  // getDataFromServer: function () {
+  //   // 1 设置processdata
+  //   this.setData({
+  //     dataFinishArray: this.staticProcessData
+  //   })
+  //   this.calcProcess()
+  // },
 
   // 新建任务
   clickNewJob: function (e) {
@@ -96,24 +96,24 @@ Page({
     })
   },
   // 点击签到按钮
-  clickButton: function (e) {
-    // 设置当前
-    let resultIndex = this.data.dataFinishArray.findIndex((ele, index) => {
-      return ele.id === parseInt(e.currentTarget.id)
-    })
-    this.setData({
-      currentSelect: resultIndex
-    })
-    // 打开弹出
-    this.dialog.showDialog()
-  },
+  // clickButton: function (e) {
+  //   // 设置当前
+  //   let resultIndex = this.data.dataFinishArray.findIndex((ele, index) => {
+  //     return ele.id === parseInt(e.currentTarget.id)
+  //   })
+  //   this.setData({
+  //     currentSelect: resultIndex
+  //   })
+  //   // 打开弹出
+  //   this.dialog.showDialog()
+  // },
 
   //set
-  setResult: function (bool) {
-    let result = this.data.dataFinishArray[this.data.currentSelect]
-    result.info[result.info.length - 1].finish = bool
-    this.calcProcess()
-  },
+  // setResult: function (bool) {
+  //   let result = this.data.dataFinishArray[this.data.currentSelect]
+  //   result.info[result.info.length - 1].finish = bool
+  //   this.calcProcess()
+  // },
 
   introduceTips () {
     ajax.testCgi()
@@ -122,50 +122,50 @@ Page({
   },
 
   // 引用组件事件上报
-  cancelEvent: function () {
-    this.setResult(false)
-    this.dialog.hideDialog()
-  },
-
-  sureEvent: function () {
-    this.setResult(true)
-    this.dialog.hideDialog()
-  },
+  // cancelEvent: function () {
+  //   this.setResult(false)
+  //   this.dialog.hideDialog()
+  // },
+  //
+  // sureEvent: function () {
+  //   this.setResult(true)
+  //   this.dialog.hideDialog()
+  // },
 
   // 更新进度数据
-  calcProcess: function () {
-    let dataFinishArray = this.data.dataFinishArray
-    let arr = dataFinishArray.map((infos, index) => {
-      let totalCount = totalCount = infos.info.length
-      let finishCount = 0
-      let unFinishCount = 0
-      infos.info.forEach((info, index) => {
-        if(info.finish) {
-          finishCount++
-        } else if (info.finish !== null) {
-          unFinishCount++
-        }
-      })
-      infos.finishCount = finishCount
-      infos.unFinishCount = unFinishCount
-      infos.totalCount = totalCount
-      // 设置当日的结果
-      if(infos.info[totalCount - 1].finish) {
-        infos.color = 'green'
-        infos.status = '已完成'
-      } else if (infos.info[totalCount - 1].finish === false) {
-        infos.color = 'red'
-        infos.status = '未完成'
-      } else {
-        infos.color = 'grey'
-        infos.status = '未打卡'
-      }
-      return infos
-    })
-    this.setData({
-      dataFinishArray: arr
-    })
-  },
+  // calcProcess: function () {
+  //   let dataFinishArray = this.data.dataFinishArray
+  //   let arr = dataFinishArray.map((infos, index) => {
+  //     let totalCount = totalCount = infos.info.length
+  //     let finishCount = 0
+  //     let unFinishCount = 0
+  //     infos.info.forEach((info, index) => {
+  //       if(info.finish) {
+  //         finishCount++
+  //       } else if (info.finish !== null) {
+  //         unFinishCount++
+  //       }
+  //     })
+  //     infos.finishCount = finishCount
+  //     infos.unFinishCount = unFinishCount
+  //     infos.totalCount = totalCount
+  //     // 设置当日的结果
+  //     if(infos.info[totalCount - 1].finish) {
+  //       infos.color = 'green'
+  //       infos.status = '已完成'
+  //     } else if (infos.info[totalCount - 1].finish === false) {
+  //       infos.color = 'red'
+  //       infos.status = '未完成'
+  //     } else {
+  //       infos.color = 'grey'
+  //       infos.status = '未打卡'
+  //     }
+  //     return infos
+  //   })
+  //   this.setData({
+  //     dataFinishArray: arr
+  //   })
+  // },
 
   goRouter: function (e) {
     let url = e.currentTarget.dataset.url
@@ -176,20 +176,23 @@ Page({
 
   getMileToneInfo: function () {
     // 获取全局数据
-    var mileToneNameArr = getApp().userData.mileToneNameArr
-    mileToneNameArr.map((mt, index) => {
-      let totalLevel = 0
-      if (mt.todayJob.length > 0) {
-        mt.todayJob.forEach((job, index) => {
-          totalLevel += Number(job.level)
-        })
-      }
-      mt.totalLevel = totalLevel
-      return mt
-    })
-    // 设置
-    this.setData({
-      mileToneNameArr: mileToneNameArr
+    // var mileToneNameArr = getApp().userData.mileToneNameArr
+    ajax.getMileToneList().then ((mileToneNameArr) => {
+      console.log(mileToneNameArr)
+      mileToneNameArr.map((mt, index) => {
+        let totalLevel = 0
+        if (mt.todayJob && mt.todayJob.length > 0) {
+          mt.todayJob.forEach((job, index) => {
+            totalLevel += Number(job.level)
+          })
+        }
+        mt.totalLevel = totalLevel
+        return mt
+      })
+      // 设置
+      this.setData({
+        mileToneNameArr: mileToneNameArr
+      })
     })
   },
 
@@ -221,13 +224,6 @@ Page({
     this.setData({
       codeIndex: version.dayCode
     }, this.redict)
-    console.log(getApp().randomData.equip[0])
-    // let obj = {
-    //   gold: 100,
-    //   exp: 1000,
-    //   equip: getApp().randomData.equip[0]
-    // }
-    // this.selectComponent('#reward').show(obj)
   },
 
   redict() {

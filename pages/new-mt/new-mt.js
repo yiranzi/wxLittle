@@ -1,4 +1,5 @@
 // pages/newMileTone/new.js
+var ajax = require('../../ajax/ajax');
 Page({
 
   /**
@@ -44,34 +45,35 @@ Page({
   saveMileTone () {
     // 保存
     let arr = []
-    let obj = Object.assign({}, getApp().originData.mt);
-    obj.title = this.data.newMtName
-    obj.desc = this.data.newMtDesc
+    // let obj = Object.assign({}, getApp().originData.mt);
+    const title = this.data.newMtName
+    const desc = this.data.newMtDesc
     // 获取全局数据
-    var userData = getApp().userData
-    obj.mtId = userData.mileToneNameArr[userData.mileToneNameArr.length - 1].mtId + 1
-    obj.todayJob = []
-    obj.startTime = Date.now()
+    // var userData = getApp().userData
+    // obj.mtId = userData.mileToneNameArr[userData.mileToneNameArr.length - 1].mtId + 1
+    // obj.todayJob = []
+    // obj.startTime = Date.now()
     // 暂时直接录入数据。
-    obj.userId = '18410109'
-    userData.mileToneNameArr.push(obj)
+    // obj.userId = '18410109'
+    // userData.mileToneNameArr.push(obj)
     this.setData({
       newMtName: '',
       newMtDesc: ''
     })
-    console.log(obj)
-
-    // 返回
-    wx.navigateBack({
-      delta: 1
+    ajax.postMileTone().then((res) => {
+      console.log(res)
+      // 返回
+      wx.navigateBack({
+        delta: 1
+      })
+      // 输入弹窗信息
+      // 获取
+      var globalInfo = getApp().globalInfo
+      // 清空
+      globalInfo.alertInfo = ''
+      // 添加
+      globalInfo.alertInfo = '添加成功！'
     })
-    // 输入弹窗信息
-    // 获取
-    var globalInfo = getApp().globalInfo
-    // 清空
-    globalInfo.alertInfo = ''
-    // 添加
-    globalInfo.alertInfo = '添加成功！'
   },
 
   sureEvent: function () {

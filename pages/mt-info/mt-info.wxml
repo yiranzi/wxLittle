@@ -1,12 +1,12 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
-    <arrow-selector
+    <arrow-selector wx:if="{{mileToneNameArr.length > 0}}"
         defaultSelect="{{currentSelect}}"
         dataArr="{{mileToneNameArr}}"
         bind:selectChange="selectChange"/>
     <view class='part-div'>
         <view class='title g-h2'>里程碑编号</view>
-        <view class='content'>{{mileToneNameArr[currentSelect].mtId}}</view>
+        <view class='content'>{{mileToneNameArr[currentSelect].mt_id}}</view>
         <view class='title g-h2'>里程碑名称</view>
         <view class='content'>{{mileToneNameArr[currentSelect].title}}</view>
         <view class='title g-h2'>里程碑描述</view>

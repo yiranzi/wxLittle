@@ -1,4 +1,5 @@
 // pages/mt-info/mt-info.js
+let ajax = require('../../ajax/ajax')
 Page({
 
   /**
@@ -14,18 +15,20 @@ Page({
    * 自定义方法
    */
   getFromUserData: function (idParam) {
+    console.log(idParam)
     // 获取全局数据
-    var userData = getApp().userData
+    ajax.getMileToneList().then ((mileToneNameArr) => {
+      // 设置
+      // 获取对应的未知。
+      let currentSelect = mileToneNameArr.findIndex((ele, index) => {
+        return (ele.mt_id === idParam)
+      })
 
-    // 获取对应的未知。
-    let currentSelect = userData.mileToneNameArr.findIndex((ele, index) => {
-      return (ele.mtId === idParam)
-    })
-
-    // 设置
-    this.setData({
-      mileToneNameArr: userData.mileToneNameArr,
-      currentSelect: currentSelect
+      // 设置
+      this.setData({
+        mileToneNameArr: mileToneNameArr,
+        currentSelect: currentSelect
+      })
     })
   },
 

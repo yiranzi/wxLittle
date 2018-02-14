@@ -18,18 +18,18 @@
         </view>
       <view class='part-div'>
 
-        <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone" wx:key="{{miletone.mtId}}" >
-          <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?mtId={{miletone.mtId}}" class='info-part' bindtap="goRouter">
+        <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone" wx:key="{{miletone.mt_id}}" >
+          <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?mt_id={{miletone.mt_id}}" class='info-part' bindtap="goRouter">
             <view> 里程碑 {{index}}: {{miletone.title}}</view>
           </view>
           <view class="button-div" wx:if="{{miletone.todayJob.length > 0}}">
-            <view class="new-job" bindtap="clickNewJob" id="{{miletone.mtId}}">新建任务</view>
+            <view class="new-job" bindtap="x" id="{{miletone.mt_id}}">新建任务</view>
             <view class="view-job" bindtap="viewJob" id="{{miletone.todayJob[0].jobId}}">
                 <view>{{miletone.todayJob[0].title}}</view>
                 <view>任务难度：<view class="g-strong">{{miletone.totalLevel}} </view></view>
             </view>
           </view>
-          <view class="button-div" wx:else bindtap="clickNewJob" id="{{miletone.mtId}}">
+          <view class="button-div" wx:else bindtap="clickNewJob" id="{{miletone.mt_id}}">
             <view class="new-job">新建任务</view>
           </view>
         </view>

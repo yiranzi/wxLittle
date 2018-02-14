@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mtId: 0,
+    mt_id: 0,
     randomMissionArr: [],
     level: 0.5,
     currentSelect: 0,
@@ -47,7 +47,7 @@ Page({
 
   newJobButton: function () {
     // 判断是否有内容
-    let {level, goal, mtId, title, desc} = this.data
+    let {level, goal, mt_id, title, desc} = this.data
     if (!title) {
       util.showModel('名称为空','名称必须填写哦')
       return
@@ -56,7 +56,7 @@ Page({
     let obj = {
       level: level.toFixed(1),
       goal: goal,
-      mtId: mtId,
+      mt_id: mt_id,
       title: title,
       desc: desc,
     }
@@ -70,7 +70,7 @@ Page({
   selectChange: function (e) {
     this.setData({
       currentSelect: e.detail.currentSelect
-    }, () => {this.getFromUserData(parseInt(this.data.mileToneNameArr[this.data.currentSelect].mtId))})
+    }, () => {this.setCurrentSelect(parseInt(this.data.mileToneNameArr[this.data.currentSelect].mt_id))})
   },
 
   /**
@@ -84,27 +84,39 @@ Page({
     // let jobHistory = this.getFromRandomMission(this.data.level)
 
     // 拉取全部里程碑
-    this.getFromUserData(parseInt(options.mtId))
+    this.getMileToneNameArr(parseInt(options.mt_id)).then(
+      () => {
+        this.setCurrentSelect(options.mt_id)
+      })
   },
 
   /**
    * 自定义方法
    */
-  getFromUserData: function (idParam) {
-    // 获取全局数据
-    var userData = getApp().userData
-
-    // 获取对应的未知。
-    let currentSelect = userData.mileToneNameArr.findIndex((ele, index) => {
-      return (ele.mtId === idParam)
+  getMileToneNameArr: function (idParam) {
+    return new Promise((reslove, reject) => {
+      let _idParam = idParam
+      ajax.getMileToneList().then ((mileToneNameArr) => {
+        this.setData({
+          mt_id: _idParam,
+          mileToneNameArr: mileToneNameArr
+        }, reslove())
+      })
     })
 
-    // 设置
-    this.setData({
-      mtId: idParam,
-      mileToneNameArr: userData.mileToneNameArr,
-      currentSelect: currentSelect
+  },
+
+  setCurrentSelect: function (idParam) {
+    idParam = parseInt(idParam)
+    let {mileToneNameArr} = this.data
+    let currentSelect = mileToneNameArr.findIndex((ele, index) => {
+      return (ele.mt_id === idParam)
     })
+    if (currentSelect) {
+      this.setData({
+        currentSelect: currentSelect
+      })
+    }
   },
 
   getFromRandomMission: function (level) {

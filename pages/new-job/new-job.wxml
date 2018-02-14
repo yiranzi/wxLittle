@@ -1,6 +1,6 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
-    <arrow-selector
+    <arrow-selector wx:if="{{mileToneNameArr.length > 0}}"
         defaultSelect="{{currentSelect}}"
         dataArr="{{mileToneNameArr}}"
         bind:selectChange="selectChange" />

@@ -82,7 +82,7 @@ Page({
 
   // 新建任务
   clickNewJob: function (e) {
-    let url = `/pages/new-job/new-job?mtId=${e.currentTarget.id}`
+    let url = `/pages/new-job/new-job?mt_id=${e.currentTarget.id}`
     wx.navigateTo({
       url: url
     })

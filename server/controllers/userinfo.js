@@ -2,10 +2,10 @@ const { mysql } = require('../qcloud')
 // const uuid = require('node-uuid')
 
 module.exports = async ctx => {
-  let sql = {
-    name: 'sun'
+  let userIdSql = {
+    user_id: 1
   }
-  var res = await mysql("userinfo").where( sql ).first()
+  var res = await mysql("user_info").where( userIdSql ).first()
   ctx.state.data = res
 }
 

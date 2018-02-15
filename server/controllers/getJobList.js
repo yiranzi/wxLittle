@@ -3,12 +3,13 @@ const { mysql } = require('../qcloud')
 
 // 返回这个用户的所有mt
 module.exports = async ctx => {
-  let sql = {
+  let userIdSql = {
     user_id: 1
   }
-  var res = await mysql("mile_tones").where( sql )
+  var res = await mysql("job_list").where(userIdSql)
   if (!res) {
-  }  
+  }
+  console.log(res)
   ctx.state.data = res
 }
 

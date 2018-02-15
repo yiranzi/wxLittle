@@ -10,9 +10,6 @@ module.exports = async ctx => {
 
   const user_id = 1
 
-  let sql = {
-    user_id: user_id
-  }
   let mt_id
   let start_time = '2012'
   const origin_exp = 0

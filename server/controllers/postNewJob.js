@@ -3,13 +3,14 @@ const { mysql } = require('../qcloud')
 module.exports = async ctx => {
   // get from param
   const obj = {
+    user_id: 1,
     mt_id: 0,
     title: 'test123',
     desc: 'test desc123',
     goal: 'ggs ddu',
     level: 1,
   }
-  const {mt_id, title, desc, goal, level} = obj
+  const {user_id, mt_id, title, desc, goal, level} = obj
 
   // init set
   let job_id
@@ -23,6 +24,7 @@ module.exports = async ctx => {
 
   // prepare sql obj
   var mtInfo = {
+    user_id: user_id,
     mt_id: mt_id,
     job_id: job_id,
     title: title,

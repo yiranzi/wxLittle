@@ -6,6 +6,17 @@ mtFunc = async ctx => {
 }
 
 module.exports = async ctx => {
+  let info = {
+    id: 0,
+    name: '分院帽',
+    desc: '一个年岁很高，话更多的帽子，哦，他是活的！',
+    power: '开启《探险历史》功能',
+    icon: '../../src/img/icon_1.png',
+  }
+  await mysql("equip_info").insert(info)
+  ctx.state.data = "OK"
+  return
+  console.log('eroor!!!')
   const user_id = 1
   let mt_id
   let sql = {

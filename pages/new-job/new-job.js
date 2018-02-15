@@ -1,6 +1,6 @@
 // pages/new-job/new-job.js
 var ajax = require('../../ajax/ajax');
-var util = require('../../util/util');
+var util = require('../../utils/util');
 
 Page({
 

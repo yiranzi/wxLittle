@@ -8,7 +8,6 @@ Page({
   data: {
     mileToneNameArr: [],
     currentSelect: -1,
-    hideStatus: ''
   },
 
   /**
@@ -43,7 +42,7 @@ Page({
    */
   onLoad: function (options) {
     // 拉取数据
-    this.getFromUserData(parseInt(options.mtId))
+    this.getFromUserData(parseInt(options.mt_id))
   },
 
   /**

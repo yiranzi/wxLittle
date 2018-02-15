@@ -11,11 +11,12 @@ module.exports = async ctx => {
   let listWithTodayJob
   if (mileToneList && mileToneList.length > 0) {
     listWithTodayJob = mileToneList.map(async (mt, index) => {
+      console.log(mt)
       let findSql = {
         mt_id: mt.mt_id
       }
+      // 设置今日
       let jobList =  await mysql("job_list").where( findSql )
-      console.log('get')
       let todayJobList = []
       if (jobList && jobList.length > 0) {
         todayJobList = jobList.filter((job, index) => {
@@ -23,6 +24,14 @@ module.exports = async ctx => {
         })
       }
       mt.todayJob = todayJobList
+
+      // 设置战利品列表
+      let findMtEquip = {
+        mt_id: mt.mt_id
+      }
+      let equipList = await mysql("equip_list").where( findMtEquip )
+      mt.equipList = equipList
+
       return mt
     })
     await Promise.all(listWithTodayJob).then((res) => {

@@ -90,7 +90,7 @@ Page({
 
   // 查看任务
   viewJob: function (e) {
-    let url = `/pages/view-today-job/view-today-job?jobId=${e.currentTarget.id}`
+    let url = `/pages/view-today-job/view-today-job?job_id=${e.currentTarget.id}`
     wx.navigateTo({
       url: url
     })
@@ -231,7 +231,7 @@ Page({
     let a = ''
     switch (a) {
       case 'view-today-job':
-        let url = `/pages/view-today-job/view-today-job?jobId=${101}`
+        let url = `/pages/view-today-job/view-today-job?job_id=${101}`
         wx.navigateTo({
           url: url
         })

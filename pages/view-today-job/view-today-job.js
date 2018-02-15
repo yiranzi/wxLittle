@@ -19,51 +19,56 @@ Page({
     // 获取链接
     if (options) {
       this.setData({
-        jobId: options.jobId
+        job_id: options.job_id
       })
     }
     // 拉取数据 并设置
-    this.getFromJobHistory(parseInt(options.jobId))
+    console.log(options)
+    this.getFromJobHistory(parseInt(options.job_id))
   },
 
   // 更新数据
-  getFromJobHistory: function (jobId) {
-    let data = getApp().userData.jobHistory
-    let newData = data.filter((job, index) => {
-      return (job.evaluate === '')
-    })
-    newData.sort((jobA, jobB) => {
-      if (jobA.mtId < jobB.mtId) {
-        return -1
-      } else if (jobA.mtId > jobB.mtId) {
-        return 1
-      } else {
-        if (jobA.jobId < jobB.jobId) {
-          return -1
-        } else if (jobA.jobId > jobB.jobId) {
-          return 1
+  getFromJobHistory: function (job_id) {
+    console.log(job_id)
+    ajax.getJobList().then((jobList) => {
+      if (jobList && jobList.length > 0) {
+        let canFinishJob = jobList.filter((job, index) => {
+          return (job.evaluate === '')
+        })
+        canFinishJob.sort((jobA, jobB) => {
+          if (jobA.mt_id < jobB.mt_id) {
+            return -1
+          } else if (jobA.mt_id > jobB.mt_id) {
+            return 1
+          } else {
+            if (jobA.job_id < jobB.job_id) {
+              return -1
+            } else if (jobA.job_id > jobB.job_id) {
+              return 1
+            }
+          }
+        })
+        this.setData({
+          jobArray: canFinishJob,
+        })
+        if (job_id) {
+          let findIndex = canFinishJob.findIndex((job, index) => {
+            return (job.job_id === job_id)
+          })
+          this.setData({
+            currentSelect: findIndex,
+          })
+        } else {
+          if (this.data.currentSelect > canFinishJob.length - 1 && this.data.currentSelect!== 0) {
+            this.setData({
+              currentSelect: canFinishJob.length - 1,
+            }, () => {this.selectComponent('#arrowSelector').checkPos()})
+          } else {
+            this.selectComponent('#arrowSelector').checkPos()
+          }
         }
       }
     })
-    this.setData({
-      jobArray: newData,
-    })
-    if (jobId) {
-      let findIndex = newData.findIndex((job, index) => {
-        return (job.jobId === jobId)
-      })
-      this.setData({
-        currentSelect: findIndex,
-      })
-    } else {
-      if (this.data.currentSelect > newData.length - 1 && this.data.currentSelect!== 0) {
-        this.setData({
-          currentSelect: newData.length - 1,
-        }, () => {this.selectComponent('#arrowSelector').checkPos()})
-      } else {
-        this.selectComponent('#arrowSelector').checkPos()
-      }
-    }
   },
 
   selectChange: function (e) {
@@ -88,16 +93,18 @@ Page({
     console.log('finish')
     let obj = this.data.jobArray[this.data.currentSelect]
     let newObj = {
-      jobId: Number(obj.jobId),
-      mtId: Number(obj.mtId),
+      job_id: Number(obj.job_id),
+      mt_id: Number(obj.mt_id),
       evaluate: e.detail.myEvaluate,
       grade: Number(e.detail.score)
     }
     console.log(newObj)
-    ajax.finishTodayJob(newObj).then((res) => {
+    ajax.finishTodayJob().then((res) => {
       this.getFromJobHistory()
       // 刷新数据 // 弹出领取奖励的弹框
-      this.selectComponent('#reward').show(res)
+      if(res) {
+        this.selectComponent('#reward').show(res)
+      }
     })
     // 上报。分数。上报我的自我评价
   },

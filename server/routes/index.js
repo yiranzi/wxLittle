@@ -32,7 +32,6 @@ router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
 
-
 // get
 router.get('/demo', controllers.demo)
 router.get('/userinfo', controllers.userinfo)
@@ -40,6 +39,6 @@ router.get('/getMileToneList', controllers.getMileToneList)
 router.get('/postNewMileTone', controllers.postNewMileTone)
 router.get('/getJobList', controllers.getJobList)
 router.get('/postNewJob', controllers.postNewJob)
-
+router.get('/postFinishJob', controllers.postFinishJob)
 
 module.exports = router

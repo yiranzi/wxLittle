@@ -90,46 +90,23 @@ const postMileTone = () => {
 const postNewJob = obj => {
     // 调用登录接口
     return new Promise((reslove, reject) => {
-      qcloud.login({
-        success(result) {
-
-        },
-        fail(error) {
-          let {mtId, level, goal, title, desc} = obj
-          let res
-          let jobHistory = getApp().userData.jobHistory
-          // 0 构造新的数据
-          let jobId = jobHistory[jobHistory.length - 1].jobId + 1
-          let job1 = Object.assign({}, getApp().originData.job);
-          let job = Object.assign(job1, {
-            mtId: mtId,
-            jobId: jobId,
-            title: title,
-            desc: desc,
-            goal: goal,
-            level: level,
-            startTime: Date.now()
-          });
-          // 1 往hisotry添加数据
-          jobHistory.push(job)
-          // 2 更新mileToneNameArr.推入新的
-          let mt = getApp().userData.mileToneNameArr.find((mt ,index) => {
-            return (mt.mtId === mtId)
-          })
-          if (mt) {
-            res = {
-              status: 200,
-              result: true,
-            }
-            mt.todayJob.push(job)
-          } else {
-            res = {
-              status: 200,
-              result: false,
-            }
+      util.showBusy('请求中...')
+      return new Promise((reslove, reject) => {
+        // 拉取数据
+        var that = this
+        qcloud.request({
+          url: `${config.service.host}/weapp/postNewJob`,
+          login: false,
+          success(result) {
+            util.showSuccess('请求成功完成')
+            reslove(result.data.data)
+          },
+          fail(error) {
+            util.showModel('请求失败', error);
+            console.log('request fail', error);
+            reject(false)
           }
-          reslove(res)
-        }
+        })
       })
     })
 }

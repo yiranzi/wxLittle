@@ -38,6 +38,8 @@ router.get('/demo', controllers.demo)
 router.get('/userinfo', controllers.userinfo)
 router.get('/getMileToneList', controllers.getMileToneList)
 router.get('/postNewMileTone', controllers.postNewMileTone)
+router.get('/getJobList', controllers.getJobList)
+router.get('/postNewJob', controllers.postNewJob)
 
 
 module.exports = router

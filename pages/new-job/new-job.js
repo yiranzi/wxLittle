@@ -24,7 +24,7 @@ Page({
     switch (e.currentTarget.dataset.type) {
       case 'level':
         this.setData({
-          level: Number(e.detail.value)
+          level: e.detail.value
         })
         break;
       case 'title':
@@ -53,13 +53,17 @@ Page({
       return
     }
     // let {desc} = this.data.currentMission
+    level = Number(level).toFixed(1)
     let obj = {
-      level: level.toFixed(1),
+      level: level,
       goal: goal,
       mt_id: mt_id,
       title: title,
       desc: desc,
     }
+    this.setData({
+      level: level
+    })
     // 发送请求。生成修改数据
     ajax.postNewJob(obj).then((res) => {
       util.showSuccess('新增当日任务完成！')
@@ -84,10 +88,9 @@ Page({
     // let jobHistory = this.getFromRandomMission(this.data.level)
 
     // 拉取全部里程碑
-    this.getMileToneNameArr(parseInt(options.mt_id)).then(
-      () => {
-        this.setCurrentSelect(options.mt_id)
-      })
+    this.getMileToneNameArr(parseInt(options.mt_id)).then(() => {
+      this.setCurrentSelect(options.mt_id)
+    })
   },
 
   /**
@@ -118,18 +121,18 @@ Page({
       })
     }
   },
-
-  getFromRandomMission: function (level) {
-    let dataArr = getApp().userData.randomMission
-    let data = dataArr.find((ele, index) => {
-      return (ele.level === level)
-    })
-    // 获得一个随机数，并设置
-    this.setData({
-      randomMissionArr: data.missionList,
-      currentMission: data.missionList[0]
-    })
-  },
+  //
+  // getFromRandomMission: function (level) {
+  //   let dataArr = getApp().userData.randomMission
+  //   let data = dataArr.find((ele, index) => {
+  //     return (ele.level === level)
+  //   })
+  //   // 获得一个随机数，并设置
+  //   this.setData({
+  //     randomMissionArr: data.missionList,
+  //     currentMission: data.missionList[0]
+  //   })
+  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

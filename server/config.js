@@ -1,5 +1,6 @@
 const CONF = {
    // DEVTEST
+  /*
    serverHost: 'localhost',
    tunnelServerUrl: '',
    tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',
@@ -9,7 +10,7 @@ const CONF = {
    qcloudSecretKey: 'r6nNucfiWMC1pVq7OkeFtZJ0mmmZHqFq',
    wxMessageToken: 'weixinmsgtoken',
    networkTimeout: 30000,
-
+    */
 
     port: '5757',
     rootPathname: '',
@@ -32,11 +33,10 @@ const CONF = {
         host: 'localhost',
         port: 3306,
         user: 'root',
-        // DEVTEST
-        // db: 'cAuth',
-        // pass: 'Java17131',
         db: 'cAuth',
-        pass: '',
+        // DEVTEST
+        pass: 'Java17131',
+        // pass: '',
         char: 'utf8mb4'
     },
 

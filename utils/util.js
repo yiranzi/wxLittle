@@ -27,6 +27,9 @@ const getUserId = (obj) => {
     case '依然':
       user_id = 1
       break
+    case '我爱我家的小宝宝':
+      user_id = 1024
+      break
     default:
       user_Id = 2
   }
@@ -35,6 +38,9 @@ const getUserId = (obj) => {
   return obj
 }
 
+const getEnv = () => {
+  return false
+}
 
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
@@ -60,4 +66,4 @@ var showModel = (title, content) => {
   })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, getRandomInt, getUserId }
+module.exports = { formatTime, showBusy, showSuccess, showModel, getRandomInt, getUserId, getEnv }

@@ -65,13 +65,7 @@ Page({
       wx.navigateBack({
         delta: 1
       })
-      // 输入弹窗信息
-      // 获取
-      var globalInfo = getApp().globalInfo
-      // 清空
-      globalInfo.alertInfo = ''
-      // 添加
-      globalInfo.alertInfo = '添加成功！'
+      getApp().globalInfo.alertInfo.push('添加成功！')
     })
   },
 

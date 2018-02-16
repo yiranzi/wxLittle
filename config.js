@@ -1,10 +1,10 @@
 /**
  * 小程序配置文件
  */
-
+var util = require('./utils/util');
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://gqiwkdby.qcloud.la';
-// var host = 'http://localhost:5757';
+
+var host = util.getEnv() ? 'http://localhost:5757' : 'https://gqiwkdby.qcloud.la'
 
 var config = {
 

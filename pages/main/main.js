@@ -197,12 +197,12 @@ Page({
     })
   },
 
-  // alert组件
-  alertClickButton: function () {
-  },
+
 
   getUserInfo: function (user_id) {
     // let userId = '18410109'
+
+    this.showDialog()
     ajax.getUserInfo(user_id).then((res) => {
       let data = res.data.data
       if (data) {
@@ -218,6 +218,9 @@ Page({
               userInfo: data
             })
           }
+          getApp().globalInfo.alertInfo.push('你好冒险者，我是kara，我在这里等你很久了。你现在所处的世界属于《打卡之神》他的作用就是让你建立，查看，前往各个异世界。')
+          getApp().globalInfo.alertInfo.push('点击《开启新世界的大门》，就能够让你建立新的世界。你在里面可以历练成长。当你完成1万小时的历险后，你就变成那个世界真正的大神了！')
+          this.showDialog()
         })
       }
     })
@@ -271,14 +274,22 @@ Page({
         isHide: false
       })
     }
-    var global = getApp()
-    var globalInfo = global.globalInfo
-    if (globalInfo.alertInfo !== '') {
+    this.showDialog()
+  },
+
+  // alert组件
+  showDialog: function () {
+    if (getApp().globalInfo.alertInfo.length > 0) {
+      let alertInfo = getApp().globalInfo.alertInfo.shift()
+      let that = this
       setTimeout(() => {
-        this.alert.showDialog(globalInfo.alertInfo)
-        globalInfo.alertInfo = ''
+        this.alert.showDialog(alertInfo)
       },100)
     }
+  },
+
+  alertClickButton: function () {
+    this.showDialog()
   },
 
   /**

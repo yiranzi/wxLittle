@@ -49,7 +49,7 @@ App({
     alert: {}
   },
   globalInfo: {
-    alertInfo: ""
+    alertInfo: []
   },
   dialogData: {
     'job': '可真是艰险的冒险，让我看看你的成果'

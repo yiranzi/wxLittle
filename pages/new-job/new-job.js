@@ -52,8 +52,12 @@ Page({
       util.showModel('名称为空','名称必须填写哦')
       return
     }
+    if (!goal) {
+      util.showModel('目标为空','目标是你的可量化完成标准，必须填写哦')
+      return
+    }
     // let {desc} = this.data.currentMission
-    level = Number(level).toFixed(1)
+    level = Number(Number(level).toFixed(1))
     let obj = {
       level: level,
       goal: goal,
@@ -117,7 +121,8 @@ Page({
     })
     if (currentSelect) {
       this.setData({
-        currentSelect: currentSelect
+        currentSelect: currentSelect,
+        mt_id: idParam
       })
     }
   },

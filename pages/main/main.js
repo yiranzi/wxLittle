@@ -178,21 +178,22 @@ Page({
     // 获取全局数据
     // var mileToneNameArr = getApp().userData.mileToneNameArr
     ajax.getMileToneList().then ((mileToneNameArr) => {
-      console.log(mileToneNameArr)
-      mileToneNameArr.map((mt, index) => {
-        let totalLevel = 0
-        if (mt.todayJob && mt.todayJob.length > 0) {
-          mt.todayJob.forEach((job, index) => {
-            totalLevel += Number(job.level)
-          })
-        }
-        mt.totalLevel = totalLevel
-        return mt
-      })
-      // 设置
-      this.setData({
-        mileToneNameArr: mileToneNameArr
-      })
+      if (mileToneNameArr && mileToneNameArr.length > 0) {
+        mileToneNameArr.map((mt, index) => {
+          let totalLevel = 0
+          if (mt.todayJob && mt.todayJob.length > 0) {
+            mt.todayJob.forEach((job, index) => {
+              totalLevel += Number(job.level)
+            })
+          }
+          mt.totalLevel = totalLevel
+          return mt
+        })
+        // 设置
+        this.setData({
+          mileToneNameArr: mileToneNameArr
+        })
+      }
     })
   },
 
@@ -200,16 +201,24 @@ Page({
   alertClickButton: function () {
   },
 
-  getUserInfo: function () {
+  getUserInfo: function (user_id) {
     // let userId = '18410109'
-    ajax.getUserInfo().then((res) => {
+    ajax.getUserInfo(user_id).then((res) => {
       let data = res.data.data
       if (data) {
         this.setData({
           userInfo: data
         })
       } else {
-        console.log('new one come')
+        // 发起注册请求
+        ajax.newUserSign(user_id).then((res) => {
+          let data = res.data.data
+          if (data) {
+            this.setData({
+              userInfo: data
+            })
+          }
+        })
       }
     })
   },
@@ -218,12 +227,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserInfo()
-    this.getMileToneInfo()
-    // 设置版本号
-    this.setData({
-      codeIndex: version.dayCode
-    }, this.redict)
+    getApp().userInfoReadyCallback = res => {
+      this.getUserInfo(res.userInfo.nickName)
+      this.getMileToneInfo()
+      // 设置版本号
+      this.setData({
+        codeIndex: version.dayCode
+      }, this.redict)
+    }
   },
 
   redict() {

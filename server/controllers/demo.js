@@ -6,6 +6,10 @@ mtFunc = async ctx => {
 }
 
 module.exports = async ctx => {
+  console.log('123123')
+  console.log(ctx.request.body)
+  ctx.state.data = "OK"
+  return
   let info = {
     id: 0,
     name: '分院帽',
@@ -14,8 +18,7 @@ module.exports = async ctx => {
     icon: '../../src/img/icon_1.png',
   }
   await mysql("equip_info").insert(info)
-  ctx.state.data = "OK"
-  return
+  
   console.log('eroor!!!')
   const user_id = 1
   let mt_id

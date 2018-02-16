@@ -14,7 +14,6 @@ Page({
    * 自定义方法
    */
   getFromUserData: function (idParam) {
-    console.log(idParam)
     // 获取全局数据
     ajax.getMileToneList().then ((mileToneNameArr) => {
       // 设置

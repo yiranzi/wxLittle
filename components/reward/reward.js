@@ -26,7 +26,6 @@ Component({
       this.triggerEvent('clickButton', {})
     },
     show: function (reward) {
-      console.log(reward)
       this.setData({
         isShow: true,
         reward: reward

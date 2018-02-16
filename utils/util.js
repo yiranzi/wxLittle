@@ -20,6 +20,21 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const getUserId = (obj) => {
+  let name = getApp().globalData.userInfo.nickName
+  let user_id
+  switch (name) {
+    case '依然':
+      user_id = 1
+      break
+    default:
+      user_Id = 2
+  }
+  console.log(user_id)
+  obj['user_id'] = user_id
+  return obj
+}
+
 
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
@@ -45,4 +60,4 @@ var showModel = (title, content) => {
   })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, getRandomInt }
+module.exports = { formatTime, showBusy, showSuccess, showModel, getRandomInt, getUserId }

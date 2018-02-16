@@ -3,10 +3,14 @@ const { mysql } = require('../qcloud')
 
 module.exports = async ctx => {
   let userIdSql = {
-    user_id: 1
+    user_id: ctx.query['user_id']
   }
   var res = await mysql("user_info").where( userIdSql ).first()
-  ctx.state.data = res
+  if (res) {
+    ctx.state.data = res
+  } else {
+    ctx.state.data = false
+  }
 }
 
 

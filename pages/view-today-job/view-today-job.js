@@ -23,13 +23,11 @@ Page({
       })
     }
     // 拉取数据 并设置
-    console.log(options)
     this.getFromJobHistory(parseInt(options.job_id))
   },
 
   // 更新数据
   getFromJobHistory: function (job_id) {
-    console.log(job_id)
     ajax.getJobList().then((jobList) => {
       if (jobList && jobList.length > 0) {
         let canFinishJob = jobList.filter((job, index) => {
@@ -90,7 +88,6 @@ Page({
   },
 
   finishEvaluate: function (e) {
-    console.log('finish')
     let obj = this.data.jobArray[this.data.currentSelect]
     let newObj = {
       job_id: Number(obj.job_id),
@@ -98,8 +95,7 @@ Page({
       evaluate: e.detail.myEvaluate,
       grade: Number(e.detail.score)
     }
-    console.log(newObj)
-    ajax.finishTodayJob().then((res) => {
+    ajax.finishTodayJob(newObj).then((res) => {
       this.getFromJobHistory()
       // 刷新数据 // 弹出领取奖励的弹框
       if(res) {

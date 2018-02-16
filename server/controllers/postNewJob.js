@@ -2,19 +2,11 @@ const { mysql } = require('../qcloud')
 
 module.exports = async ctx => {
   // get from param
-  const obj = {
-    user_id: 1,
-    mt_id: 0,
-    title: 'test123',
-    desc: 'test desc123',
-    goal: 'ggs ddu',
-    level: 1,
-  }
-  const {user_id, mt_id, title, desc, goal, level} = obj
+  let {user_id, title, desc, mt_id, goal, level} = ctx.request.body
 
   // init set
   let job_id
-  let start_time = '2012'
+  let start_time = Date.now()
   var findlast = await mysql("job_list").where({id: mysql("job_list").max('id')}).first()
   if (!findlast) {
     job_id = 0

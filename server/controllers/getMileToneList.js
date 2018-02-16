@@ -3,15 +3,13 @@ const { mysql } = require('../qcloud')
 
 // 返回这个用户的所有mt
 module.exports = async ctx => {
-  console.log('get mile tone list')
-  let sql = {
-    user_id: 1
+  let userIdSql = {
+    user_id: ctx.query['user_id']
   }
-  let mileToneList = await mysql("mile_tones").where( sql )
-  let listWithTodayJob
+  let mileToneList = await mysql("mile_tones").where( userIdSql )
+  let xlistWithTodayJob
   if (mileToneList && mileToneList.length > 0) {
     listWithTodayJob = mileToneList.map(async (mt, index) => {
-      console.log(mt)
       let findSql = {
         mt_id: mt.mt_id
       }
@@ -30,19 +28,22 @@ module.exports = async ctx => {
         mt_id: mt.mt_id
       }
       let equipList = await mysql("equip_list").where( findMtEquip )
-      mt.equipList = equipList
-
+      if (equipList && equipList.length > 0) {
+        let equipInfo = await mysql("equip_info")
+        let equipWithInfo = equipList.map((equip, index) => {
+          // id 和 index下表
+          return equipInfo[equip.equip_id - 1]
+        })
+        mt.equipList = equipWithInfo
+      }
       return mt
     })
     await Promise.all(listWithTodayJob).then((res) => {
-      console.log('finish')
-      console.log(res)
       ctx.state.data = res
     })
   } else {
-    ctx.state.data = res
+    ctx.state.data = false
   }
-  console.log('finish')
 }
 
 

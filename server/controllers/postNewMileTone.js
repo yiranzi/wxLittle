@@ -2,16 +2,10 @@ const { mysql } = require('../qcloud')
 // const uuid = require('node-uuid')
 
 module.exports = async ctx => {
-  const obj = {
-    title: 'test123',
-    desc: 'test desc123',
-  }
-  const {title, desc} = obj
-
-  const user_id = 1
+  let {user_id, title, desc} = ctx.request.body
 
   let mt_id
-  let start_time = '2012'
+  let start_time = Date.now()
   const origin_exp = 0
   var findlast = await mysql("mile_tones").where({id: mysql("mile_tones").max('id')}).first()
   if (!findlast) {

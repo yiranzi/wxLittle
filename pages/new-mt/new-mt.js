@@ -60,8 +60,7 @@ Page({
       newMtName: '',
       newMtDesc: ''
     })
-    ajax.postMileTone().then((res) => {
-      console.log(res)
+    ajax.postMileTone({title: title, desc: desc}).then((res) => {
       // 返回
       wx.navigateBack({
         delta: 1

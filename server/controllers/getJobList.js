@@ -4,7 +4,7 @@ const { mysql } = require('../qcloud')
 // 返回这个用户的所有mt
 module.exports = async ctx => {
   let userIdSql = {
-    user_id: 1
+    user_id: ctx.query['user_id']
   }
   var res = await mysql("job_list").where(userIdSql)
   if (!res) {

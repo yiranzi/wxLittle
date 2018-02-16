@@ -33,12 +33,16 @@ router.get('/message', controllers.message.get)
 router.post('/message', controllers.message.post)
 
 // get
-router.get('/demo', controllers.demo)
+
 router.get('/userinfo', controllers.userinfo)
 router.get('/getMileToneList', controllers.getMileToneList)
-router.get('/postNewMileTone', controllers.postNewMileTone)
 router.get('/getJobList', controllers.getJobList)
-router.get('/postNewJob', controllers.postNewJob)
-router.get('/postFinishJob', controllers.postFinishJob)
+router.get('/newUserSign', controllers.newUserSign)
+
+router.post('/demo', controllers.demo)
+router.post('/postNewMileTone', controllers.postNewMileTone)
+router.post('/postNewJob', controllers.postNewJob)
+router.post('/postFinishJob', controllers.postFinishJob)
+
 
 module.exports = router

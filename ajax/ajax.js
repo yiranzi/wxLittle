@@ -7,9 +7,12 @@ const testCgi = () => {
   return new Promise((reslove, reject) => {
     // 拉取数据
     var that = this
-    qcloud.request({
+    wx.request({
       url: `${config.service.host}/weapp/demo`,
-      login: false,
+      data: {
+        test: '134'
+      },
+      method: 'post',
       success (result) {
         util.showSuccess('请求成功完成')
         reslove(result)
@@ -30,6 +33,7 @@ const getUserInfo = () => {
     var that = this
     qcloud.request({
       url: `${config.service.host}/weapp/userinfo`,
+      data: util.getUserId({}),
       login: false,
       success (result) {
         util.showSuccess('请求成功完成')
@@ -44,6 +48,27 @@ const getUserInfo = () => {
   })
 }
 
+const newUserSign = () => {
+  util.showBusy('请求中...')
+  return new Promise((reslove, reject) => {
+    // 拉取数据
+    var that = this
+    qcloud.request({
+      url: `${config.service.host}/weapp/newUserSign`,
+      data: util.getUserId({name: getApp().globalData.userInfo.nickName}),
+      login: false,
+      success (result) {
+        util.showSuccess('请求成功完成')
+        reslove(result)
+      },
+      fail (error) {
+        util.showModel('请求失败', error);
+        console.log('request fail', error);
+        reject (false)
+      }
+    })
+  })
+}
 
 const getMileToneList = () => {
   util.showBusy('请求中...')
@@ -52,6 +77,7 @@ const getMileToneList = () => {
     var that = this
     qcloud.request({
       url: `${config.service.host}/weapp/getMileToneList`,
+      data: util.getUserId({}),
       login: false,
       success (result) {
         util.showSuccess('请求成功完成')
@@ -66,13 +92,15 @@ const getMileToneList = () => {
   })
 }
 
-const postMileTone = () => {
+const postMileTone = (data) => {
   util.showBusy('请求中...')
   return new Promise((reslove, reject) => {
     // 拉取数据
     var that = this
     qcloud.request({
       url: `${config.service.host}/weapp/postNewMileTone`,
+      method: 'POST',
+      data: util.getUserId(data),
       login: false,
       success (result) {
         util.showSuccess('请求成功完成')
@@ -94,6 +122,7 @@ const getJobList = () => {
     var that = this
     qcloud.request({
       url: `${config.service.host}/weapp/getJobList`,
+      data: util.getUserId({}),
       login: false,
       success (result) {
         util.showSuccess('请求成功完成')
@@ -109,7 +138,6 @@ const getJobList = () => {
 }
 
 const postNewJob = obj => {
-    // 调用登录接口
     return new Promise((reslove, reject) => {
       util.showBusy('请求中...')
       return new Promise((reslove, reject) => {
@@ -117,6 +145,8 @@ const postNewJob = obj => {
         var that = this
         qcloud.request({
           url: `${config.service.host}/weapp/postNewJob`,
+          method: 'POST',
+          data: util.getUserId(obj),
           login: false,
           success(result) {
             util.showSuccess('请求成功完成')
@@ -140,6 +170,8 @@ const finishTodayJob = obj => {
     var that = this
     qcloud.request({
       url: `${config.service.host}/weapp/postFinishJob`,
+      method: 'POST',
+      data: util.getUserId(obj),
       login: false,
       success(result) {
         util.showSuccess('请求成功完成')
@@ -155,4 +187,4 @@ const finishTodayJob = obj => {
 }
 
 
-module.exports = { testCgi, postNewJob, finishTodayJob, getUserInfo, getMileToneList, postMileTone, getJobList }
+module.exports = { testCgi, postNewJob, finishTodayJob, getUserInfo, getMileToneList, postMileTone, getJobList, newUserSign }

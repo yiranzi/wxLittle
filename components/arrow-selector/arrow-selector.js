@@ -15,6 +15,10 @@ Component({
     byFather: {
       type: Boolean,
       value: false,
+    },
+    getInnerStyle: {
+      type: String,
+      value: 'top: 0px'
     }
   },
 

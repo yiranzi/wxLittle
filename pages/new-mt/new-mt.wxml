@@ -15,7 +15,7 @@
         </view>
         <view class='title g-h2'>任务描述</view>
         <view>
-          <input data-type-name='desc' value="{{newMtDesc}}" placeholder='填写你的里程碑描述' bindinput="inputCbf" focus />
+          <input data-type-name='desc' value="{{newMtDesc}}" placeholder='填写你的里程碑描述' bindinput="inputCbf" />
         </view>
         <button bindtap="newMtClick">提交</button>
     </view>

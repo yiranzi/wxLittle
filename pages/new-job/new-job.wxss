@@ -16,3 +16,7 @@
 .title-content {
     margin-left: 40px;
 }
+
+.button {
+    margin-top: 30px;
+}

@@ -1,11 +1,13 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
     <arrow-selector wx:if="{{mileToneNameArr.length > 0}}"
+        getInnerStyle="top: 0px"
         defaultSelect="{{currentSelect}}"
         dataArr="{{mileToneNameArr}}"
         bind:selectChange="selectChange" />
     <view class='part-div'>
-        <view class='g-main-title'>新建任务</view>
+        <view class='g-main-title'>异世界任务</view>
+        <view class='g-main-title'>{{mileToneNameArr[currentSelect].title}}</view>
         <view class='title g-h2'>任务耗时</view>
         <input data-type='level' value="{{level}}" placeholder='{{level}}' bindinput="inputCbf" focus />
         <view class='title g-h2'>任务名称</view>
@@ -15,5 +17,5 @@
         <view class='title g-h2'>任务目标</view>
         <input data-type='goal' value="{{goal}}" placeholder='任务描述' bindinput="inputCbf" />
     </view>
-    <button bindtap="newJobButton">submit</button>
+    <button class='button' bindtap="newJobButton">发布并领取任务</button>
 </view>

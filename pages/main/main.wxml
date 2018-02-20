@@ -20,7 +20,7 @@
 
         <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone" wx:key="{{miletone.mt_id}}" >
           <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?mt_id={{miletone.mt_id}}" class='info-part' bindtap="goRouter">
-            <view> 里程碑 {{index}}: {{miletone.title}}</view>
+            <view>{{index + 1}}号异世界: {{miletone.title}}</view>
           </view>
           <view class="button-div" wx:if="{{miletone.todayJob.length > 0}}">
             <view class="new-job" bindtap="clickNewJob" id="{{miletone.mt_id}}">新建任务</view>

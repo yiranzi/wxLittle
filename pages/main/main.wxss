@@ -40,9 +40,10 @@
 
 .new-job {
     background-color: green;
-     flex: 1;
-    /* margin: auto; */
+    flex: 1;
     text-align: center;
+    min-width: 50px;
+    max-width: 50px;
 }
 
 .view-job {

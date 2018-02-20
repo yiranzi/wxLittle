@@ -21,7 +21,7 @@ const formatNumber = n => {
 }
 
 const getEnv = () => {
-  return true
+  return false
 }
 
 

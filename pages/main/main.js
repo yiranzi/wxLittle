@@ -199,11 +199,8 @@ Page({
 
 
 
-  getUserInfo: function (user_id) {
-    // let userId = '18410109'
-
-    this.showDialog()
-    ajax.getUserInfo(user_id).then((res) => {
+  getUserInfo: function () {
+    ajax.getUserInfo().then((res) => {
       let data = res.data.data
       if (data) {
         this.setData({
@@ -211,7 +208,7 @@ Page({
         })
       } else {
         // 发起注册请求
-        ajax.newUserSign(user_id).then((res) => {
+        ajax.newUserSign().then((res) => {
           let data = res.data.data
           if (data) {
             this.setData({
@@ -230,14 +227,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getApp().userInfoReadyCallback = res => {
-      this.getUserInfo(res.userInfo.nickName)
-      this.getMileToneInfo()
-      // 设置版本号
-      this.setData({
-        codeIndex: version.dayCode
-      }, this.redict)
-    }
+    // ajax.testCgi()
+    // 如果没有临时登录信息
+    // 则重新获取，并保存到global中
+    // 简化处理。直接获取新的。
+    getApp().globalCbfFunc.userInfoCbf = this.onLoadGetUrseInfo
+  },
+
+  onLoadGetUrseInfo: function () {
+    this.getUserInfo()
+    this.getMileToneInfo()
+    // 设置版本号
+    this.setData({
+      codeIndex: version.dayCode
+    }, this.redict)
   },
 
   redict() {

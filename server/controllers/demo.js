@@ -1,4 +1,5 @@
 const { mysql } = require('../qcloud')
+const util = require('../utils/util')
 // const uuid = require('node-uuid')
 
 mtFunc = async ctx => {
@@ -6,20 +7,18 @@ mtFunc = async ctx => {
 }
 
 module.exports = async ctx => {
-  console.log('123123')
-  console.log(ctx.request.body)
+  // 一般测试环境下才有效
+  if (util.getEnv()) {
+    let info = {
+      name: '分院帽',
+      desc: '一个年岁很高，话更多的帽子，哦，他是活的！',
+      power: '开启《探险历史》功能',
+      icon: '../../src/img/icon_1.png',
+    }
+    await mysql("equip_info").insert(info)
+  }
   ctx.state.data = "OK"
   return
-  let info = {
-    id: 0,
-    name: '分院帽',
-    desc: '一个年岁很高，话更多的帽子，哦，他是活的！',
-    power: '开启《探险历史》功能',
-    icon: '../../src/img/icon_1.png',
-  }
-  await mysql("equip_info").insert(info)
-  
-  console.log('eroor!!!')
   const user_id = 1
   let mt_id
   let sql = {

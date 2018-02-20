@@ -21,25 +21,24 @@ const formatNumber = n => {
 }
 
 const getUserId = (obj) => {
-  let name = getApp().globalData.userInfo.nickName
+  let openId = getApp().globalData.userInfo.openId
   let user_id
-  switch (name) {
-    case '依然':
-      user_id = 1
-      break
-    case '我爱我家的小宝宝':
-      user_id = 1024
-      break
-    default:
-      user_Id = 2
-  }
-  console.log(user_id)
-  obj['user_id'] = user_id
+  obj['user_id'] = openId
   return obj
-}
+  // switch (name) {
+  //   case '依然':
+  //     user_id = 1
+  //     break
+  //   case 'cindy.':
+  //     user_id = 2
+  //     break
+  //   case '爱我家的小宝宝':
+  //     user_id = 1024
+  //     break
+  //   default:
+  //     user_id = 100
+  // }
 
-const getEnv = () => {
-  return false
 }
 
 // 显示繁忙提示
@@ -66,4 +65,4 @@ var showModel = (title, content) => {
   })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, getRandomInt, getUserId, getEnv }
+module.exports = { formatTime, showBusy, showSuccess, showModel, getRandomInt, getUserId }

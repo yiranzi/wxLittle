@@ -35,9 +35,9 @@ Page({
     if (this.data.newMtName && this.data.newMtDesc) {
       this.dialog.showDialog()
     } else if (this.data.newMtName) {
-      this.alert.showDialog('里程碑名称为空')
+      this.alert.showDialog('异世界名称为空')
     } else {
-      this.alert.showDialog('里程碑描述内容为空')
+      this.alert.showDialog('异世界描述内容为空')
     }
   },
 

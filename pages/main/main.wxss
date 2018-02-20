@@ -8,7 +8,7 @@
   margin: 5px;
   border: 1px solid black;
     text-align: center;
-    height: 70vh;
+    min-height: 88vh;
     position: relative;
 }
 
@@ -76,6 +76,7 @@
 }
 
 .new-mt-button {
+width: 100%;
     border: 1px solid black;
     background-color: green;
     display: inline-block;

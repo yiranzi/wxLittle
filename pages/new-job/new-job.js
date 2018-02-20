@@ -91,7 +91,7 @@ Page({
     // 拉取随机数据
     // let jobHistory = this.getFromRandomMission(this.data.level)
 
-    // 拉取全部里程碑
+    // 拉取全部异世界
     this.getMileToneNameArr(parseInt(options.mt_id)).then(() => {
       this.setCurrentSelect(options.mt_id)
     })

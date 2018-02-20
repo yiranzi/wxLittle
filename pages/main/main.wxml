@@ -16,8 +16,7 @@
             <view class="title g-h2">经验值：{{userInfo.exp}}</view>
             <view class="title g-h2">金币：{{userInfo.gold}}</view>
         </view>
-      <view class='part-div'>
-
+      <view class='part-div' style="padding-bottom: 30px;">
         <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone" wx:key="{{miletone.mt_id}}" >
           <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?mt_id={{miletone.mt_id}}" class='info-part' bindtap="goRouter">
             <view>{{index + 1}}号异世界: {{miletone.title}}</view>

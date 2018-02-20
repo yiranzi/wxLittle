@@ -3,8 +3,8 @@
     <reward id='reward' bind:clickButton="clickButton"></reward>
     <evaluate id='evaluate' bind:finishEvaluate="finishEvaluate" contentA="{{jobArray[currentSelect].goal}}"></evaluate>
     <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
-    <view class='g-main-title'>今日任务一览</view>
-    <view class='g-main-title'>{{jobArray[2].title}}</view>
+    <view class='g-main-title'>异世界任务浏览</view>
+    <view class='g-main-title'>{{jobArray[currentSelect].mileToneName}}</view>
     <arrow-selector wx:if="{{jobArray && jobArray.length > 0}}"
         id="arrowSelector"
         byFather="{{true}}"
@@ -13,11 +13,11 @@
         bind:selectChange="selectChange" />
     <view wx:if="{{jobArray.length > 0}}" class='part-div'>
         <view wx:if="{{jobArray[currentSelect].title}}">
-            <view class='title g-h2'>title</view>
+            <view class='title g-h2'>名称</view>
             <view class='content'>{{jobArray[currentSelect].title}}</view>
-            <view class='title g-h2'>desc</view>
+            <view class='title g-h2'>描述</view>
             <view class='content'>{{jobArray[currentSelect].desc}}</view>
-            <view class='title g-h2'>goal</view>
+            <view class='title g-h2'>目标</view>
             <view class='content'>{{jobArray[currentSelect].goal}}</view>
             <view class='button-div'>
               <button bindtap="finishClick">完成</button>

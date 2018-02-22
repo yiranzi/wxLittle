@@ -4,7 +4,7 @@
     <view class="g-main-title">完成了？</view>
     <view class="content">{{showContent}}</view>
     <view class="title">今日目标:</view>
-    <view class="content">{{contentA}}</view>
+    <view class="content">{{jobInfo.goal}}</view>
     <view class="title">你的完成情况:</view>
     <view class="content">{{arrContent[currentSelect]}}</view>
     <view class="botton-div">
@@ -12,7 +12,10 @@
         <view class='cancel botton' catchtap="chooseScore" id="{{1}}" >完成的一般一般</view>
         <view class='cancel botton' catchtap="chooseScore" id="{{2}}" >完成的很勉强</view>
     </view>
-    <input data-type='goal' value="{{myEvaluate}}" placeholder='为你的任务写上一个结尾评价' bindinput="inputCbf" focus />
+    <view class="title">实际耗时:</view>
+    <input data-type='goal' data-type='realCostTime' value="{{realCostTime}}" bindinput="inputCbf" focus />
+    <view class="title">自我评价:</view>
+    <input data-type='goal' data-type='evaluate' value="{{myEvaluate}}" placeholder='为你的任务写上一个结尾评价' bindinput="inputCbf" />
     <button catchtap="finishEvaluate">确认填写完毕！</button>
   </view>
 </view>

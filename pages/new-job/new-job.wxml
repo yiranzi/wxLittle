@@ -8,7 +8,7 @@
         <view class='g-main-title'>新建异世界任务</view>
         <view class='g-main-title'>{{mileToneNameArr[currentSelect].title}}</view>
         <view class='title g-h2'>今日已占用时间</view>
-        <view class='title g-h2'>{{mileToneNameArr[currentSelect].totalLevel}}</view>
+        <view class='title g-h2'>{{mileToneNameArr[currentSelect].totalLevel}}小时</view>
         <view class='title g-h2'>任务耗时</view>
         <input data-type='level' value="{{level}}" placeholder='{{level}}' bindinput="inputCbf" focus />
         <view class='title g-h2'>任务名称</view>

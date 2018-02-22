@@ -93,7 +93,8 @@ Page({
       job_id: Number(obj.job_id),
       mt_id: Number(obj.mt_id),
       evaluate: e.detail.myEvaluate,
-      grade: Number(e.detail.score)
+      grade: Number(e.detail.score),
+      realCostTime: Number(e.detail.realCostTime),
     }
     ajax.finishTodayJob(newObj).then((res) => {
       this.getFromJobHistory()

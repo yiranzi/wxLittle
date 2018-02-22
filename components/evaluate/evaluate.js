@@ -14,9 +14,19 @@ Component({
       type: String,
       value: '今天任务是否完成了？',
     },
-    contentA: {
-      type: String,
-      value: '默认内容1',
+    jobInfo: {
+      type: Object,
+      value: {
+        goal: '',
+        level: 0,
+      },
+      observer: function (newVal, old) {
+        if(newVal && newVal.level) {
+          this.setData({
+            realCostTime: newVal.level
+          })
+        }
+      }
     },
   },
   data: {
@@ -26,6 +36,7 @@ Component({
     currentSelect: -1,
     arrContent: ['我完成的非常出色','我完成的一般一般','我完成的很勉强'],
     myEvaluate: '',
+    realCostTime: 0,
   },
   methods: {
     // 这里是一个自定义方法
@@ -37,6 +48,7 @@ Component({
       this.setData({
         isShow: false,
         currentSelect: -1,
+        myEvaluate: '',
       })
     },
     defaultClick: function () {
@@ -49,7 +61,8 @@ Component({
       } else {
         this.triggerEvent('finishEvaluate', {
           score: this.data.currentSelect,
-          myEvaluate: this.data.myEvaluate
+          myEvaluate: this.data.myEvaluate,
+          realCostTime: this.data.realCostTime
         })
         this.cancelClick()
       }
@@ -61,9 +74,18 @@ Component({
       })
     },
     inputCbf: function (e) {
-      this.setData({
-        myEvaluate: e.detail.value
-      })
+      switch (e.currentTarget.dataset.type) {
+        case 'evaluate':
+          this.setData({
+            myEvaluate: e.detail.value
+          })
+          break
+        case 'realCostTime':
+          this.setData({
+            realCostTime: e.detail.value
+          })
+          break
+      }
     },
     /*
      * 公有方法

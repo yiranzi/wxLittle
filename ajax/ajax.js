@@ -140,24 +140,22 @@ const getJobList = () => {
 const postNewJob = obj => {
     return new Promise((reslove, reject) => {
       util.showBusy('请求中...')
-      return new Promise((reslove, reject) => {
-        // 拉取数据
-        var that = this
-        qcloud.request({
-          url: `${config.service.host}/weapp/postNewJob`,
-          method: 'POST',
-          data: util.getUserId(obj),
-          login: false,
-          success(result) {
-            util.showSuccess('请求成功完成')
-            reslove(result.data.data)
-          },
-          fail(error) {
-            util.showModel('请求失败', error);
-            console.log('request fail', error);
-            reject(false)
-          }
-        })
+      // 拉取数据
+      var that = this
+      qcloud.request({
+        url: `${config.service.host}/weapp/postNewJob`,
+        method: 'POST',
+        data: util.getUserId(obj),
+        login: false,
+        success(result) {
+          util.showSuccess('请求成功完成')
+          reslove(result.data.data)
+        },
+        fail(error) {
+          util.showModel('请求失败', error);
+          console.log('request fail', error);
+          reject(false)
+        }
       })
     })
 }

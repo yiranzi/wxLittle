@@ -71,6 +71,7 @@ Page({
     // 发送请求。生成修改数据
     ajax.postNewJob(obj).then((res) => {
       util.showSuccess('新增当日任务完成！')
+      this.resetData()
     })
   },
 
@@ -85,16 +86,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     // 设置level
-
     // 拉取随机数据
     // let jobHistory = this.getFromRandomMission(this.data.level)
-
     // 拉取全部异世界
     this.getMileToneNameArr(parseInt(options.mt_id)).then(() => {
       this.setCurrentSelect(options.mt_id)
     })
+  },
+
+  // 提交完数据后，进行处理
+  resetData: function () {
+    console.log('123123')
+    //1 更新本地的时间数据 //2 清空
+    let {mileToneNameArr, level, currentSelect} = this.data
+    if (mileToneNameArr[currentSelect]) {
+      mileToneNameArr[currentSelect].totalLevel += level
+      this.setData({
+        mileToneNameArr: mileToneNameArr,
+        title: '',
+        desc: '',
+        goal: '',
+      })
+    }
+
   },
 
   /**
@@ -104,10 +119,23 @@ Page({
     return new Promise((reslove, reject) => {
       let _idParam = idParam
       ajax.getMileToneList().then ((mileToneNameArr) => {
-        this.setData({
-          mt_id: _idParam,
-          mileToneNameArr: mileToneNameArr
-        }, reslove())
+        if (mileToneNameArr && mileToneNameArr.length > 0) {
+          mileToneNameArr.map((mt, index) => {
+            let totalLevel = 0
+            if (mt.todayJob && mt.todayJob.length > 0) {
+              mt.todayJob.forEach((job, index) => {
+                totalLevel += Number(job.level)
+              })
+            }
+            mt.totalLevel = totalLevel
+            return mt
+          })
+          // 设置
+          this.setData({
+            mt_id: _idParam,
+            mileToneNameArr: mileToneNameArr
+          }, reslove())
+        }
       })
     })
 

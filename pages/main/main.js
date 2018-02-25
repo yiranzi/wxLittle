@@ -76,9 +76,6 @@ Page({
   //   })
   //   this.calcProcess()
   // },
-  // localData: {
-  //   day: 0
-  // },
 
   // 新建任务
   clickNewJob: function (e) {
@@ -181,8 +178,6 @@ Page({
       if (mileToneNameArr && mileToneNameArr.length > 0) {
         mileToneNameArr.map((mt, index) => {
           // 设置
-          // 计算差值
-          // mt.fromLastUsed = this.localData.day - mt.last_day
           // 设置总
           let totalLevel = 0
           if (mt.todayJob && mt.todayJob.length > 0) {
@@ -207,7 +202,6 @@ Page({
     ajax.getUserInfo().then((res) => {
       let data = res.data.data
       if (data) {
-        // this.localData.day = data.usedDay
         this.setData({
           userInfo: data,
           day: data.usedDay + 1

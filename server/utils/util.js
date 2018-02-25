@@ -1,3 +1,4 @@
+let today = -1
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -21,12 +22,23 @@ const getDayDiff = (startDay, endDay) => {
   return endDay - startDay
 }
 
-const getUsedDay = () => {
-  const { mysql } = require('../qcloud')
-  mysql("user_info").where( userIdSql ).first().then(res => {
-    if (res) {
-      let usedDay = this.getDataDiff(res.start_time)
-      return usedDay
+const getUsedDay = (sql) => {
+  let userIdSql = sql
+  return new Promise((resolve, reject) => {
+    const { mysql } = require('../qcloud')
+    if (today === -1) {
+      console.log('get from ajax!!!!')
+      mysql("user_info").where( userIdSql ).first().then(res => {
+        if (res) {
+          let usedDay = getDateDiff(res.start_time)
+          today = usedDay
+          console.log(today)
+          resolve (today)
+        }
+      })
+    } else {
+      console.log('get from cache!!!!')
+      resolve (today)
     }
   })
 }
@@ -48,4 +60,4 @@ const getEnv = () => {
 }
 
 
-module.exports = { formatTime, getRandomInt, getEnv, getUsedDay, getDateDiff, getDayDiff }
+module.exports = { formatTime, getRandomInt, getEnv, getUsedDay, getDateDiff, getDayDiff, today }

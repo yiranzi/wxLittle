@@ -19,8 +19,20 @@
             <view class='content'>{{jobArray[currentSelect].desc}}</view>
             <view class='title g-h2'>目标</view>
             <view class='content'>{{jobArray[currentSelect].goal}}</view>
+            <view wx:if="{{jobArray[currentSelect].doingTime}}">
+                <view class='title g-h2'>持续时间</view>
+                <view class='content'>{{jobArray[currentSelect].doingTime}}</view>
+            </view>
             <view class='button-div'>
-              <button bindtap="finishClick">完成</button>
+                <view wx:if="{{jobArray[currentSelect].doingTime < 2}}">
+                  <button bindtap="finishClick">完成</button>
+                </view>
+                <view wx:if="{{jobArray[currentSelect].doingTime < 1}}">
+                  <button bindtap="haveProblem">遇到问题</button>
+                </view>
+                <view wx:if="{{jobArray[currentSelect].doingTime > 1}}">
+                  <button bindtap="giveUp">放弃</button>
+                </view>
             </view>
         </view>
         <view wx:else>

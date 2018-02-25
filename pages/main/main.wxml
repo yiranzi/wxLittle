@@ -25,17 +25,18 @@
           <view class="button-div" wx:if="{{miletone.todayJob.length > 0}}">
             <view class="new-job"bindtap="clickNewJob" id="{{miletone.mt_id}}">
                 <view class="one-line">新建任务</view>
-                <view class="one-line">{{miletone.fromLastUsed}}</view>
+                <view class="one-line">buff:{{miletone.buffDay}}</view>
             </view>
             <view class="view-job" bindtap="viewJob" id="{{miletone.todayJob[0].job_id}}">
                 <view>{{miletone.todayJob[0].title}}</view>
                 <view>任务难度：<view class="g-strong">{{miletone.totalLevel}} </view></view>
+                <view wx:if="{{miletone.todayJob[0].doingTime}}">任务持续时间：{{miletone.todayJob[0].doingTime}}</view>
             </view>
           </view>
           <view class="button-div" wx:else>
             <view class="new-job" bindtap="clickNewJob" id="{{miletone.mt_id}}">
                 <view class="one-line">新建任务</view>
-                <view class="one-line">{{miletone.fromLastUsed}}</view>
+                <view class="one-line">buff:{{miletone.buffDay}}</view>
             </view>
           </view>
         </view>

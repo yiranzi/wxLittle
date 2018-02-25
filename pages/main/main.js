@@ -177,8 +177,6 @@ Page({
     ajax.getMileToneList().then ((mileToneNameArr) => {
       if (mileToneNameArr && mileToneNameArr.length > 0) {
         mileToneNameArr.map((mt, index) => {
-          // 设置
-          // 设置总
           let totalLevel = 0
           if (mt.todayJob && mt.todayJob.length > 0) {
             mt.todayJob.forEach((job, index) => {

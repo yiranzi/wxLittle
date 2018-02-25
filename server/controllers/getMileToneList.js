@@ -1,4 +1,5 @@
 const { mysql } = require('../qcloud')
+const util = require('../utils/util')
 // const uuid = require('node-uuid')
 
 // 返回这个用户的所有mt
@@ -13,6 +14,20 @@ module.exports = async ctx => {
       let findSql = {
         mt_id: mt.mt_id
       }
+      // 设置buff
+      // 看看今天距离上次使用差几天
+      // let day = await util.getDayDiff(mt.last_day, util.getUsedDay)
+      // mt.
+      // if (day === 0) {
+      //   // 24 小时内
+
+      // } else if (day === 1) {
+      //   // 24 - 48
+
+      // } else if (day > 1){
+      //     // 48+
+      // }
+
       // 设置今日
       let jobList =  await mysql("job_list").where( findSql )
       let todayJobList = []

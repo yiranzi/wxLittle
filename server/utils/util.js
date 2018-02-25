@@ -9,6 +9,29 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+const getDateDiff = (start, end = Data.now()) => {
+  let diff = end - start
+  if (diff < 0) {
+    diff = -diff
+  }
+  return Math.floor(diff/ (24 *3600 * 1000))
+}
+
+const getDayDiff = (startDay, endDay) => {
+  return endDay - startDay
+}
+
+const getUsedDay = async () => {
+  const { mysql } = require('../qcloud')
+  var res = await mysql("user_info").where( userIdSql ).first()
+  if (res) {
+    let usedDay = this.getDataDiff(res.start_time)
+    return usedDay
+  } else {
+    return -1
+  }
+}
+
 const getRandomInt =(min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -21,9 +44,9 @@ const formatNumber = n => {
 }
 
 const getEnv = () => {
-  // return true
-  return false
+  return true
+  // return false
 }
 
 
-module.exports = { formatTime, getRandomInt, getEnv }
+module.exports = { formatTime, getRandomInt, getEnv, getUsedDay, getDateDiff, getDayDiff }

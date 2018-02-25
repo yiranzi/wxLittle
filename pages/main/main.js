@@ -6,16 +6,13 @@ Page({
   /**
    * 页面的初始数据
    */
-  // data: {
-  //   newMtName: '',
-  //   day: 1,
-  //   mileToneNameArr: [],
-  //   dataFinishArray: [], // 表示进度信息
-  //   currentSelect: -1,
-  //   isLeave: false,
-  //   codeIndex: '',
-  //   userInfo: ''
-  // },
+  data: {
+    day: 0,
+    mileToneNameArr: [],
+    userInfo: {},
+    codeIndex: '',
+    isHide: false,
+  },
 
   // staticProcessData: [
   //   {
@@ -78,6 +75,9 @@ Page({
   //     dataFinishArray: this.staticProcessData
   //   })
   //   this.calcProcess()
+  // },
+  // localData: {
+  //   day: 0
   // },
 
   // 新建任务
@@ -180,6 +180,10 @@ Page({
     ajax.getMileToneList().then ((mileToneNameArr) => {
       if (mileToneNameArr && mileToneNameArr.length > 0) {
         mileToneNameArr.map((mt, index) => {
+          // 设置
+          // 计算差值
+          // mt.fromLastUsed = this.localData.day - mt.last_day
+          // 设置总
           let totalLevel = 0
           if (mt.todayJob && mt.todayJob.length > 0) {
             mt.todayJob.forEach((job, index) => {
@@ -203,8 +207,10 @@ Page({
     ajax.getUserInfo().then((res) => {
       let data = res.data.data
       if (data) {
+        // this.localData.day = data.usedDay
         this.setData({
-          userInfo: data
+          userInfo: data,
+          day: data.usedDay + 1
         })
       } else {
         // 发起注册请求

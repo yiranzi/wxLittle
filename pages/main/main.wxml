@@ -7,7 +7,7 @@
     <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
     <alert id='alert' bind:alertClickButton="alertClickButton"></alert>
     </view>
-    <view class="g-h1 page-title">
+    <view wx:if="{{day}}" class="g-h1 page-title">
     《打卡之神》异世界——第{{day}}天
     </view>
     <view class='main-body'>
@@ -20,16 +20,23 @@
         <view class='miletone-info' wx:for="{{mileToneNameArr}}" wx:for-item="miletone" wx:key="{{miletone.mt_id}}" >
           <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?mt_id={{miletone.mt_id}}" class='info-part' bindtap="goRouter">
             <view>{{index + 1}}号异世界: {{miletone.title}}</view>
+            <view wx:if="{{miletone.exp}}">Exp：{{miletone.exp}}</view>
           </view>
           <view class="button-div" wx:if="{{miletone.todayJob.length > 0}}">
-            <view class="new-job" bindtap="clickNewJob" id="{{miletone.mt_id}}">新建任务</view>
+            <view class="new-job"bindtap="clickNewJob" id="{{miletone.mt_id}}">
+                <view class="one-line">新建任务</view>
+                <view class="one-line">{{miletone.fromLastUsed}}</view>
+            </view>
             <view class="view-job" bindtap="viewJob" id="{{miletone.todayJob[0].job_id}}">
                 <view>{{miletone.todayJob[0].title}}</view>
                 <view>任务难度：<view class="g-strong">{{miletone.totalLevel}} </view></view>
             </view>
           </view>
-          <view class="button-div" wx:else bindtap="clickNewJob" id="{{miletone.mt_id}}">
-            <view class="new-job">新建任务</view>
+          <view class="button-div" wx:else>
+            <view class="new-job" bindtap="clickNewJob" id="{{miletone.mt_id}}">
+                <view class="one-line">新建任务</view>
+                <view class="one-line">{{miletone.fromLastUsed}}</view>
+            </view>
           </view>
         </view>
       </view>

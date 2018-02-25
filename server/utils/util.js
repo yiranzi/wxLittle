@@ -9,7 +9,7 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
-const getDateDiff = (start, end = Data.now()) => {
+const getDateDiff = (start, end = Date.now()) => {
   let diff = end - start
   if (diff < 0) {
     diff = -diff
@@ -21,15 +21,14 @@ const getDayDiff = (startDay, endDay) => {
   return endDay - startDay
 }
 
-const getUsedDay = async () => {
+const getUsedDay = () => {
   const { mysql } = require('../qcloud')
-  var res = await mysql("user_info").where( userIdSql ).first()
-  if (res) {
-    let usedDay = this.getDataDiff(res.start_time)
-    return usedDay
-  } else {
-    return -1
-  }
+  mysql("user_info").where( userIdSql ).first().then(res => {
+    if (res) {
+      let usedDay = this.getDataDiff(res.start_time)
+      return usedDay
+    }
+  })
 }
 
 const getRandomInt =(min, max) => {

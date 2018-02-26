@@ -23,7 +23,8 @@ module.exports = async ctx => {
           todayJobList = jobList.filter((job, index) => {
             if (job.evaluate === '') {
               // 任务持续时间 = 今天的时间 - 任务开始的时间
-              job.doingTime = util.getDateDiff(job.start_time, Date.now())
+               // 使用天数来做deadline
+              job.jobPastTime = util.getDayDiff(util.getDateDiff(0, job.start_time), util.getDateDiff(0, Date.now()))
               return true
             }          
           })
@@ -56,13 +57,13 @@ module.exports = async ctx => {
           // mt.
           if (fromLastUsed === 0) {
             // 当天
-            buffDay = mt.last_day - 1
+            buffDay = mt.buff_day - 1
             if (buffDay < 0) {
               buffDay = 0
             }
           } else if (fromLastUsed === 1) {
             // 新的一天
-            buffDay = mt.last_day
+            buffDay = mt.buff_day
           } else if (fromLastUsed > 1){
               // 48+
             buffDay = 0

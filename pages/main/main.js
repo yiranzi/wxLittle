@@ -202,7 +202,7 @@ Page({
       if (data) {
         this.setData({
           userInfo: data,
-          day: data.usedDay + 1
+          day: data.appUsedDay + 1
         })
       } else {
         // 发起注册请求

@@ -1,5 +1,4 @@
 const { mysql } = require('../qcloud')
-const util = require('../utils/util')
 // const uuid = require('node-uuid')
 
 module.exports = async ctx => {
@@ -8,11 +7,17 @@ module.exports = async ctx => {
   }
   var res = await mysql("user_info").where( userIdSql ).first()
   if (res) {
-    let appUsedDay = util.getDateDiff(res.start_time)
-    res.appUsedDay = appUsedDay
-    ctx.state.data = res
-  } else {
     ctx.state.data = false
+  } else {
+    var newUserInfo = {
+      user_id: ctx.query['user_id'],
+      name: ctx.query['name'],
+      exp: 0,
+      gold: 0,
+      start_time: Date.now(),
+    }
+    await mysql("user_info").insert( newUserInfo )
+    ctx.state.data = newUserInfo
   }
 }
 

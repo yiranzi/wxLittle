@@ -9,12 +9,13 @@ const formatTime = date => {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-
+// 计算到目前为止的天数
 const getDateDiff = (start, end = Date.now()) => {
   let diff = end - start
-  if (diff < 0) {
-    diff = -diff
-  }
+  // 不能摸出，负数代表前几天
+  // if (diff < 0) {
+  //   diff = -diff
+  // }
   return Math.floor(diff/ (24 *3600 * 1000))
 }
 
@@ -55,8 +56,8 @@ const formatNumber = n => {
 }
 
 const getEnv = () => {
-  return true
-  // return false
+  // return true
+  return false
 }
 
 

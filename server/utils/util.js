@@ -31,15 +31,15 @@ const getUsedDay = (sql) => {
       console.log('get from ajax!!!!')
       mysql("user_info").where( userIdSql ).first().then(res => {
         if (res) {
-          let usedDay = getDateDiff(res.start_time)
-          today = usedDay
+          let usedDay = getDateDiff(0, Date.now()) - getDateDiff(0, res.start_time)
+          // today = usedDay
           console.log(today)
-          resolve (today)
+          resolve (usedDay)
         }
       })
     } else {
       console.log('get from cache!!!!')
-      resolve (today)
+      resolve (1000)
     }
   })
 }

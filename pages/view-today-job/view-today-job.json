@@ -3,6 +3,7 @@
     "modal-box": "/components/modal-box/modal-box",
     "arrow-selector": "/components/arrow-selector/arrow-selector",
     "evaluate": "/components/evaluate/evaluate",
-    "reward": "/components/reward/reward"
+    "reward": "/components/reward/reward",
+    "problem": "/components/problem/problem"
   }
 }

@@ -2,6 +2,7 @@
 <view class='main-body'>
     <reward id='reward' bind:clickButton="clickButton"></reward>
     <evaluate id='evaluate' bind:finishEvaluate="finishEvaluate" jobInfo="{{jobArray[currentSelect]}}"></evaluate>
+    <problem id='problem' bind:postProblem="postProblem" content="{content}}"></problem>
     <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
     <view class='g-main-title'>异世界任务浏览</view>
     <view class='g-main-title'>{{jobArray[currentSelect].mileToneName}}</view>

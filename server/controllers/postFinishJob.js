@@ -2,7 +2,7 @@ const { mysql } = require('../qcloud')
 const util = require('../utils/util.js')
 
 module.exports = async ctx => {
-  let {user_id, job_id, grade, evaluate, mt_id, realCostTime} = ctx.request.body
+  let {user_id, job_id, grade, evaluate, mt_id, realCostTime, type} = ctx.request.body
 
   // get the job info && update job list
   let findJob = {
@@ -16,18 +16,50 @@ module.exports = async ctx => {
   }
   let mileTone = await mysql("mile_tones").where( findMileTone ).first()
   let job =  await mysql("job_list").where( findJob ).first()
-  // 如果还没有数据
-
   if (job.end_time === '') {
-    // 0 构造新的数据
-    let updateJob = {
-      level: realCostTime,
-      evaluate: evaluate,
-      grade: grade,
-      end_time: Date.now()
-    }
-    await mysql("job_list").where( findJob ).first().update( updateJob )
-    job =  await mysql("job_list").where( findJob ).first()
+    if (type === 'finish') {
+       // 如果还没有数据
+      // 0 构造新的数据
+      let updateJob = {
+        level: realCostTime,
+        evaluate: evaluate,
+        grade: grade,
+        end_time: Date.now()
+      }
+      await mysql("job_list").where( findJob ).first().update( updateJob )
+      job =  await mysql("job_list").where( findJob ).first()
+    } else {
+      let reward = {}
+      let updateJob = {}
+      // 增加耗时
+      reward.jobPastTime = util.getDayDiff(job.start_time)
+      if (type === 'delay') {
+        updateJob.problem = evaluate
+        reward.gold = 50
+      } else {
+        // failed 取消任务
+        updateJob.evaluate = evaluate
+        updateJob.end_time = Date.now() 
+        reward.gold = 50
+      }
+      // update job
+      await mysql("job_list").where( findJob ).first().update( updateJob )
+
+       // update mt
+      let gold = mileTone.gold + reward.gold
+      await mysql("mile_tones").where( findMileTone ).update( {gold: gold} )
+  
+      // update userInfo
+      var userInfo = await mysql("user_info").where( userIdSql ).first()
+      let updateUserInfo = {
+        gold: userInfo.gold + reward.gold,
+      }
+      await mysql("user_info").where( userIdSql ).first().update( updateUserInfo )    
+      
+      // return reward
+      ctx.state.data = reward
+      return
+    } 
   } else {
     ctx.state.data = false
     return

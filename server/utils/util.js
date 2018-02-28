@@ -58,8 +58,8 @@ const formatNumber = n => {
 }
 
 const getEnv = () => {
-  return true
-  // return false
+  // return true
+  return false
 }
 
 

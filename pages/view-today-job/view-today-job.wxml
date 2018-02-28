@@ -2,7 +2,7 @@
 <view class='main-body'>
     <reward id='reward' bind:clickButton="clickButton"></reward>
     <evaluate id='evaluate' bind:finishEvaluate="finishEvaluate" jobInfo="{{jobArray[currentSelect]}}"></evaluate>
-    <problem id='problem' bind:postProblem="postProblem" content="{content}}"></problem>
+    <problem id='problem' bind:postProblem="postProblem"></problem>
     <modal-box id='modalBox' bind:cancelEvent="cancelEvent"  bind:sureEvent="sureEvent"></modal-box>
     <view class='g-main-title'>异世界任务浏览</view>
     <view class='g-main-title'>{{jobArray[currentSelect].mileToneName}}</view>
@@ -25,14 +25,17 @@
                 <view class='content'>{{jobArray[currentSelect].jobPastTime}}</view>
             </view>
             <view class='button-div'>
-                <view wx:if="{{jobArray[currentSelect].jobPastTime < 2}}">
+                <view wx:if="{{jobArray[currentSelect].jobPastTime < 2 && !jobArray[currentSelect].problem}}">
                   <button bindtap="finishClick">完成</button>
                 </view>
-                <view wx:if="{{jobArray[currentSelect].jobPastTime < 1}}">
-                  <button bindtap="problemClick">遇到问题</button>
+                <view wx:if="{{jobArray[currentSelect].jobPastTime === 0 && !jobArray[currentSelect].problem}}">
+                  <button bindtap="problemClick">遭遇问题</button>
+                </view>
+                <view wx:if="{{jobArray[currentSelect].jobPastTime === 0 && jobArray[currentSelect].problem}}">
+                  <button>delay了，明天才能完成！</button>
                 </view>
                 <view wx:if="{{jobArray[currentSelect].jobPastTime > 0}}">
-                  <button bindtap="giveUpClick">放弃</button>
+                  <button bindtap="problemClick">放弃</button>
                 </view>
             </view>
         </view>

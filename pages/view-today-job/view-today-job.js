@@ -80,11 +80,42 @@ Page({
   },
 
   problemClick: function () {
-
+    let contet = {}
+    let {jobArray, currentSelect} = this.data
+    if (jobArray[currentSelect].jobPastTime === 0) {
+      // 遇到问题
+      contet.title = '遇到什么问题了？'
+      contet.desc = '写下来作为总结吧，明天一定要完成哦！'
+    } else {
+      // 放弃任务
+      contet.title = '任务失败！可惜啦！'
+      contet.desc = '不要灰心，记录下原因，为了下一次胜利！'
+    }
+    this.selectComponent('#problem').showDialog(contet)
   },
 
-  giveUpClick: function () {
-
+  postProblem: function (e) {
+    let {currentSelect} = this.data
+    let result
+    if (this.data.jobArray[currentSelect].jobPastTime === 0) {
+      result = 'delay'
+    } else {
+      result = 'failed'
+    }
+    let obj = this.data.jobArray[this.data.currentSelect]
+    let newObj = {
+      job_id: Number(obj.job_id),
+      mt_id: Number(obj.mt_id),
+      evaluate: e.detail.input,
+      type: result
+    }
+    ajax.finishTodayJob(newObj).then((res) => {
+      this.getFromJobHistory()
+      // 刷新数据 // 弹出领取奖励的弹框
+      if(res) {
+        this.selectComponent('#reward').show(res)
+      }
+    })
   },
 
   clickButton: function () {
@@ -99,6 +130,7 @@ Page({
       evaluate: e.detail.myEvaluate,
       grade: Number(e.detail.score),
       realCostTime: Number(e.detail.realCostTime),
+      type: 'finish'
     }
     ajax.finishTodayJob(newObj).then((res) => {
       this.getFromJobHistory()

@@ -1,2 +1,12 @@
-<!--components/problem/problem.wxml-->
-<text>components/problem/problem.wxml</text>
+<!--pages/cpmponent/index.wxml-->
+<view class="out-div" wx:if="{{isShow}}">
+  <view class='inner-div'>
+    <view class="g-main-title">{{content.title}}</view>
+    <view class="content">{{content.desc}}</view>
+    <view class="title">自我评价:</view>
+        <input value="{{myInput}}" placeholder='为你的任务写上一个结尾评价' bindinput="inputCbf" />
+    <view class="botton-div">
+        <view class='sure botton' bindtap="postProblem">{{sureContent}}</view>
+    </view>
+  </view>
+</view>

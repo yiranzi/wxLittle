@@ -246,7 +246,7 @@ Page({
     let a = ''
     switch (a) {
       case 'view-today-job':
-        let url = `/pages/view-today-job/view-today-job?job_id=${101}`
+        let url = `/pages/view-today-job/view-today-job?job_id=${43}`
         wx.navigateTo({
           url: url
         })

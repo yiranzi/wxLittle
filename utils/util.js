@@ -25,20 +25,6 @@ const getUserId = (obj) => {
   let user_id
   obj['user_id'] = openId
   return obj
-  // switch (name) {
-  //   case '依然':
-  //     user_id = 1
-  //     break
-  //   case 'cindy.':
-  //     user_id = 2
-  //     break
-  //   case '爱我家的小宝宝':
-  //     user_id = 1024
-  //     break
-  //   default:
-  //     user_id = 100
-  // }
-
 }
 
 // 显示繁忙提示
@@ -55,7 +41,7 @@ var showSuccess = text => wx.showToast({
 })
 
 // 显示失败提示
-var showModel = (title, content) => {
+var showModel = (title = 'title', content = 'content') => {
   wx.hideToast();
 
   wx.showModal({

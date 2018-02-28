@@ -6,11 +6,10 @@
     <view class="title">今日目标:</view>
     <view class="content">{{jobInfo.goal}}</view>
     <view class="title">你的完成情况:</view>
-    <view class="content">{{arrContent[currentSelect]}}</view>
     <view class="botton-div">
-        <view class='sure botton' catchtap="chooseScore" id="{{0}}" >完成的非常出色</view>
-        <view class='cancel botton' catchtap="chooseScore" id="{{1}}" >完成的一般一般</view>
-        <view class='cancel botton' catchtap="chooseScore" id="{{2}}" >完成的很勉强</view>
+        <view class="botton {{currentSelect === 0 ? 'sure' : 'cancel'}}" catchtap="chooseScore" id="{{0}}" >{{arrContent[0]}}</view>
+        <view class="botton {{currentSelect === 1 ? 'sure' : 'cancel'}}" catchtap="chooseScore" id="{{1}}" >{{arrContent[1]}}</view>
+        <view class="botton {{currentSelect === 2 ? 'sure' : 'cancel'}}" catchtap="chooseScore" id="{{2}}" >{{arrContent[2]}}</view>
     </view>
     <view class="title">实际耗时:</view>
     <input data-type='goal' data-type='realCostTime' value="{{realCostTime}}" bindinput="inputCbf" focus />

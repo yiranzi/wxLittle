@@ -38,7 +38,11 @@
 }
 
 .sure {
+    color: green
+}
 
+.cancel {
+    color: red
 }
 
 .g-main-title {

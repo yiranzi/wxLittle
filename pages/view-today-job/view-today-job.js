@@ -83,6 +83,10 @@ Page({
 
   },
 
+  giveUpClick: function () {
+
+  },
+
   clickButton: function () {
     util.showSuccess('完成任务')
   },

@@ -28,10 +28,10 @@
                   <button bindtap="finishClick">完成</button>
                 </view>
                 <view wx:if="{{jobArray[currentSelect].jobPastTime < 1}}">
-                  <button bindtap="haveProblem">遇到问题</button>
+                  <button bindtap="problemClick">遇到问题</button>
                 </view>
-                <view wx:if="{{jobArray[currentSelect].jobPastTime > 1}}">
-                  <button bindtap="giveUp">放弃</button>
+                <view wx:if="{{jobArray[currentSelect].jobPastTime > 0}}">
+                  <button bindtap="giveUpClick">放弃</button>
                 </view>
             </view>
         </view>

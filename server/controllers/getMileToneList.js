@@ -24,7 +24,7 @@ module.exports = async ctx => {
             if (job.evaluate === '') {
               // 任务持续时间 = 今天的时间 - 任务开始的时间
                // 使用天数来做deadline
-              job.jobPastTime = util.getDayDiff(util.getDateDiff(0, job.start_time), util.getDateDiff(0, Date.now()))
+              job.jobPastTime = util.getDayDiff(job.start_time)
               return true
             }          
           })
@@ -56,20 +56,21 @@ module.exports = async ctx => {
           // 看看今天距离上次使用差几天
           // mt.
           if (fromLastUsed === 0) {
-            // 当天
+            // 当天已完成
             buffDay = mt.buff_day - 1
             if (buffDay < 0) {
               buffDay = 0
             }
           } else if (fromLastUsed === 1) {
-            // 新的一天
+            // 昨天完成，今天未完成
             buffDay = mt.buff_day
           } else if (fromLastUsed > 1){
-              // 48+
+              // 昨天也没有完成
             buffDay = 0
           }
         }
         mt.buffDay = buffDay
+        mt.isFinishToday = fromLastUsed
         listWithTodayJob.push(mt) 
     }
     await Promise.all(listWithTodayJob).then((res) => {

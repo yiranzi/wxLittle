@@ -19,8 +19,10 @@ const getDateDiff = (start, end = Date.now()) => {
   return Math.floor(diff/ (24 *3600 * 1000))
 }
 
-const getDayDiff = (startDay, endDay) => {
-  return endDay - startDay
+// 任意时刻，相对于originTime 过去了多少天
+const getDayDiff = (time) => {
+  const origin = 1514736000000
+  return getDateDiff(origin,Date.now()) - getDateDiff(origin,time)
 }
 
 const getUsedDay = (sql) => {
@@ -56,8 +58,8 @@ const formatNumber = n => {
 }
 
 const getEnv = () => {
-  // return true
-  return false
+  return true
+  // return false
 }
 
 

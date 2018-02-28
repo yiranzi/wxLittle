@@ -18,9 +18,8 @@ module.exports = async ctx => {
         })
         // 设置标题
         job.mileToneName = mileToneName.title
-        // 任务持续时间 = 今天的时间 - 任务开始的时间
          // 使用天数来做deadline
-        job.jobPastTime = util.getDayDiff(util.getDateDiff(0, job.start_time), util.getDateDiff(0, Date.now()))
+        job.jobPastTime = util.getDayDiff(job.start_time)
         return job
     })
   }

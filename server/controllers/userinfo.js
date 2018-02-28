@@ -9,7 +9,7 @@ module.exports = async ctx => {
   var res = await mysql("user_info").where( userIdSql ).first()
   if (res) {
     // 当前的天数 - 开始的天数
-    let appUsedDay = util.getDateDiff(0,Date.now()) - util.getDateDiff(0,res.start_time) 
+    let appUsedDay = util.getDayDiff(res.start_time)
     res.appUsedDay = appUsedDay
     ctx.state.data = res
   } else {

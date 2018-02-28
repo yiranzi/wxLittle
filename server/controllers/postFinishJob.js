@@ -37,7 +37,7 @@ module.exports = async ctx => {
   const baseGold = 100
   const baseExp = 100
   // 使用天数来做deadline
-  let jobPastTime = util.getDayDiff(util.getDateDiff(0, job.start_time), util.getDateDiff(0, Date.now()))
+  let jobPastTime = util.getDayDiff(job.start_time)
   let appUsedDay = await util.getUsedDay(userIdSql)
   let buffDay = mileTone.buff_day
   let buffDayUpdate = buffDay

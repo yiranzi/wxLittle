@@ -21,12 +21,12 @@
           <view catchtap="goRouter" data-url="/pages/mt-info/mt-info?mt_id={{miletone.mt_id}}" class='info-part' bindtap="goRouter">
             <view>{{index + 1}}号异世界: {{miletone.title}}</view>
             <view wx:if="{{miletone.exp}}">Exp：{{miletone.exp}}</view>
-            <view wx:if="{{miletone.isFinishToday === 0}}">当天已完成</view>
-            <view wx:if="{{miletone.isFinishToday === 1}}">当天未完成</view>
-            <view wx:if="{{miletone.isFinishToday > 1}}">{{miletone.isFinishToday}}天未完成</view>
+            <view style="background: yellowgreen" wx:if="{{miletone.isFinishToday === 0}}">当天已完成</view>
+            <view style="background: #FFF68F" wx:if="{{miletone.isFinishToday === 1}}">当天未完成</view>
+            <view style="background: red" wx:if="{{miletone.isFinishToday > 1}}">{{miletone.isFinishToday}}天未完成</view>
           </view>
           <view class="button-div" wx:if="{{miletone.todayJob.length > 0}}">
-            <view class="new-job"bindtap="clickNewJob" id="{{miletone.mt_id}}">
+            <view class="new-job" bindtap="clickNewJob" id="{{miletone.mt_id}}">
                 <view class="one-line">新建任务</view>
                 <view class="one-line">buff:{{miletone.buffDay}}</view>
             </view>

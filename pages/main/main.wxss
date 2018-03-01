@@ -54,7 +54,7 @@
 
 .info-part {
     flex: 1;
-    background-color: orangered;
+    background-color: #FF7F00;
 }
 
 .info-part view {

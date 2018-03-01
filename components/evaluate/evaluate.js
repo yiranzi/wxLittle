@@ -68,7 +68,7 @@ Component({
       }
     },
     chooseScore: function (e) {
-      let id = e.currentTarget.id
+      let id = Number(e.currentTarget.id)
       this.setData({
         currentSelect: id
       })

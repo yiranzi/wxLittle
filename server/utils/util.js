@@ -33,7 +33,7 @@ const getUsedDay = (sql) => {
       console.log('get from ajax!!!!')
       mysql("user_info").where( userIdSql ).first().then(res => {
         if (res) {
-          let usedDay = getDateDiff(0, Date.now()) - getDateDiff(0, res.start_time)
+          let usedDay = getDayDiff(0, res.start_time)
           // today = usedDay
           console.log(today)
           resolve (usedDay)

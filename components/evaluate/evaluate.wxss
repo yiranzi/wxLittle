@@ -1,4 +1,5 @@
 /* pages/cpmponent/index.wxss */
+@import "../../app.wxss";
 .out-div {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -43,10 +44,4 @@
 
 .cancel {
     color: red
-}
-
-.g-main-title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
 }

@@ -71,11 +71,17 @@ module.exports = async ctx => {
         }
         mt.buffDay = buffDay
         mt.isFinishToday = fromLastUsed
-        listWithTodayJob.push(mt) 
+        listWithTodayJob.push(mt)
     }
-    await Promise.all(listWithTodayJob).then((res) => {
-      ctx.state.data = res
-    })
+    // 排序和整理
+    let compareFunc = (a, b) => {
+      return (b.buffDay - a.buffDay)
+    }
+    let afterSort = []
+    afterSort = afterSort.concat(listWithTodayJob.filter(item => item.isFinishToday === 1).sort(compareFunc))
+    afterSort = afterSort.concat(listWithTodayJob.filter(item => item.isFinishToday === 0).sort(compareFunc))
+    afterSort = afterSort.concat(listWithTodayJob.filter(item => item.isFinishToday > 1).sort(compareFunc))
+    ctx.state.data = afterSort
   } else {
     ctx.state.data = false
   }

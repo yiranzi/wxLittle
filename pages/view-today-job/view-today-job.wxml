@@ -25,7 +25,10 @@
                 <view class='content'>{{jobArray[currentSelect].jobPastTime}}</view>
             </view>
             <view class='button-div'>
-                <view wx:if="{{jobArray[currentSelect].jobPastTime < 2 && !jobArray[currentSelect].problem}}">
+                <view wx:if="{{jobArray[currentSelect].jobPastTime === 0 && !jobArray[currentSelect].problem}}">
+                  <button bindtap="finishClick">完成</button>
+                </view>
+                <view wx:if="{{jobArray[currentSelect].jobPastTime === 1}}">
                   <button bindtap="finishClick">完成</button>
                 </view>
                 <view wx:if="{{jobArray[currentSelect].jobPastTime === 0 && !jobArray[currentSelect].problem}}">

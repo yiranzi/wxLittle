@@ -28,7 +28,7 @@
           <view class="button-div" wx:if="{{miletone.todayJob.length > 0}}">
             <view class="new-job" bindtap="clickNewJob" id="{{miletone.mt_id}}">
                 <view class="one-line">新建任务</view>
-                <view class="one-line">buff:{{miletone.buffDay}}</view>
+                <view class="one-line">连击:{{miletone.buffDay}}</view>
             </view>
             <view class="view-job" bindtap="viewJob" id="{{miletone.todayJob[0].job_id}}">
                 <view>{{miletone.todayJob[0].title}}</view>
@@ -39,7 +39,7 @@
           <view class="button-div" wx:else>
             <view class="new-job" bindtap="clickNewJob" id="{{miletone.mt_id}}">
                 <view class="one-line">新建任务</view>
-                <view class="one-line">buff:{{miletone.buffDay}}</view>
+                <view class="one-line">连击:{{miletone.buffDay}}</view>
             </view>
           </view>
         </view>

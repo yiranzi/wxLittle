@@ -1,4 +1,5 @@
 const { mysql } = require('../qcloud')
+const util = require('../utils/util.js')
 
 module.exports = async ctx => {
   // get from param
@@ -30,5 +31,23 @@ module.exports = async ctx => {
     evaluate: '',
   }
   let res = await mysql("job_list").insert(mtInfo)
-  ctx.state.data = mtInfo
+
+  // reward
+
+  let nowPastinuteToday = ((Date.now() - 1514736000000) % (1000 * 60 * 60 * 24)) / (1000 * 60)
+  
+  let perReward = 1
+  let reward = Math.floor(perReward * (24 * 60 - nowPastinuteToday))
+  
+ // update userInfo
+ let userIdSql = {
+  user_id: user_id
+}
+
+ var userInfo = await mysql("user_info").where( userIdSql ).first()
+ let updateUserInfo = {
+   gold: userInfo.gold + reward,
+ }
+ await mysql("user_info").where( userIdSql ).first().update( updateUserInfo )  
+  ctx.state.data = reward
 }

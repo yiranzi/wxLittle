@@ -71,6 +71,9 @@ Page({
     // 发送请求。生成修改数据
     ajax.postNewJob(obj).then((res) => {
       util.showSuccess('新增当日任务完成！')
+      if(res) {
+        this.selectComponent('#reward').show(res)
+      }
       this.resetData()
     })
   },
@@ -97,7 +100,6 @@ Page({
 
   // 提交完数据后，进行处理
   resetData: function () {
-    console.log('123123')
     //1 更新本地的时间数据 //2 清空
     let {mileToneNameArr, level, currentSelect} = this.data
     if (mileToneNameArr[currentSelect]) {

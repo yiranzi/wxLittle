@@ -1,5 +1,6 @@
 <!--pages/newMileTone/new.wxml-->
 <view class='main-body'>
+    <reward id='reward' bind:clickButton="clickButton"></reward>
     <arrow-selector wx:if="{{mileToneNameArr.length > 0}}"
         defaultSelect="{{currentSelect}}"
         dataArr="{{mileToneNameArr}}"

@@ -75,7 +75,16 @@ module.exports = async ctx => {
     }
     // 排序和整理
     let compareFunc = (a, b) => {
-      return (b.buffDay - a.buffDay)
+      let result = b.buffDay - a.buffDay
+      if (result !== 0) {
+        return result
+      } else {
+        if (a.isFinishToday <= 1) {
+          return b.exp - a.exp
+        } else {
+          return a.isFinishToday - b.isFinishToday
+        }
+      }
     }
     let afterSort = []
     afterSort = afterSort.concat(listWithTodayJob.filter(item => item.isFinishToday === 1).sort(compareFunc))

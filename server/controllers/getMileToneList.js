@@ -30,7 +30,8 @@ module.exports = async ctx => {
           })
         }
         mt.todayJob = todayJobList
-  
+        mt.historyJobList = jobList
+        // 这块是在浏览历史界面的
         // 设置战利品列表
         let findMtEquip = {
           mt_id: mt.mt_id
@@ -44,6 +45,9 @@ module.exports = async ctx => {
           })
           mt.equipList = equipWithInfo
         }
+        // 设置历史。
+        var job_list = await mysql("job_list").where(userIdSql)
+
         // 设置时间
         let usedDay = await util.getUsedDay(userIdSql)
         // fromLastUsed：距离上次的使用时间 = 使用app天数 - 最后一次天数。

@@ -243,10 +243,17 @@ Page({
 
   redict() {
     // let a = 'view-today-job'
-    let a = ''
+    // let a = 'mt-info'
+    let url
     switch (a) {
       case 'view-today-job':
-        let url = `/pages/view-today-job/view-today-job?job_id=${43}`
+        url = `/pages/view-today-job/view-today-job?job_id=${43}`
+        wx.navigateTo({
+          url: url
+        })
+        break
+      case 'mt-info':
+        url = `/pages/mt-info/mt-info?mt_id=1`
         wx.navigateTo({
           url: url
         })

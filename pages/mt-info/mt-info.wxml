@@ -14,9 +14,30 @@
     <view class='part-div'>
         <view class='title g-h2'>角色信息</view>
         <view class='title g-h2'>Exp:{{mileToneNameArr[currentSelect].exp}}</view>
+        <view wx:if="{{mileToneNameArr[currentSelect].historyJobList.length > 0}}" class="equip history">
+            <view class='title g-h2'>历史列表:</view>
+            <view class="history-line">
+                <view class="date">日期</view>
+                <view class="title">名称</view>
+                <view class="level">时间</view>
+                <view class="grade">成绩</view>
+            </view>
+            <view wx:key="{{index}}" wx:for="{{mileToneNameArr[currentSelect].historyJobList}}">
+                <view class="history-line">
+                    <view class="date">{{item.end_time}}</view>
+                    <view class="title">{{item.title}}</view>
+                    <view class="level">{{item.level}}</view>
+                    <view class="grade">{{item.grade}}</view>
+                </view>
+                <view>描述：{{item.desc}}</view>
+                <view>描述：{{item.desc}}</view>
+                <view>功能：{{item.goal}}</view>
+            </view>
+        </view>
+
         <view wx:if="{{mileToneNameArr[currentSelect].equipList.length > 0}}" class="equip">
             <view class='title g-h2'>装备:</view>
-            <view wx:for="{{mileToneNameArr[currentSelect].equipList}}">
+            <view wx:key="{{index}}" wx:for="{{mileToneNameArr[currentSelect].equipList}}">
                 <view class="equip_top">
                     <image class="equip_icon"src="{{item.icon}}" />
                     <view class="equip_title">{{item.name}}</view>

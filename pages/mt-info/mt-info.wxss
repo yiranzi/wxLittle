@@ -43,4 +43,26 @@
     text-align: center;
     margin-right: 10px;
 }
+.history {
+    padding: 10px
+}
+.history-line {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.history-line .date {
+    width: 100px;
+}
+.history-line .title {
+    flex: 1;
+}
+.history-line .level {
+    width: 50px;
+}
+.history-line .grade {
+    width: 50px;
+}
 

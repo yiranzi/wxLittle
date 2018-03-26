@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "modal-box": "/components/modal-box/modal-box",
+    "alert": "/components/alert/alert",
+    "reward": "/components/reward/reward"
+  }
+}

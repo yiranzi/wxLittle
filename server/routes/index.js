@@ -34,6 +34,9 @@ const { auth: { authorizationMiddleware, validationMiddleware } } = require('../
 
 // get
 
+router.post('/getStock', controllers.getStock)
+
+
 router.get('/userinfo', controllers.userinfo)
 router.get('/getMileToneList', controllers.getMileToneList)
 router.get('/getJobList', controllers.getJobList)

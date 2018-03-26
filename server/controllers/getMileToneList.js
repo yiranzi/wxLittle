@@ -30,7 +30,11 @@ module.exports = async ctx => {
           })
         }
         mt.todayJob = todayJobList
-        mt.historyJobList = jobList
+        //
+        mt.historyJobList = (jobList.map((job, index) => {
+          job.endTime = util.formatTime(new Date(Number(job.end_time)))
+          return job
+        })).reverse()
         // 这块是在浏览历史界面的
         // 设置战利品列表
         let findMtEquip = {

@@ -8,9 +8,33 @@ const testCgi = () => {
     // 拉取数据
     var that = this
     wx.request({
-      url: `${config.service.host}/weapp/demo`,
+      url: `${config.service.host}/weapp/getStock`,
       data: {
-        test: '134'
+        stock_id_list: ['159915']
+      },
+      method: 'post',
+      success (result) {
+        util.showSuccess('请求成功完成')
+        reslove(result)
+      },
+      fail (error) {
+        util.showModel('请求失败', error);
+        console.log('request fail', error);
+        reject (false)
+      }
+    })
+  })
+}
+
+const getStockHistory = (stock_id_list) => {
+  util.showBusy('请求中...')
+  return new Promise((reslove, reject) => {
+    // 拉取数据
+    var that = this
+    wx.request({
+      url: `${config.service.host}/weapp/getStock`,
+      data: {
+        stock_id_list: stock_id_list
       },
       method: 'post',
       success (result) {
@@ -185,4 +209,4 @@ const finishTodayJob = obj => {
 }
 
 
-module.exports = { testCgi, postNewJob, finishTodayJob, getUserInfo, getMileToneList, postMileTone, getJobList, newUserSign }
+module.exports = { testCgi, postNewJob, finishTodayJob, getUserInfo, getMileToneList, postMileTone, getJobList, newUserSign, getStockHistory }

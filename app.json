@@ -4,7 +4,8 @@
     "pages/mt-info/mt-info",
     "pages/new-mt/new-mt",
     "pages/new-job/new-job",
-    "pages/view-today-job/view-today-job"
+    "pages/view-today-job/view-today-job",
+    "pages/stock/stock"
   ],
   "window": {
     "backgroundTextStyle": "light",

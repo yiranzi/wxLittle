@@ -1,0 +1,32 @@
+<!--pages/main/index.wxml-->
+<view class='g-container'>
+  <view class='g-page'>
+    <view class='a2'>history Info:</view>
+    <view class='flex-4'>
+        <view class='flex-item' style='max-width: 0px;min-width: 0px'>code</view>
+        <view class='flex-item'>name</view>
+        <view class='flex-item'>today</view>
+        <view class='flex-item'>minValue</view>
+        <view class='flex-item'>minPercent</view>
+        <view class='flex-item' style='max-width: 0px;min-width: 0px'>maxValue</view>
+        <view class='flex-item'>maxPercent</view>
+    </view>
+    <view class='flex-4' wx:for="{{stockListArr}}" wx:for-item="stock" wx:key="{{stock.stockId}}">
+        <view class='flex-item' style='max-width: 0px;min-width: 0px'>{{stock.stock_id}}</view>
+        <view class='flex-item'>{{stock.name}}</view>
+        <view class='flex-item'>{{stock.today}}</view>
+        <view class='flex-item'>{{stock.minValue}}</view>
+        <view class='flex-item'>{{stock.minPercent}}</view>
+        <view class='flex-item'style='max-width: 0px;min-width: 0px'>{{stock.maxValue}}</view>
+        <view class='flex-item'>{{stock.maxPercent}}</view>
+    </view>
+  </view>
+</view>
+
+<!--
+          <view class='a3' wx:for="{{stockTitles}}" wx:for-item="item" wx:key="{{index}}">
+              <view class='a4'>{{item}}</view>
+              <view class='a4'>{{stock.min[item]}}</view>
+          </view>
+
+-->

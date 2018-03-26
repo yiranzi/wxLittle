@@ -24,7 +24,7 @@
             </view>
             <view wx:key="{{index}}" wx:for="{{mileToneNameArr[currentSelect].historyJobList}}">
                 <view class="history-line">
-                    <view class="date">{{item.end_time}}</view>
+                    <view class="date">{{item.endTime}}</view>
                     <view class="title">{{item.title}}</view>
                     <view class="level">{{item.level}}</view>
                     <view class="grade">{{item.grade}}</view>

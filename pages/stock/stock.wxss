@@ -1,0 +1,12 @@
+/* pages/stock/stock.wxss */
+
+.flex-4 {
+     display: flex;
+}
+
+.flex-item {
+     min-width: 20%;
+     max-width: 20%;
+     overflow: hidden;
+     border: 1px solid black;
+}

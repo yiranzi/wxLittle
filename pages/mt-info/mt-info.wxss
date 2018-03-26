@@ -60,9 +60,9 @@
     flex: 1;
 }
 .history-line .level {
-    width: 50px;
+    width: 40px;
 }
 .history-line .grade {
-    width: 50px;
+    width: 40px;
 }
 

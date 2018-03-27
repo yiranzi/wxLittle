@@ -113,22 +113,30 @@ function initCheerio(html) {
  * @param {全部的数据} data 
  * @param {需要根据哪个数值查找最大值} type 
  */
-function getMaxValue (data, type) {
+function getMaxValue (data, type, mode) {
     // 传入一个元素。返回这个元素的每天的属性值，最大的一天的项
     // 假设他有这个值
     let maxIndex = 0
     let minIndex = 0
-    data.forEach((item, index) => {
-        if (Number(item['high']) > Number(data[maxIndex]['high'])) {
-            maxIndex = index 
-        }
-        if (Number(item['low']) < Number(data[minIndex]['low'])) { minIndex = index }
-    })
+    if (mode) {
+        data.forEach((item, index) => {
+            if (Number(item['high']) > Number(data[maxIndex]['high'])) {
+                maxIndex = index
+            }
+            if (Number(item['low']) < Number(data[minIndex]['low'])) { minIndex = index }
+        })
+    } else {
+        data.forEach((item, index) => {
+            if (Number(item[type]) > Number(data[maxIndex][type])) {
+                maxIndex = index
+            }
+            if (Number(item[type]) < Number(data[minIndex][type])) { minIndex = index }
+        })
+    }
     let maxDayId = 0
-    let maxSecond = 0
     // 查找今日
     data.forEach((dayStockJson, index) => {
-        if ( (new Date(dayStockJson.date)).getTime() > maxSecond ) {
+        if ( (new Date(dayStockJson.date)).getTime() > (new Date(data[maxDayId].date)).getTime() ) {
             maxDayId = index
         }
     })
@@ -247,10 +255,11 @@ async function saveData (dataInfo, stock_id, type) {
         })     
     } else if (type === 'today') {
         // obj
-        let {today, ...dataInfoJson} = dataInfo
         let daySql = {
-            date: today
+          date: dataInfo.today
         }
+        let dataInfoJson = Object.assign({}, dataInfo)
+        delete dataInfoJson.today
         let stockHistory = await mysql('stock_history').where( daySql )
         for (let stock_id in dataInfoJson) {
             let result = stockHistory.find((item ,index) => {
@@ -262,7 +271,7 @@ async function saveData (dataInfo, stock_id, type) {
                 promiseArr.push(mysql('stock_history').insert(obj))
             } else {
                 // update
-                promiseArr.push(mysql('stock_history').update(obj).where({stock_id: stock_id, date: today}))
+                promiseArr.push(mysql('stock_history').update(obj).where({stock_id: stock_id, date: daySql.date}))
             }
         }
     }
@@ -277,12 +286,14 @@ async function makeHistoryData (stock_id) {
     // 1 拉取历史数据
     let stockHistoryData = await mysql('stock_history').where(stockIdSql)
     // 2 返回历史数据
-    let type = 'close'
+    let type
     let maxValueInfo
-    maxValueInfo = getMaxValue(stockHistoryData, type)
     let result = {}
     const calcMode = 1
     if (calcMode) {
+        type = 'close'
+        maxValueInfo = getMaxValue(stockHistoryData, type, calcMode)
+
         if (maxValueInfo.max) {
             result = {
                 name: idToName[stock_id],
@@ -295,6 +306,9 @@ async function makeHistoryData (stock_id) {
             }
         }
     } else {
+        type = 'close'
+        maxValueInfo = getMaxValue(stockHistoryData, type, calcMode)
+
         result.normalPart = {
             name: idToName[stock_id],
             stock_id: stock_id,
@@ -330,7 +344,7 @@ async function makeHistoryData (stock_id) {
 module.exports = async ctx => {
     // 获得股票id
     let {stock_id_list} = ctx.request.body
-    let type = 'history'
+    let type = 'today'
     let result = {}
 
     if (type === 'history') {

@@ -1,12 +1,23 @@
 /* pages/stock/stock.wxss */
 
-.flex-4 {
+.flex {
      display: flex;
 }
 
-.flex-item {
+.flex-item-5 {
      min-width: 20%;
      max-width: 20%;
      overflow: hidden;
      border: 1px solid black;
+}
+
+.flex-item-6 {
+     min-width: 16%;
+     max-width: 16%;
+     overflow: hidden;
+     border: 1px solid black;
+}
+
+.a2 {
+    margin-top: 20px;
 }

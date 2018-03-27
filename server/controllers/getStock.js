@@ -59,7 +59,7 @@ function getUpdateJsonToday(jsonList) {
     let today = ''
     for (let stock_id_code in jsonList) {
         let json = jsonList[stock_id_code]
-        let {volume, high, low, price, open, turnover, percent, update: date, yestclose} = json
+        let {volume, high, low, price, open, turnover, percent, update: date, yestclose, updown} = json
         let obj = {
             price,
             date,
@@ -68,7 +68,9 @@ function getUpdateJsonToday(jsonList) {
             low,
             volume,
             turnover,
-            percent
+            percent,
+            updown,
+            yestclose
         }
         obj.close = price
         let arr = date.split(' ')
@@ -133,18 +135,9 @@ function getMaxValue (data, type, mode) {
             if (Number(item[type]) < Number(data[minIndex][type])) { minIndex = index }
         })
     }
-    let maxDayId = 0
-    // 查找今日
-    data.forEach((dayStockJson, index) => {
-        if ( (new Date(dayStockJson.date)).getTime() > (new Date(data[maxDayId].date)).getTime() ) {
-            maxDayId = index
-        }
-    })
-    let todayId = maxDayId
     return {
         max: data[maxIndex],
-        min: data[minIndex],
-        today: data[todayId]
+        min: data[minIndex]
     }
 }
 
@@ -209,6 +202,7 @@ function dataBeforeInsertFormat (data, stock_id) {
         volume: Number(data.volume || 0),
         turnover: Number(data.turnover || 0),
         name: data.name || idToName[stock_id],
+        yestclose: Number(data.yestclose || 0),
     }
     if (data.updown) {
         // 计算差值
@@ -279,13 +273,23 @@ async function saveData (dataInfo, stock_id, type) {
     console.log('finish')
 }
 
-async function makeHistoryData (stock_id) {
+async function makeHistoryData (stock_id, resultObj) {
     let stockIdSql = {
         stock_id: stock_id
     }
     // 1 拉取历史数据
     let stockHistoryData = await mysql('stock_history').where(stockIdSql)
-    // 2 返回历史数据
+    // 1 确定当日 maxDayId就是today
+    let maxDayId = 0
+    stockHistoryData.forEach((dayStockJson, index) => {
+        if ( (new Date(dayStockJson.date)).getTime() > (new Date(stockHistoryData[maxDayId].date)).getTime() ) {
+            maxDayId = index
+        }
+    })
+    // 单日数据
+    let todayData = stockHistoryData[maxDayId]
+    resultObj.today = todayData
+    // 2 根据最值。构造历史数据
     let type
     let maxValueInfo
     let result = {}
@@ -298,11 +302,12 @@ async function makeHistoryData (stock_id) {
             result = {
                 name: idToName[stock_id],
                 stock_id: stock_id,
-                today: maxValueInfo.today.close,
+                date: todayData.date,
+                today: todayData.price,
                 maxValue: maxValueInfo.max['high'],
-                maxPercent: (maxValueInfo.today.close - maxValueInfo.max['high'])/maxValueInfo.max.close,
+                maxPercent: (todayData.price / maxValueInfo.max['high']),
                 minValue: maxValueInfo.min['low'],
-                minPercent: (maxValueInfo.today.close - maxValueInfo.min['low'])/maxValueInfo.min.close
+                minPercent: (todayData.price /maxValueInfo.min['low']) - 1
             }
         }
     } else {
@@ -312,11 +317,12 @@ async function makeHistoryData (stock_id) {
         result.normalPart = {
             name: idToName[stock_id],
             stock_id: stock_id,
-            today: maxValueInfo.today.close,
+            date: todayData.date,
+            today: todayData.price,
             maxValue: maxValueInfo.max[type],
-            maxPercent: (maxValueInfo.today.close - maxValueInfo.max[type])/maxValueInfo.max.close,
+            maxPercent: todayData.price / maxValueInfo.max[type],
             minValue: maxValueInfo.min[type],
-            minPercent: (maxValueInfo.today.close - maxValueInfo.min[type])/maxValueInfo.min.close
+            minPercent: (todayData.price / maxValueInfo.min[type]) - 1
         }
 
         type = 'high'
@@ -324,18 +330,18 @@ async function makeHistoryData (stock_id) {
         result.maxPart = {
             name: idToName[stock_id],
             stock_id: stock_id,
-            today: maxValueInfo.max.date,
+            date: maxValueInfo.max.date,
             maxValue: maxValueInfo.max[type],
-            maxPercent: (maxValueInfo.today.close - maxValueInfo.max[type])/maxValueInfo.max.close,
+            maxPercent: todayData.price / maxValueInfo.max[type],
         }
         type = 'low'
         maxValueInfo = getMaxValue(stockHistoryData, type)
         result.minPart = {
             name: idToName[stock_id],
             stock_id: stock_id,
-            today: maxValueInfo.min.date,
+            date: maxValueInfo.min.date,
             minValue: maxValueInfo.min[type],
-            minPercent: (maxValueInfo.today.close - maxValueInfo.min[type])/maxValueInfo.min.close
+            minPercent: (todayData.price / maxValueInfo.min[type]) - 1
         }
     }
     return result
@@ -344,7 +350,7 @@ async function makeHistoryData (stock_id) {
 module.exports = async ctx => {
     // 获得股票id
     let {stock_id_list} = ctx.request.body
-    let type = 'today'
+    let type = 'history'
     let result = {}
 
     if (type === 'history') {
@@ -364,16 +370,15 @@ module.exports = async ctx => {
 
     for (let i = 0; i < stock_id_list.length; i++) {
         let stock_id = stock_id_list[i]
-        // 3 构造历史数据
-        let history = await makeHistoryData(stock_id)
-       
-        // 5 today
-        // 从另外一个口。更新获得今日最新的数据。这个可以模拟一下
+        // 1 构造今日数据
         result[stock_id] = {
-            stockId: stock_id,
-            history: history,
             today: undefined
         }
+        // 2 构造历史数据 并赋值今日数据
+        let history = await makeHistoryData(stock_id, result[stock_id])
+        // 3 整理后的结构赋值。
+        result[stock_id].stockId = stock_id
+        result[stock_id].history = history
     }
     ctx.state.data = result
 }

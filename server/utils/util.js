@@ -62,5 +62,10 @@ const getEnv = () => {
   return false
 }
 
+const makePercent = (float) => {
+  float = Number((float * 100).toFixed(1))
+  float = float + '%'
+  return float
+}
 
-module.exports = { formatTime, getRandomInt, getEnv, getUsedDay, getDateDiff, getDayDiff, today }
+module.exports = { formatTime, getRandomInt, getEnv, getUsedDay, getDateDiff, getDayDiff, today, makePercent }

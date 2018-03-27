@@ -1,4 +1,5 @@
 var ajax = require('../../ajax/ajax');
+var util = require('../../server/utils/util');
 
 Page({
   /**
@@ -12,13 +13,21 @@ Page({
     // stockIdList: ['159915'],
     // stockTitles: ['date','start','max','min','end','value','percent','volume','obv'],
     stockTitles: ['date','name','open','close','high','low','price','updown','percent','volume','turnover'],
-    stockList: {},
+    stockTodayList: {},
     stockListArr: {},
     stockData: {
       min: {},
       max: {},
       today: {}
     },
+  },
+
+  getRangeFromMinMax: function (todayData) {
+    let {low, high, price} = todayData
+    let maxPercent = util.makePercent((high - price) / price)
+    let minPercent = util.makePercent((low - price) / price)
+    let result = minPercent + '~' + maxPercent
+    todayData.range = result
   },
 
   init: function () {
@@ -30,27 +39,32 @@ Page({
     //   return ajax.getStockHistory(item)
     // })
     let objArr = []
+    let todayArr = []
     promiseArr.then(value => {
       // 整理数据
       let stockInfoList = value.data.data
       console.log(stockInfoList)
       for (let stock_id in stockInfoList) {
+        // 构造今日数据
+        stockInfoList[stock_id].today.percent = util.makePercent(stockInfoList[stock_id].today.percent)
+        let {today: todayData} = stockInfoList[stock_id]
+        this.getRangeFromMinMax(todayData)
+        todayArr.push(stockInfoList[stock_id].today)
+        // format历史数据
         let historyJson = stockInfoList[stock_id].history
         for (let valueKey in historyJson) {
           if (valueKey.includes('Percent')) {
-            let float = Number((historyJson[valueKey] * 100).toFixed(4))
-            historyJson[valueKey] = float + '%'
-            console.log(historyJson[valueKey])
+            historyJson[valueKey] = util.makePercent(historyJson[valueKey])
           } else if (typeof(historyJson[valueKey]) === 'number') {
             historyJson[valueKey].toFixed(2)
           }
         }
-        historyJson.stock_id = stock_id
         objArr.push(historyJson)
       }
       // 保存数据
       this.setData({
-        stockListArr: objArr
+        stockListArr: objArr,
+        stockTodayList: todayArr
       })
       console.log(objArr)
     })

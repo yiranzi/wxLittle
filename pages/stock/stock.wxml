@@ -2,24 +2,42 @@
 <view class='g-container'>
   <view class='g-page'>
     <view class='a2'>history Info:</view>
-    <view class='flex-4'>
-        <view class='flex-item' style='max-width: 0px;min-width: 0px'>code</view>
-        <view class='flex-item'>name</view>
-        <view class='flex-item'>today</view>
-        <view class='flex-item'>minValue</view>
-        <view class='flex-item'>minPercent</view>
-        <view class='flex-item' style='max-width: 0px;min-width: 0px'>maxValue</view>
-        <view class='flex-item'>maxPercent</view>
+    <view class='flex'>
+        <view class='flex-item-5' style='max-width: 0px;min-width: 0px'>code</view>
+        <view class='flex-item-5'>name</view>
+        <view class='flex-item-5'>最前</view>
+        <view class='flex-item-5'>minValue</view>
+        <view class='flex-item-5'>minPercent</view>
+        <view class='flex-item-5' style='max-width: 0px;min-width: 0px'>maxValue</view>
+        <view class='flex-item-5'>maxPercent</view>
     </view>
-    <view class='flex-4' wx:for="{{stockListArr}}" wx:for-item="stock" wx:key="{{stock.stockId}}">
-        <view class='flex-item' style='max-width: 0px;min-width: 0px'>{{stock.stock_id}}</view>
-        <view class='flex-item'>{{stock.name}}</view>
-        <view class='flex-item'>{{stock.today}}</view>
-        <view class='flex-item'>{{stock.minValue}}</view>
-        <view class='flex-item'>{{stock.minPercent}}</view>
-        <view class='flex-item'style='max-width: 0px;min-width: 0px'>{{stock.maxValue}}</view>
-        <view class='flex-item'>{{stock.maxPercent}}</view>
+    <view class='flex' wx:for="{{stockListArr}}" wx:for-item="stock" wx:key="{{stock.stockId}}">
+        <view class='flex-item-5' style='max-width: 0px;min-width: 0px'>{{stock.stock_id}}</view>
+        <view class='flex-item-5'>{{stock.name}}</view>
+        <view class='flex-item-5'>{{stock.today}}</view>
+        <view class='flex-item-5'>{{stock.minValue}}</view>
+        <view class='flex-item-5'>{{stock.minPercent}}</view>
+        <view class='flex-item-5'style='max-width: 0px;min-width: 0px'>{{stock.maxValue}}</view>
+        <view class='flex-item-5'>{{stock.maxPercent}}</view>
     </view>
+
+    <view class='a2'>today Info:</view>
+        <view class='flex'>
+            <view class='flex-item-6'>name</view>
+            <view class='flex-item-6'>yest</view>
+            <view class='flex-item-6'>open</view>
+            <view class='flex-item-6'>close</view>
+            <view class='flex-item-6'>percent</view>
+            <view class='flex-item-6'>range</view>
+        </view>
+        <view class='flex' wx:for="{{stockTodayList}}" wx:for-item="stock" wx:key="{{stock.stockId}}">
+            <view class='flex-item-6'>{{stock.name}}</view>
+            <view class='flex-item-6'>{{stock.yestclose}}</view>
+            <view class='flex-item-6'>{{stock.open}}</view>
+            <view class='flex-item-6'>{{stock.close}}</view>
+            <view class='flex-item-6'>{{stock.percent}}</view>
+            <view class='flex-item-6' style='font-size: 10px'>{{stock.range}}</view>
+        </view>
   </view>
 </view>
 

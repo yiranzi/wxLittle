@@ -350,7 +350,7 @@ async function makeHistoryData (stock_id, resultObj) {
 module.exports = async ctx => {
     // 获得股票id
     let {stock_id_list} = ctx.request.body
-    let type = 'history'
+    let type = 'today'
     let result = {}
 
     if (type === 'history') {

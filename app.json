@@ -1,11 +1,18 @@
 {
   "pages": [
+    "pages/stock/stock",
+    "pages/show/show",
+    "pages/blue/blue",
+
+
+
+
+    "pages/history/history",
     "pages/main/main",
     "pages/mt-info/mt-info",
     "pages/new-mt/new-mt",
     "pages/new-job/new-job",
-    "pages/view-today-job/view-today-job",
-    "pages/stock/stock"
+    "pages/view-today-job/view-today-job"
   ],
   "window": {
     "backgroundTextStyle": "light",

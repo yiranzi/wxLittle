@@ -35,6 +35,25 @@ const { auth: { authorizationMiddleware, validationMiddleware } } = require('../
 // get
 
 router.post('/getStock', controllers.getStock)
+router.post('/postNowData', controllers.postNowData)
+router.post('/postHistoryData', controllers.postHistoryData)
+
+// 血糖。蓝牙
+router.post('/postGluData', controllers.postGluData)
+router.get('/getGluData', controllers.getGluData)
+router.get('/getWatchData', controllers.getWatchData)
+
+// 个人信息
+router.get('/userInfoMini', controllers.userInfoMini)
+router.get('/getUserList', controllers.getUserList)
+router.get('/newUserSignMini', controllers.newUserSignMini)
+router.get('/newEquipBind', controllers.newEquipBind)
+
+// 设备绑定
+
+// 手表
+router.post('/postWatchData', controllers.postWatchData)
+
 router.get('/userinfo', controllers.userinfo)
 router.get('/getMileToneList', controllers.getMileToneList)
 router.get('/getJobList', controllers.getJobList)

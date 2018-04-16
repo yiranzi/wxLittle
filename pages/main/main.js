@@ -245,7 +245,7 @@ Page({
     // let a = ''
     // let a = 'view-today-job'
     // let a = 'mt-info'
-    let a = 'stock'
+    let a = 'blue'
     let url
     switch (a) {
       case 'view-today-job':
@@ -261,6 +261,11 @@ Page({
         })
       case 'stock':
         url = `/pages/stock/stock`
+        wx.navigateTo({
+          url: url
+        })
+      case 'blue':
+        url = `/pages/blue/blue`
         wx.navigateTo({
           url: url
         })

@@ -36,7 +36,7 @@ const base = util.getEnv() ? {
     port: 3306,
     user: 'root',
     db: 'cAuth',
-    pass: 'Java17131',
+    pass: 'wx503ed8eb029b5a82',
     char: 'utf8mb4'
   },
 

@@ -77,6 +77,7 @@ App({
   //这个是用来设置回调函数的；当或得到openId后就可以执行回调了。
 
   globalCbfFunc: {
+    userInfoCbf: () => {console.log('get user info')}
   },
 
   globalData: {

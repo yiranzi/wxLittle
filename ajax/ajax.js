@@ -208,5 +208,46 @@ const finishTodayJob = obj => {
   })
 }
 
+const getJHData = (json) => {
+  return new Promise((reslove, reject) => {
+    // 拉取数据
+    var that = this
+    wx.request({
+      url: `${config.service.host}/weapp/postNowData`,
+      data: json,
+      method: 'post',
+      success (result) {
+        reslove(result)
+      },
+      fail (error) {
+        console.log('request fail', error);
+        reject (false)
+      }
+    })
+  })
+}
 
-module.exports = { testCgi, postNewJob, finishTodayJob, getUserInfo, getMileToneList, postMileTone, getJobList, newUserSign, getStockHistory }
+const getJHHistoryData = (json) => {
+  util.showBusy('请求中...')
+  return new Promise((reslove, reject) => {
+    // 拉取数据
+    var that = this
+    wx.request({
+      url: `${config.service.host}/weapp/postHistoryData`,
+      data: json,
+      method: 'post',
+      success (result) {
+        util.showSuccess('请求成功完成')
+        reslove(result)
+      },
+      fail (error) {
+        util.showModel('请求失败', error);
+        console.log('request fail', error);
+        reject (false)
+      }
+    })
+  })
+}
+
+
+module.exports = { getJHHistoryData, getJHData, testCgi, postNewJob, finishTodayJob, getUserInfo, getMileToneList, postMileTone, getJobList, newUserSign, getStockHistory }
